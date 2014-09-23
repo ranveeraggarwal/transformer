@@ -1,40 +1,100 @@
 #include "gl_framework.hpp"
 
-void drawCube(float r, float g, float b) {
-    glColor4f(r, g, b, 1.0);
+void drawCube() {
     glBegin(GL_QUADS);
+    glColor4f(0, 1, 0, 1.0);
         glVertex3f(0.5f, 0.5f, 0.5f);
         glVertex3f(-0.5f, 0.5f, 0.5f);
         glVertex3f(-0.5f, -0.5f, 0.5f);
         glVertex3f(0.5f, -0.5f, 0.5f);
+    glColor4f(1, 1, 0, 1.0);
         glVertex3f(0.5f, 0.5f, -0.5f);
         glVertex3f(0.5f, 0.5f, 0.5f);
         glVertex3f(0.5f, -0.5f, 0.5f);
         glVertex3f(0.5f, -0.5f, -0.5f);
+    glColor4f(1, 0, 1, 1.0);
         glVertex3f(-0.5f, 0.5f, -0.5f);
         glVertex3f(0.5f, 0.5f, -0.5f);
         glVertex3f(0.5f, -0.5f, -0.5f);
         glVertex3f(-0.5f, -0.5f, -0.5f);
+    glColor4f(0, 1, 1, 1.0);
         glVertex3f(-0.5f, 0.5f, 0.5f);
         glVertex3f(-0.5f, 0.5f, -0.5f);
         glVertex3f(-0.5f, -0.5f, -0.5f);
         glVertex3f(-0.5f, -0.5f, 0.5f);
+    glColor4f(1, 0, 0, 1.0);
         glVertex3f(0.5f, 0.5f, -0.5f);
         glVertex3f(-0.5f, 0.5f, -0.5f);
         glVertex3f(-0.5f, 0.5f, 0.5f);
         glVertex3f(0.5f, 0.5f, 0.5f);
+    glColor4f(0, 0, 1, 1.0);
         glVertex3f(-0.5f, -0.5f, 0.5f);
         glVertex3f(-0.5f, -0.5f, -0.5f);
         glVertex3f(0.5f, -0.5f, -0.5f);
         glVertex3f(0.5f, -0.5f, 0.5f);
     glEnd();
+
+    /*
+    GLfloat vertices[] =
+    {
+        -0.5, -0.5, -0.5,   -0.5, -0.5,  0.5,   -0.5,  0.5,  0.5,   -0.5,  0.5, -0.5,
+        0.5, -0.5, -0.5,    0.5, -0.5,  0.5,    0.5,  0.5,  0.5,    0.5,  0.5, -0.5,
+        -0.5, -0.5, -0.5,   -0.5, -0.5,  0.5,    0.5, -0.5,  0.5,    0.5, -0.5, -0.5,
+        -0.5,  0.5, -0.5,   -0.5,  0.5,  0.5,    0.5,  0.5,  0.5,    0.5,  0.5, -0.5,
+        -0.5, -0.5, -0.5,   -0.5,  0.5, -0.5,    0.5,  0.5, -0.5,    0.5, -0.5, -0.5,
+        -0.5, -0.5,  0.5,   -0.5,  0.5,  0.5,    0.5,  0.5,  0.5,    0.5, -0.5,  0.5
+    };
+
+    // We now have a vertex array
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glVertexPointer(3, GL_FLOAT, 0, vertices);
+
+    // Send data : 24 vertices
+    glDrawArrays(GL_QUADS, 0, 24);
+    glDisableClientState(GL_VERTEX_ARRAY);
+    */
 }
 
 void renderGL(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glRotatef(45, 1, 1, 1);
-    drawCube(0.5, 0.0, 0.5);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glFrustum(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0);
+    glScalef(0.5, 0.5, 0.5);
+    glTranslatef(0, 0.6, 0);
+    glRotatef(45, -1, 1, 0);
+    glPushMatrix();
+    glScalef(1, 1.5, 1);
+    drawCube();
+    glPopMatrix();
+    glPushMatrix();
+    glTranslatef(0, 1, 0);
+    glScalef(0.5, 0.5, 0.5);
+    drawCube();
+    glPopMatrix();
+    //Hands
+    glPushMatrix();
+    glTranslatef(1, 0.25, 0);
+    glScalef(1.0, 0.25, 0.25);
+    drawCube();
+    glPopMatrix();
+    glPushMatrix();
+    glTranslatef(-1, 0.25, 0);
+    glScalef(1.0, 0.25, 0.25);
+    drawCube();
+    glPopMatrix();
+    //Legs
+    glPushMatrix();
+    glTranslatef(0.25, -1.25, 0);
+    glScalef(0.25, 2.0, 0.25);
+    drawCube();
+    glPopMatrix();
+    glPushMatrix();
+    glTranslatef(-0.25, -1.25, 0);
+    glScalef(0.25, 2.0, 0.25);
+    drawCube();
+    glPopMatrix();
 
 }
 
