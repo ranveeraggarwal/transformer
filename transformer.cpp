@@ -1,8 +1,7 @@
 #include "gl_framework.hpp"
-#include "basics.hpp"
-#include "body.hpp"
 
-void renderGL(void)
+
+void renderGL(body* b)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
@@ -56,13 +55,14 @@ int main(int argc, char** argv)
 
   //Initialize GL state
   csX75::initGL();
-  body* b = new body();
   // Loop until the user closes the window
+  
+    body* b = new body();
   while (glfwWindowShouldClose(window) == 0)
     {
        
       // Render here
-      renderGL();
+      renderGL(b);
 
       // Swap front and back buffers
       glfwSwapBuffers(window);

@@ -1,52 +1,70 @@
+#include "basics.hpp"
+
+#define pelvis 1
+#define torso 2
+#define head 3
+#define right_upper_arm 4
+#define right_lower_arm 5
+#define right_hand 6
+#define left_upper_arm 7
+#define left_lower_arm 8
+#define left_hand 9
+#define right_thigh 10
+#define right_leg 11
+#define right_foot 12
+#define left_thigh 13
+#define left_leg 14
+#define left_foot 15
+
 class body {
 
 private:
 
 /* Angle Limits */
 
-const double shoulder_x_min;
-const double shoulder_x_max;
-const double shoulder_y_min;
-const double shoulder_y_max;
-const double shoulder_z_min;
-const double shoulder_z_max;
+static double shoulder_x_min;
+static double shoulder_x_max;
+static double shoulder_y_min;
+static double shoulder_y_max;
+static double shoulder_z_min;
+static double shoulder_z_max;
 
-const double waist_x_min;
-const double waist_x_max;
-const double waist_y_min;
-const double waist_y_max;
-const double waist_z_min;
-const double waist_z_max;
+static double waist_x_min;
+static double waist_x_max;
+static double waist_y_min;
+static double waist_y_max;
+static double waist_z_min;
+static double waist_z_max;
 
-const double neck_x_min;
-const double neck_x_max;
-const double neck_y_min;
-const double neck_y_max;
-const double neck_z_min;
-const double neck_z_max;
+static double neck_x_min;
+static double neck_x_max;
+static double neck_y_min;
+static double neck_y_max;
+static double neck_z_min;
+static double neck_z_max;
 
-const double ankle_x_min;
-const double ankle_x_max;
-const double ankle_y_min;
-const double ankle_y_max;
+static double ankle_x_min;
+static double ankle_x_max;
+static double ankle_y_min;
+static double ankle_y_max;
 
-const double wrist_x_min;
-const double wrist_x_max;
-const double wrist_z_min;
-const double wrist_z_max;
+static double wrist_x_min;
+static double wrist_x_max;
+static double wrist_z_min;
+static double wrist_z_max;
 
-const double hip_x_min;
-const double hip_x_max;
-const double hip_y_min;
-const double hip_y_max;
-const double hip_z_min;
-const double hip_z_max;
+static double hip_x_min;
+static double hip_x_max;
+static double hip_y_min;
+static double hip_y_max;
+static double hip_z_min;
+static double hip_z_max;
 
-const double elbow_x_min;
-const double elbow_x_max;
+static double elbow_x_min;
+static double elbow_x_max;
 
-const double knee_x_min;
-const double knee_x_max;
+static double knee_x_min;
+static double knee_x_max;
 
 /* Current Angles */
 
@@ -99,7 +117,7 @@ void init_right_upper_arm();
 
 void init_left_hand();
 void init_left_lower_arm();
-void init_right_upper_arm();
+void init_left_upper_arm();
 
 void init_head();
 
@@ -167,3 +185,4 @@ void move_left_knee_x(double t);
 
 
 };
+

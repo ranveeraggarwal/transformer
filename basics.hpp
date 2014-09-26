@@ -1,4 +1,2 @@
-#include "gl_framework.hpp"
-
-void drawCube(float r, float g, float b);
-void drawLine(float r, float g, float b);
+void drawCube(float = 1.0, float = 1.0, float = 1.0);
+void drawLine(float = 1.0, float = 1.0, float = 1.0);

@@ -1,5 +1,4 @@
 #include "gl_framework.hpp"
-#include <iostream>
 
 namespace csX75
 {

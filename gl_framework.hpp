@@ -1,10 +1,9 @@
 #ifndef _GL_FRAMEWORK_HPP_
 #define _GL_FRAMEWORK_HPP_
-
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-
 #include <iostream>
+#include "control.hpp"
 
 namespace csX75
 {

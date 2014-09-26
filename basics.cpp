@@ -1,6 +1,8 @@
 #include "basics.hpp"
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
-void drawCube(float r=1.0, float g=1.0, float b=1.0) {
+void drawCube(float r, float g, float b) {
     glColor4f(r, g, b, 1.0);
     glBegin(GL_QUADS);
         glVertex3f(0.5f, 0.5f, 0.5f);
@@ -30,7 +32,7 @@ void drawCube(float r=1.0, float g=1.0, float b=1.0) {
     glEnd();
 }
 
-void drawLine(float r=1.0, float g=1.0, float b=1.0) {
+void drawLine(float r, float g, float b) {
     glColor4f(r, g, b, 1.0);
     glBegin(GL_LINES);
         glVertex3f(-0.5f, 0.0f, 0.0f);
