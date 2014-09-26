@@ -1,4 +1,5 @@
 #include "gl_framework.hpp"
+#include <iostream>
 
 namespace csX75
 {
@@ -33,10 +34,13 @@ namespace csX75
   //!GLFW keyboard callback
   void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
   {
+    //printf("%d, %d, %d, %d\n", key, scancode, action, mods);
     //!Close the window if the ESC key was pressed
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
       glfwSetWindowShouldClose(window, GL_TRUE);
-  }
+    else
+        control(key, scancode, action, mods);
+    }
 };  
   
 
