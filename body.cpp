@@ -24,10 +24,10 @@ double body::neck_y_max = 0;
 double body::neck_z_min = 0;
 double body::neck_z_max = 0;
 
-double body::ankle_x_min = 0;
-double body::ankle_x_max = 0;
-double body::ankle_y_min = 0;
-double body::ankle_y_max = 0;
+double body::ankle_x_min = -45;
+double body::ankle_x_max = 45;
+double body::ankle_y_min = -45;
+double body::ankle_y_max = 45;
 
 double body::wrist_x_min = 0;
 double body::wrist_x_max = 0;
@@ -88,6 +88,14 @@ body::body() {
 
     /*Right Knee*/
     right_knee_x = 0;
+
+    /*Left Ankle*/
+    left_ankle_x = 0;
+    left_ankle_y = 0;
+
+    /*Right Ankle*/
+    right_ankle_x = 0;
+    right_ankle_y = 0;
 
     /*Number of Lists to Display*/
     glGenLists(15);
@@ -242,6 +250,10 @@ void body::render() {
             glPopMatrix();
 
             glPushMatrix();
+                glTranslatef(0.02, -0.585, -0.0125);
+                glRotatef(right_ankle_x, 1.0, 0.0, 0.0);
+                glRotatef(right_ankle_y, 0.0, 1.0, 0.0);
+                glTranslatef(-0.02, 0.585, 0.0125);
                 glCallList(right_foot);
             glPopMatrix();
         glPopMatrix();
@@ -272,6 +284,10 @@ void body::render() {
             glPopMatrix();
 
             glPushMatrix();
+                glTranslatef(0.02, -0.585, -0.0125);
+                glRotatef(left_ankle_x, 1.0, 0.0, 0.0);
+                glRotatef(left_ankle_y, 0.0, 1.0, 0.0);
+                glTranslatef(-0.02, 0.585, 0.0125);
                 glCallList(left_foot);
             glPopMatrix();
         glPopMatrix();
@@ -574,4 +590,44 @@ void body::move_left_knee_x(double t)
     else if(new_t < knee_x_min)
         new_t = knee_x_min;
     left_knee_x = new_t;
+}
+
+void body::move_right_ankle_x(double t)
+{
+    double new_t = right_ankle_x + t;
+    if(new_t > ankle_x_max)
+        new_t = ankle_x_max;
+    else if(new_t < ankle_x_min)
+        new_t = ankle_x_min;
+    right_ankle_x = new_t;
+}
+
+void body::move_right_ankle_y(double t)
+{
+    double new_t = right_ankle_y + t;
+    if(new_t > ankle_y_max)
+        new_t = ankle_y_max;
+    else if(new_t < ankle_y_min)
+        new_t = ankle_y_min;
+    right_ankle_y = new_t;
+}
+
+void body::move_left_ankle_x(double t)
+{
+    double new_t = left_ankle_x + t;
+    if(new_t > ankle_x_max)
+        new_t = ankle_x_max;
+    else if(new_t < ankle_x_min)
+        new_t = ankle_x_min;
+    left_ankle_x = new_t;
+}
+
+void body::move_left_ankle_y(double t)
+{
+    double new_t = left_ankle_y + t;
+    if(new_t > ankle_y_max)
+        new_t = ankle_y_max;
+    else if(new_t < ankle_y_min)
+        new_t = ankle_y_min;
+    left_ankle_y = new_t;
 }

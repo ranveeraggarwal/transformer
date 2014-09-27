@@ -15,6 +15,8 @@ Here are the key mappings (More to be added):
 * `K`: Left Hip
 * `O`: Right Knee
 * `L`: Left Knee
+* `P`: Right Ankle
+* `;`: Left Ankle
 
 To move the active component, the following key mappings work:
 * `Q`: Increase X
@@ -31,3 +33,4 @@ To move the active component, the following key mappings work:
 * Waist // 1 dof implemented, 2 more to do
 * Hips
 * Knees
+* Ankles
