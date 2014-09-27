@@ -46,19 +46,206 @@ double body::elbow_x_min = 0;
 body::body() {
     glGenLists(15);
     init_pelvis();
-
+    init_torso();
+    init_head();
+    init_right_upper_arm();
+    init_right_lower_arm();
+    init_right_hand();
+    init_left_upper_arm();
+    init_left_lower_arm();
+    init_left_hand();
+    init_right_thigh();
+    init_right_leg();
+    init_right_foot();
+    init_left_thigh();
+    init_left_leg();
+    init_left_foot();
 }
+
 
 void body::render() {
 
-    glCallList(pelvis);    
+    glLoadIdentity();
+
+    glPushMatrix();
+    glCallList(pelvis);
+    glPopMatrix();
+   
+    glPushMatrix();
+    glCallList(torso);
+    glPopMatrix();
+
+    glPushMatrix();
+    glCallList(head);
+    glPopMatrix();
+
+    glPushMatrix();
+    glCallList(right_upper_arm);
+    glPopMatrix();
+
+    glPushMatrix();
+    glCallList(right_lower_arm);
+    glPopMatrix();
+
+    glPushMatrix();
+    glCallList(right_hand);
+    glPopMatrix();
+
+    glPushMatrix();
+    glCallList(left_upper_arm);
+    glPopMatrix();
+
+    glPushMatrix();
+    glCallList(left_lower_arm);
+    glPopMatrix();
+
+    glPushMatrix();
+    glCallList(left_hand);
+    glPopMatrix();
+
+    glPushMatrix();
+    glCallList(right_thigh);
+    glPopMatrix();
+
+    glPushMatrix();
+    glCallList(right_leg);
+    glPopMatrix();
+
+    glPushMatrix();
+    glCallList(right_foot);
+    glPopMatrix();
+
+    glPushMatrix();
+    glCallList(left_thigh);
+    glPopMatrix();
+
+    glPushMatrix();
+    glCallList(left_leg);
+    glPopMatrix();
+
+    glPushMatrix();
+    glCallList(left_foot);
+    glPopMatrix();
 
 }
 
 void body::init_pelvis() {
     glNewList(pelvis, GL_COMPILE);
-        glLoadIdentity();        
-        glScalef(0.1, 0, 0);
-        drawLine();
+        glScalef(0.2, 0.05, 0.05);
+        drawCube();
+    glEndList();
+}
+
+void body::init_torso() {
+    glNewList(torso, GL_COMPILE);
+        glTranslatef(0.0, 0.225, 0.0);
+        glScalef(0.2, 0.4, 0.05);
+        drawCube(1.0, 0.0, 0.0);
+    glEndList();
+}
+
+void body::init_head() {
+    glNewList(head, GL_COMPILE);
+        glTranslatef(0.0, 0.475, 0.0);
+        glScalef(0.1, 0.1, 0.05);
+        drawCube();
+    glEndList();
+}
+
+void body::init_right_upper_arm() {
+    glNewList(right_upper_arm, GL_COMPILE);    
+        glTranslatef(-0.13, 0.275, 0.0);
+        glScalef(0.06, 0.3, 0.05);
+        drawCube();
+    glEndList();
+}
+
+void body::init_right_lower_arm() {
+    glNewList(right_lower_arm, GL_COMPILE);
+        glTranslatef(-0.13, -0.025, 0.0);
+        glScalef(0.06, 0.3, 0.05);
+        drawCube(0.0, 1.0, 0.0);
+    glEndList();
+}
+
+void body::init_right_hand() {
+    glNewList(right_hand, GL_COMPILE);
+        glTranslatef(-0.13, -0.2, 0.0);
+        glScalef(0.06, 0.05, 0.05);
+        drawCube();
+    glEndList();
+}
+
+void body::init_left_upper_arm() {
+    glNewList(left_upper_arm, GL_COMPILE);    
+        glTranslatef(0.13, 0.275, 0.0);
+        glScalef(0.06, 0.3, 0.05);
+        drawCube();
+    glEndList();
+}
+
+void body::init_left_lower_arm() {
+    glNewList(left_lower_arm, GL_COMPILE);
+        glTranslatef(0.13, -0.025, 0.0);
+        glScalef(0.06, 0.3, 0.05);
+        drawCube(0.0, 1.0, 0.0);
+    glEndList();
+}
+
+void body::init_left_hand() {
+    glNewList(left_hand, GL_COMPILE);
+        glTranslatef(0.13, -0.2, 0.0);
+        glScalef(0.06, 0.05, 0.05);
+        drawCube();
+    glEndList();
+}
+
+void body::init_right_thigh() {
+    glNewList(right_thigh, GL_COMPILE);
+        glTranslatef(-0.06, -0.185, 0.0);
+        glScalef(0.08, 0.32, 0.05);
+        drawCube(1.0, 0.0, 0.0);
+    glEndList();
+}
+
+void body::init_right_leg() {
+
+    glNewList(right_leg, GL_COMPILE);
+        glTranslatef(-0.06, -0.465, 0.0);
+        glScalef(0.08, 0.24, 0.05);
+        drawCube();
+    glEndList();
+}
+
+void body::init_right_foot() {
+    glNewList(right_foot, GL_COMPILE);
+        glTranslatef(-0.06, -0.595, 0.0475);
+        glScalef(0.08, 0.02, 0.12);
+        drawCube(1.0, 0.0, 0.0);
+    glEndList();
+}
+
+void body::init_left_thigh() {
+    glNewList(left_thigh, GL_COMPILE);
+        glTranslatef(0.06, -0.185, 0.0);
+        glScalef(0.08, 0.32, 0.05);
+        drawCube(1.0, 0.0, 0.0);
+    glEndList();
+}
+
+void body::init_left_leg() {
+
+    glNewList(left_leg, GL_COMPILE);
+        glTranslatef(0.06, -0.465, 0.0);
+        glScalef(0.08, 0.24, 0.05);
+        drawCube();
+    glEndList();
+}
+
+void body::init_left_foot() {
+    glNewList(left_foot, GL_COMPILE);
+        glTranslatef(0.06, -0.595, 0.0475);
+        glScalef(0.08, 0.02, 0.12);
+        drawCube(1.0, 0.0, 0.0);
     glEndList();
 }
