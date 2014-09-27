@@ -7,8 +7,8 @@ double body::shoulder_x_min = 0;
 double body::shoulder_x_max = 360;
 double body::shoulder_y_min = 0;
 double body::shoulder_y_max = 360;
-double body::shoulder_z_min = 0;
-double body::shoulder_z_max = 225;
+double body::shoulder_z_min = -225;
+double body::shoulder_z_max = 0;
 
 double body::waist_x_min = 0;
 double body::waist_x_max = 135;
@@ -98,14 +98,15 @@ void body::render() {
 
         /*The right arm*/
         glPushMatrix();
-            glTranslatef(0.0, 0.40, 0.0);
-            glTranslatef(0.1, 0.0, 0.0);
+            glTranslatef(0.1, 0.325, 0.0125);
+            /*Shoulder X rotation*/
             glRotatef(right_shoulder_x, 1.0, 0.0, 0.0); 
-            glTranslatef(0.0, -0.40, 0.0);
-            glTranslatef(-0.1, 0.0, 0.0);
-            
-            glRotatef(right_shoulder_y, 0.0, 1.0, 0.0); 
+            /*Shoulder Y rotation*/
+            glRotatef(right_shoulder_y, 0.0, 1.0, 0.0);
+            /*Shoulder Z rotation*/
             glRotatef(right_shoulder_z, 0.0, 0.0, 1.0); 
+            glTranslatef(-0.1, -0.325, -0.0125);
+
             glPushMatrix();
                 glCallList(right_upper_arm);
             glPopMatrix();
