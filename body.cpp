@@ -44,6 +44,7 @@ double body::hip_z_max = 0;
 double body::elbow_x_min = 0;
 
 body::body() {
+    rotate_y_angle = 0;
     waist_x = 0;
     glGenLists(15);
     init_pelvis();
@@ -68,7 +69,7 @@ void body::render() {
 
     glLoadIdentity();
 
-    glRotatef(90, 0.0, 1.0, 0.0);
+    glRotatef(rotate_y_angle, 0.0, 1.0, 0.0);
 
     glPushMatrix();
     glCallList(pelvis);
@@ -137,6 +138,17 @@ void body::render() {
     glPushMatrix();
     glCallList(left_foot);
     glPopMatrix();
+
+}
+
+void body::rotate_y(double t) {
+
+    double new_t = rotate_y_angle + t;
+    if(new_t > 360)
+        new_t -= 360;
+    else if(new_t < 0)
+        new_t += 360;
+    rotate_y_angle = new_t;
 
 }
 

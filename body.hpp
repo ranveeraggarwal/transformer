@@ -20,6 +20,8 @@ class body {
 
 private:
 
+double rotate_y_angle; 
+
 /* Angle Limits */
 
 static double shoulder_x_min;
@@ -183,6 +185,8 @@ void move_right_knee_x(double t);
 
 void move_left_knee_x(double t);
 
+
+void rotate_y(double t);
 
 };
 
