@@ -1,5 +1,4 @@
 #TRANSFORMER
-===
 
 ##Movements
 The components of the transformer's body are mapped to keys. Pressing one of these keys will activate the corresponding component.
