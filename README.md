@@ -7,6 +7,8 @@ Here are the key mappings (More to be added):
 * `Z`: Waist
 * `G`: Right Shoulder
 * `T`: Left Shoulder
+* `Y`: Right Elbow
+* `H`: Left Elbow
 
 To move the active component, the following key mappings work:
 * `Q`: Increase X
@@ -18,5 +20,6 @@ To move the active component, the following key mappings work:
 
 ##Stuff done till now:
 * Basic skeleton
-* Left and Right shoulders // 3 degrees of freedom
+* Left and Right shoulders // 3 dof
+* Left and Right elbows // 3 dof
 * Waist // 1 dof implemented, 2 more to do

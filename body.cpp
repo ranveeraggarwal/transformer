@@ -147,9 +147,13 @@ void body::render() {
                 glPushMatrix();
                     glCallList(right_lower_arm);
                 glPopMatrix();
+
+                /*Wrist*/
                 glPushMatrix();
+                    
                     glCallList(right_hand);
                 glPopMatrix();
+                /*Wrist Ends*/
             glPopMatrix();
             /*Forearm Ends*/
         glPopMatrix();
@@ -185,9 +189,11 @@ void body::render() {
                     glCallList(left_lower_arm);
                 glPopMatrix();
 
+                /*Wrist*/
                 glPushMatrix();
                     glCallList(left_hand);
                 glPopMatrix();
+                /*Wrist Ends*/
             glPopMatrix();
             /*Forearm Ends*/
         glPopMatrix();
