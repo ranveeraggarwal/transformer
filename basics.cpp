@@ -1,6 +1,4 @@
 #include "basics.hpp"
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
 
 void drawCube(float r, float g, float b) {
     glColor4f(r, g, b, 1.0);

@@ -11,7 +11,7 @@ double body::shoulder_z_min = 0;
 double body::shoulder_z_max = 0;
 
 double body::waist_x_min = 0;
-double body::waist_x_max = 0;
+double body::waist_x_max = 135;
 double body::waist_y_min = 0;
 double body::waist_y_max = 0;
 double body::waist_z_min = 0;
@@ -44,6 +44,7 @@ double body::hip_z_max = 0;
 double body::elbow_x_min = 0;
 
 body::body() {
+    waist_x = 0;
     glGenLists(15);
     init_pelvis();
     init_torso();
@@ -67,10 +68,18 @@ void body::render() {
 
     glLoadIdentity();
 
+    glRotatef(90, 0.0, 1.0, 0.0);
+
     glPushMatrix();
     glCallList(pelvis);
     glPopMatrix();
-   
+
+    glPushMatrix();
+  
+    glTranslatef(0.0, 0.025, 0.0);
+    glRotatef(waist_x, 1.0, 0.0, 0.0); 
+    glTranslatef(0.0, -0.025, 0.0);
+
     glPushMatrix();
     glCallList(torso);
     glPopMatrix();
@@ -101,6 +110,8 @@ void body::render() {
 
     glPushMatrix();
     glCallList(left_hand);
+    glPopMatrix();
+
     glPopMatrix();
 
     glPushMatrix();
@@ -148,7 +159,7 @@ void body::init_head() {
     glNewList(head, GL_COMPILE);
         glTranslatef(0.0, 0.475, 0.0);
         glScalef(0.1, 0.1, 0.05);
-        drawCube();
+        drawCube(0.0, 0.0, 1.0);
     glEndList();
 }
 
@@ -248,4 +259,13 @@ void body::init_left_foot() {
         glScalef(0.08, 0.02, 0.12);
         drawCube(1.0, 0.0, 0.0);
     glEndList();
+}
+
+void body::move_waist_x(double t) {
+    double new_t = waist_x + t;
+    if(new_t > waist_x_max)
+        new_t = waist_x_max;
+    else if(new_t < waist_x_min)
+        new_t = waist_x_min;
+    waist_x = new_t;
 }
