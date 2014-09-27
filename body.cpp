@@ -34,7 +34,7 @@ double body::wrist_x_max = 0;
 double body::wrist_z_min = 0;
 double body::wrist_z_max = 0;
 
-double body::hip_x_min = 0;
+double body::hip_x_min = -90;
 double body::hip_x_max = 90;
 double body::hip_y_min = 0;
 double body::hip_y_max = 90;
@@ -43,6 +43,9 @@ double body::hip_z_max = 0;
 
 double body::elbow_x_min = 0;
 double body::elbow_x_max = 180;
+
+double body::knee_x_max = 0;
+double body::knee_x_min = 180;
 
 body::body() {
     /*Variables*/
@@ -166,7 +169,6 @@ void body::render() {
 
                 /*Wrist*/
                 glPushMatrix();
-
                     glCallList(right_hand);
                 glPopMatrix();
                 /*Wrist Ends*/
@@ -217,29 +219,49 @@ void body::render() {
 
     glPopMatrix();
 
+    /*The right leg begins*/
     glPushMatrix();
-        glCallList(right_thigh);
-    glPopMatrix();
+        glTranslatef(0.06, -0.025, 0.0);
+        glRotatef(right_hip_x, 1.0, 0.0, 0.0);
+        glRotatef(right_hip_y, 0.0, 1.0, 0.0);
+        glRotatef(right_hip_z, 0.0, 0.0, 1.0);
+        glTranslatef(-0.06, 0.025, 0.0);
 
-    glPushMatrix();
-        glCallList(right_leg);
-    glPopMatrix();
+        glPushMatrix();
+            glCallList(right_thigh);
+        glPopMatrix();
 
-    glPushMatrix();
-        glCallList(right_foot);
-    glPopMatrix();
+        glPushMatrix();
+            glCallList(right_leg);
+        glPopMatrix();
 
-    glPushMatrix();
-        glCallList(left_thigh);
+        glPushMatrix();
+            glCallList(right_foot);
+        glPopMatrix();
     glPopMatrix();
+    /*The right leg ends*/
 
+    /*The left leg begins*/
     glPushMatrix();
-        glCallList(left_leg);
-    glPopMatrix();
+        glTranslatef(-0.06, -0.025, 0.0);
+        glRotatef(left_hip_x, 1.0, 0.0, 0.0);
+        glRotatef(left_hip_y, 0.0, 1.0, 0.0);
+        glRotatef(left_hip_z, 0.0, 0.0, 1.0);
+        glTranslatef(0.06, 0.025, 0.0);
 
-    glPushMatrix();
-        glCallList(left_foot);
+        glPushMatrix();
+            glCallList(left_thigh);
+        glPopMatrix();
+
+        glPushMatrix();
+            glCallList(left_leg);
+        glPopMatrix();
+
+        glPushMatrix();
+            glCallList(left_foot);
+        glPopMatrix();
     glPopMatrix();
+    /*The left leg ends*/
 }
 
 void body::rotate_y(double t) {
