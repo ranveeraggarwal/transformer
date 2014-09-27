@@ -98,14 +98,14 @@ void body::render() {
 
         /*The right arm*/
         glPushMatrix();
-            glTranslatef(0.1, 0.325, 0.0125);
-            /*Shoulder X rotation*/
-            glRotatef(right_shoulder_x, 1.0, 0.0, 0.0); 
+            glTranslatef(-0.13, 0.425, 0.0);
             /*Shoulder Y rotation*/
             glRotatef(right_shoulder_y, 0.0, 1.0, 0.0);
             /*Shoulder Z rotation*/
             glRotatef(right_shoulder_z, 0.0, 0.0, 1.0); 
-            glTranslatef(-0.1, -0.325, -0.0125);
+            /*Shoulder X rotation*/
+            glRotatef(right_shoulder_x, 1.0, 0.0, 0.0); 
+            glTranslatef(0.13, -0.425, 0.0);
 
             glPushMatrix();
                 glCallList(right_upper_arm);
