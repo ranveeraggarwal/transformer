@@ -45,6 +45,14 @@ void control(int key, int scancode, int action, int mods) {
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
                 active = "r_hip";
             break;
+        case GLFW_KEY_O:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                active = "l_knee";
+            break;
+        case GLFW_KEY_L:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                active = "r_knee";
+            break;
 
         /*Increase the active component in the X direction*/
         case GLFW_KEY_Q:
@@ -64,6 +72,10 @@ void control(int key, int scancode, int action, int mods) {
                 else if (active == "r_hip") b->move_right_hip_x(1);
                 /*Left Hip Movement*/
                 else if (active == "l_hip") b->move_left_hip_x(1);
+                /*Right Knee Movement*/
+                else if (active == "r_knee") b->move_right_knee_x(1);
+                /*Left Knee Movement*/
+                else if (active == "l_knee") b->move_left_knee_x(1);
             }
             break;
 
@@ -86,6 +98,10 @@ void control(int key, int scancode, int action, int mods) {
                 else if (active == "r_hip") b->move_right_hip_x(-1);
                 /*Left Hip Movement*/
                 else if (active == "l_hip") b->move_left_hip_x(-1);
+                /*Right Knee Movement*/
+                else if (active == "r_knee") b->move_right_knee_x(-1);
+                /*Left Knee Movement*/
+                else if (active == "l_knee") b->move_left_knee_x(-1);
             }
             break;
 

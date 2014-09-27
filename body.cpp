@@ -44,8 +44,8 @@ double body::hip_z_max = 0;
 double body::elbow_x_min = 0;
 double body::elbow_x_max = 180;
 
-double body::knee_x_max = 0;
-double body::knee_x_min = 180;
+double body::knee_x_max = 90;
+double body::knee_x_min = 0;
 
 body::body() {
     /*Variables*/
@@ -232,11 +232,17 @@ void body::render() {
         glPopMatrix();
 
         glPushMatrix();
-            glCallList(right_leg);
-        glPopMatrix();
+            glTranslatef(0.06, -0.345, 0.0);
+            glRotatef(right_knee_x, 1.0, 0.0, 0.0);
+            glTranslatef(-0.06, 0.345, 0.0);
 
-        glPushMatrix();
-            glCallList(right_foot);
+            glPushMatrix();
+                glCallList(right_leg);
+            glPopMatrix();
+
+            glPushMatrix();
+                glCallList(right_foot);
+            glPopMatrix();
         glPopMatrix();
     glPopMatrix();
     /*The right leg ends*/
@@ -254,11 +260,17 @@ void body::render() {
         glPopMatrix();
 
         glPushMatrix();
-            glCallList(left_leg);
-        glPopMatrix();
+            glTranslatef(0.06, -0.345, 0.0);
+            glRotatef(left_knee_x, 1.0, 0.0, 0.0);
+            glTranslatef(-0.06, 0.345, 0.0);
 
-        glPushMatrix();
-            glCallList(left_foot);
+            glPushMatrix();
+                glCallList(left_leg);
+            glPopMatrix();
+
+            glPushMatrix();
+                glCallList(left_foot);
+            glPopMatrix();
         glPopMatrix();
     glPopMatrix();
     /*The left leg ends*/
