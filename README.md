@@ -9,6 +9,12 @@ Here are the key mappings (More to be added):
 * `T`: Left Shoulder
 * `Y`: Right Elbow
 * `H`: Left Elbow
+* `U`: Right Wrist //To be implemented
+* `J`: Left Wrist //To be implemented
+* `I`: Right Hip
+* `K`: Left Hip
+* `O`: Right Knee
+* `L`: Left Knee
 
 To move the active component, the following key mappings work:
 * `Q`: Increase X
@@ -20,6 +26,8 @@ To move the active component, the following key mappings work:
 
 ##Stuff done till now:
 * Basic skeleton
-* Left and Right shoulders // 3 dof
-* Left and Right elbows // 3 dof
+* Shoulders // 3 dof
+* Elbows // 3 dof
 * Waist // 1 dof implemented, 2 more to do
+* Hips
+* Knees
