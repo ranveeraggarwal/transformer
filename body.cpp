@@ -249,6 +249,7 @@ void body::render() {
                 glCallList(right_leg);
             glPopMatrix();
 
+            /*Ankle*/
             glPushMatrix();
                 glTranslatef(0.02, -0.585, -0.0125);
                 glRotatef(right_ankle_x, 1.0, 0.0, 0.0);
@@ -256,6 +257,7 @@ void body::render() {
                 glTranslatef(-0.02, 0.585, 0.0125);
                 glCallList(right_foot);
             glPopMatrix();
+            /*Ankle Ends*/
         glPopMatrix();
         /*Leg below knees ends*/
     glPopMatrix();
@@ -283,6 +285,7 @@ void body::render() {
                 glCallList(left_leg);
             glPopMatrix();
 
+            /*Ankle*/
             glPushMatrix();
                 glTranslatef(0.02, -0.585, -0.0125);
                 glRotatef(left_ankle_x, 1.0, 0.0, 0.0);
@@ -290,6 +293,7 @@ void body::render() {
                 glTranslatef(-0.02, 0.585, 0.0125);
                 glCallList(left_foot);
             glPopMatrix();
+            /*Ankle Ends*/
         glPopMatrix();
         /*Leg below knees ends*/
     glPopMatrix();
