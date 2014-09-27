@@ -4,11 +4,11 @@
 #include <iostream>
 
 double body::shoulder_x_min = 0;
-double body::shoulder_x_max = 0;
+double body::shoulder_x_max = 360;
 double body::shoulder_y_min = 0;
-double body::shoulder_y_max = 0;
+double body::shoulder_y_max = 360;
 double body::shoulder_z_min = 0;
-double body::shoulder_z_max = 0;
+double body::shoulder_z_max = 225;
 
 double body::waist_x_min = 0;
 double body::waist_x_max = 135;
@@ -44,8 +44,13 @@ double body::hip_z_max = 0;
 double body::elbow_x_min = 0;
 
 body::body() {
+    //rotate_x_angle = 0;
     rotate_y_angle = 0;
+    //rotate_z_angle = 0;
     waist_x = 0;
+    right_shoulder_x = 0;
+    right_shoulder_y = 0;
+    right_shoulder_z = 0;
     glGenLists(15);
     init_pelvis();
     init_torso();
@@ -69,74 +74,90 @@ void body::render() {
 
     glLoadIdentity();
 
+    //glRotatef(rotate_x_angle, 1.0, 0.0, 0.0);
     glRotatef(rotate_y_angle, 0.0, 1.0, 0.0);
+    //glRotatef(rotate_z_angle, 0.0, 0.0, 1.0);
 
     glPushMatrix();
-    glCallList(pelvis);
+        glCallList(pelvis);
     glPopMatrix();
 
     glPushMatrix();
   
-    glTranslatef(0.0, 0.025, 0.0);
-    glRotatef(waist_x, 1.0, 0.0, 0.0); 
-    glTranslatef(0.0, -0.025, 0.0);
+        glTranslatef(0.0, 0.025, 0.0);
+        glRotatef(waist_x, 1.0, 0.0, 0.0); 
+        glTranslatef(0.0, -0.025, 0.0);
 
-    glPushMatrix();
-    glCallList(torso);
+        glPushMatrix();
+            glCallList(torso);
+        glPopMatrix();
+
+        glPushMatrix();
+            glCallList(head);
+        glPopMatrix();
+
+        /*The right arm*/
+        glPushMatrix();
+            glTranslatef(0.0, 0.40, 0.0);
+            glTranslatef(0.1, 0.0, 0.0);
+            glRotatef(right_shoulder_x, 1.0, 0.0, 0.0); 
+            glTranslatef(0.0, -0.40, 0.0);
+            glTranslatef(-0.1, 0.0, 0.0);
+            
+            glRotatef(right_shoulder_y, 0.0, 1.0, 0.0); 
+            glRotatef(right_shoulder_z, 0.0, 0.0, 1.0); 
+            glPushMatrix();
+                glCallList(right_upper_arm);
+            glPopMatrix();
+
+            glPushMatrix();
+                glCallList(right_lower_arm);
+            glPopMatrix();
+
+            glPushMatrix();
+                glCallList(right_hand);
+            glPopMatrix();
+        glPopMatrix();
+        /*The right arm ends */
+
+        /*The left arm*/
+        glPushMatrix();
+            glCallList(left_upper_arm);
+
+        glPopMatrix();
+        glPushMatrix();
+            glCallList(left_lower_arm);
+        glPopMatrix();
+
+        glPushMatrix();
+            glCallList(left_hand);
+        glPopMatrix();
+        /*The left arm ends */
+
     glPopMatrix();
 
     glPushMatrix();
-    glCallList(head);
+        glCallList(right_thigh);
     glPopMatrix();
 
     glPushMatrix();
-    glCallList(right_upper_arm);
+        glCallList(right_leg);
     glPopMatrix();
 
     glPushMatrix();
-    glCallList(right_lower_arm);
+        glCallList(right_foot);
     glPopMatrix();
 
     glPushMatrix();
-    glCallList(right_hand);
+        glCallList(left_thigh);
     glPopMatrix();
 
     glPushMatrix();
-    glCallList(left_upper_arm);
+        glCallList(left_leg);
     glPopMatrix();
 
     glPushMatrix();
-    glCallList(left_lower_arm);
-    glPopMatrix();
-
-    glPushMatrix();
-    glCallList(left_hand);
-    glPopMatrix();
-
-    glPopMatrix();
-
-    glPushMatrix();
-    glCallList(right_thigh);
-    glPopMatrix();
-
-    glPushMatrix();
-    glCallList(right_leg);
-    glPopMatrix();
-
-    glPushMatrix();
-    glCallList(right_foot);
-    glPopMatrix();
-
-    glPushMatrix();
-    glCallList(left_thigh);
-    glPopMatrix();
-
-    glPushMatrix();
-    glCallList(left_leg);
-    glPopMatrix();
-
-    glPushMatrix();
-    glCallList(left_foot);
+        glCallList(left_foot);
     glPopMatrix();
 
 }
@@ -280,4 +301,30 @@ void body::move_waist_x(double t) {
     else if(new_t < waist_x_min)
         new_t = waist_x_min;
     waist_x = new_t;
+}
+
+void body::move_right_shoulder_x(double t)
+{
+    double new_t = right_shoulder_x + t;
+    if(new_t > 360)
+        new_t = 360-new_t;
+    right_shoulder_x = new_t;
+}
+
+void body::move_right_shoulder_y(double t)
+{
+    double new_t = right_shoulder_y + t;
+    if(new_t > 360)
+        new_t = 360-new_t;
+    right_shoulder_y = new_t;
+}
+
+void body::move_right_shoulder_z(double t)
+{
+    double new_t = right_shoulder_z + t;
+    if(new_t > shoulder_z_max)
+        new_t = shoulder_z_max;
+    else if(new_t < shoulder_z_min)
+        new_t = shoulder_z_min;
+    right_shoulder_z = new_t;
 }

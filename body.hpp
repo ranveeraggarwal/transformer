@@ -72,11 +72,11 @@ static double knee_x_max;
 
 double right_shoulder_x;
 double right_shoulder_y;
-double right_shoudler_z;
+double right_shoulder_z;
 
 double left_shoulder_x;
 double left_shoulder_y;
-double left_shoudler_z;
+double left_shoulder_z;
 
 double waist_x;
 double waist_y;
@@ -147,11 +147,11 @@ void render();
 
 void move_right_shoulder_x(double t);
 void move_right_shoulder_y(double t);
-void move_right_shoudler_z(double t);
+void move_right_shoulder_z(double t);
 
 void move_left_shoulder_x(double t);
 void move_left_shoulder_y(double t);
-void move_left_shoudler_z(double t);
+void move_left_shoulder_z(double t);
 
 void move_waist_x(double t);
 void move_waist_y(double t);
@@ -184,7 +184,6 @@ void move_left_elbow_x(double t);
 void move_right_knee_x(double t);
 
 void move_left_knee_x(double t);
-
 
 void rotate_y(double t);
 
