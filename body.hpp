@@ -20,7 +20,9 @@ class body {
 
 private:
 
+double rotate_x_angle; 
 double rotate_y_angle; 
+double rotate_z_angle; 
 
 /* Angle Limits */
 
@@ -185,7 +187,9 @@ void move_right_knee_x(double t);
 
 void move_left_knee_x(double t);
 
+void rotate_x(double t);
 void rotate_y(double t);
+void rotate_z(double t);
 
 };
 

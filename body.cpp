@@ -4,14 +4,14 @@
 #include <iostream>
 
 double body::shoulder_x_min = 0;
-double body::shoulder_x_max = 360;
+double body::shoulder_x_max = 135;
 double body::shoulder_y_min = 0;
-double body::shoulder_y_max = 360;
+double body::shoulder_y_max = 135;
 double body::shoulder_z_min = -225;
 double body::shoulder_z_max = 0;
 
 double body::waist_x_min = 0;
-double body::waist_x_max = 135;
+double body::waist_x_max = 180;
 double body::waist_y_min = 0;
 double body::waist_y_max = 0;
 double body::waist_z_min = 0;
@@ -42,16 +42,38 @@ double body::hip_z_min = 0;
 double body::hip_z_max = 0;
 
 double body::elbow_x_min = 0;
+double body::elbow_x_max = 180;
 
 body::body() {
-    //rotate_x_angle = 0;
+    /*Variables*/
+    /*Camera*/
+    rotate_x_angle = 0;
     rotate_y_angle = 0;
-    //rotate_z_angle = 0;
+    rotate_z_angle = 0;
+
+    /*Waist*/
     waist_x = 0;
+
+    /*Right Shoulder*/
     right_shoulder_x = 0;
     right_shoulder_y = 0;
     right_shoulder_z = 0;
+
+    /*Left Shoulder*/
+    left_shoulder_x = 0;
+    left_shoulder_y = 0;
+    left_shoulder_z = 0;
+
+    /*Left Elbow*/
+    left_elbow_x = 0;
+
+    /*Right Elbow*/
+    right_elbow_x = 0;
+
+    /*Number of Lists to Display*/
     glGenLists(15);
+
+    /*Initialise Display Lists*/
     init_pelvis();
     init_torso();
     init_head();
@@ -98,6 +120,7 @@ void body::render() {
 
         /*The right arm*/
         glPushMatrix();
+            /*Move pivot back*/
             glTranslatef(-0.13, 0.425, 0.0);
             /*Shoulder Y rotation*/
             glRotatef(right_shoulder_y, 0.0, 1.0, 0.0);
@@ -105,33 +128,68 @@ void body::render() {
             glRotatef(right_shoulder_z, 0.0, 0.0, 1.0); 
             /*Shoulder X rotation*/
             glRotatef(right_shoulder_x, 1.0, 0.0, 0.0); 
+            /*Get pivot to origin*/
             glTranslatef(0.13, -0.425, 0.0);
 
             glPushMatrix();
                 glCallList(right_upper_arm);
             glPopMatrix();
 
+            /*Forearm*/
             glPushMatrix();
-                glCallList(right_lower_arm);
-            glPopMatrix();
+                /*Move pivot back*/
+                glTranslatef(-0.13, 0.125, 0.0);
+                /*Rotate Elbow Joint*/
+                glRotatef(right_elbow_x, 1.0, 0.0, 0.0);
+                /*Move pivot up*/
+                glTranslatef(0.13, -0.125, 0.0);
 
-            glPushMatrix();
-                glCallList(right_hand);
+                glPushMatrix();
+                    glCallList(right_lower_arm);
+                glPopMatrix();
+                glPushMatrix();
+                    glCallList(right_hand);
+                glPopMatrix();
             glPopMatrix();
+            /*Forearm Ends*/
         glPopMatrix();
         /*The right arm ends */
 
         /*The left arm*/
         glPushMatrix();
-            glCallList(left_upper_arm);
+            /*Move pivot back*/
+            glTranslatef(0.13, 0.425, 0.0);
+            /*Shoulder Y rotation*/
+            glRotatef(left_shoulder_y, 0.0, 1.0, 0.0);
+            /*Shoulder Z rotation*/
+            glRotatef(left_shoulder_z, 0.0, 0.0, 1.0); 
+            /*Shoulder X rotation*/
+            glRotatef(left_shoulder_x, 1.0, 0.0, 0.0); 
+            /*Get pivot to origin*/
+            glTranslatef(-0.13, -0.425, 0.0);
 
-        glPopMatrix();
-        glPushMatrix();
-            glCallList(left_lower_arm);
-        glPopMatrix();
+            glPushMatrix();
+                glCallList(left_upper_arm);
+            glPopMatrix();
 
-        glPushMatrix();
-            glCallList(left_hand);
+            /*Forearm*/
+            glPushMatrix();
+                /*Move pivot back*/
+                glTranslatef(0.13, 0.125, 0.0);
+                /*Rotate Elbow Joint*/
+                glRotatef(left_elbow_x, 1.0, 0.0, 0.0);
+                /*Move pivot up*/
+                glTranslatef(-0.13, -0.125, 0.0);
+
+                glPushMatrix();
+                    glCallList(left_lower_arm);
+                glPopMatrix();
+
+                glPushMatrix();
+                    glCallList(left_hand);
+                glPopMatrix();
+            glPopMatrix();
+            /*Forearm Ends*/
         glPopMatrix();
         /*The left arm ends */
 
@@ -315,8 +373,10 @@ void body::move_right_shoulder_x(double t)
 void body::move_right_shoulder_y(double t)
 {
     double new_t = right_shoulder_y + t;
-    if(new_t > 360)
-        new_t = 360-new_t;
+    if(new_t > shoulder_y_max)
+        new_t = shoulder_y_max;
+    else if(new_t < shoulder_y_min)
+        new_t = shoulder_y_min;
     right_shoulder_y = new_t;
 }
 
@@ -328,4 +388,52 @@ void body::move_right_shoulder_z(double t)
     else if(new_t < shoulder_z_min)
         new_t = shoulder_z_min;
     right_shoulder_z = new_t;
+}
+
+void body::move_left_shoulder_x(double t)
+{
+    double new_t = left_shoulder_x + t;
+    if(new_t > 360)
+        new_t = 360-new_t;
+    left_shoulder_x = new_t;
+}
+
+void body::move_left_shoulder_y(double t)
+{
+    double new_t = left_shoulder_y + t;
+    if(new_t > shoulder_y_max)
+        new_t = shoulder_y_max;
+    else if(new_t < shoulder_y_min)
+        new_t = shoulder_y_min;
+    left_shoulder_y = new_t;
+}
+
+void body::move_left_shoulder_z(double t)
+{
+    double new_t = left_shoulder_z + t;
+    if(new_t > shoulder_z_max)
+        new_t = shoulder_z_max;
+    else if(new_t < shoulder_z_min)
+        new_t = shoulder_z_min;
+    left_shoulder_z = new_t;
+}
+
+void body::move_right_elbow_x(double t)
+{
+    double new_t = right_elbow_x + t;
+    if(new_t > elbow_x_max)
+        new_t = elbow_x_max;
+    else if(new_t < elbow_x_min)
+        new_t = elbow_x_min;
+    right_elbow_x = new_t;
+}
+
+void body::move_left_elbow_x(double t)
+{
+    double new_t = left_elbow_x + t;
+    if(new_t > elbow_x_max)
+        new_t = elbow_x_max;
+    else if(new_t < elbow_x_min)
+        new_t = elbow_x_min;
+    left_elbow_x = new_t;
 }
