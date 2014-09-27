@@ -100,9 +100,13 @@ double left_ankle_y;
 double left_wrist_x;
 double left_wrist_z;
 
-double hip_x;
-double hip_y;
-double hip_z;
+double right_hip_x;
+double right_hip_y;
+double right_hip_z;
+
+double left_hip_x;
+double left_hip_y;
+double left_hip_z;
 
 double right_elbow_x;
 
@@ -175,9 +179,13 @@ void move_left_ankle_y(double t);
 void move_left_wrist_x(double t);
 void move_left_wrist_z(double t);
 
-void move_hip_x(double t);
-void move_hip_y(double t);
-void move_hip_z(double t);
+void move_left_hip_x(double t);
+void move_left_hip_y(double t);
+void move_left_hip_z(double t);
+
+void move_right_hip_x(double t);
+void move_right_hip_y(double t);
+void move_right_hip_z(double t);
 
 void move_right_elbow_x(double t);
 

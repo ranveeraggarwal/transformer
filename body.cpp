@@ -35,10 +35,10 @@ double body::wrist_z_min = 0;
 double body::wrist_z_max = 0;
 
 double body::hip_x_min = 0;
-double body::hip_x_max = 0;
+double body::hip_x_max = 90;
 double body::hip_y_min = 0;
-double body::hip_y_max = 0;
-double body::hip_z_min = 0;
+double body::hip_y_max = 90;
+double body::hip_z_min = -90;
 double body::hip_z_max = 0;
 
 double body::elbow_x_min = 0;
@@ -64,11 +64,27 @@ body::body() {
     left_shoulder_y = 0;
     left_shoulder_z = 0;
 
+    /*Right Hip*/
+    right_hip_x = 0;
+    right_hip_y = 0;
+    right_hip_z = 0;
+
+    /*Left Hip*/
+    left_hip_x = 0;
+    left_hip_y = 0;
+    left_hip_z = 0;
+
     /*Left Elbow*/
     left_elbow_x = 0;
 
     /*Right Elbow*/
     right_elbow_x = 0;
+
+    /*Left Knee*/
+    left_knee_x = 0;
+
+    /*Right Knee*/
+    right_knee_x = 0;
 
     /*Number of Lists to Display*/
     glGenLists(15);
@@ -150,7 +166,7 @@ void body::render() {
 
                 /*Wrist*/
                 glPushMatrix();
-                    
+
                     glCallList(right_hand);
                 glPopMatrix();
                 /*Wrist Ends*/
@@ -224,7 +240,6 @@ void body::render() {
     glPushMatrix();
         glCallList(left_foot);
     glPopMatrix();
-
 }
 
 void body::rotate_y(double t) {
@@ -318,7 +333,6 @@ void body::init_right_thigh() {
 }
 
 void body::init_right_leg() {
-
     glNewList(right_leg, GL_COMPILE);
         glTranslatef(-0.06, -0.465, 0.0);
         glScalef(0.08, 0.24, 0.05);
@@ -442,4 +456,84 @@ void body::move_left_elbow_x(double t)
     else if(new_t < elbow_x_min)
         new_t = elbow_x_min;
     left_elbow_x = new_t;
+}
+
+void body::move_right_hip_x(double t)
+{
+    double new_t = right_hip_x + t;
+    if(new_t > hip_x_max)
+        new_t = hip_x_max;
+    else if(new_t < hip_x_min)
+        new_t = hip_x_min;
+    right_hip_x = new_t;
+}
+
+void body::move_right_hip_y(double t)
+{
+    double new_t = right_hip_y + t;
+    if(new_t > hip_y_max)
+        new_t = hip_y_max;
+    else if(new_t < hip_y_min)
+        new_t = hip_y_min;
+    right_hip_y = new_t;
+}
+
+void body::move_right_hip_z(double t)
+{
+    double new_t = right_hip_z + t;
+    if(new_t > hip_z_max)
+        new_t = hip_z_max;
+    else if(new_t < hip_z_min)
+        new_t = hip_z_min;
+    right_hip_z = new_t;
+}
+
+void body::move_left_hip_x(double t)
+{
+    double new_t = left_hip_x + t;
+    if(new_t > hip_x_max)
+        new_t = hip_x_max;
+    else if(new_t < hip_x_min)
+        new_t = hip_x_min;
+    left_hip_x = new_t;
+}
+
+void body::move_left_hip_y(double t)
+{
+    double new_t = left_hip_y + t;
+    if(new_t > hip_y_max)
+        new_t = hip_y_max;
+    else if(new_t < hip_y_min)
+        new_t = hip_y_min;
+    left_hip_y = new_t;
+}
+
+void body::move_left_hip_z(double t)
+{
+    double new_t = left_hip_z + t;
+    if(new_t > hip_z_max)
+        new_t = hip_z_max;
+    else if(new_t < hip_z_min)
+        new_t = hip_z_min;
+    left_hip_z = new_t;
+}
+
+void body::move_right_knee_x(double t)
+{
+    double new_t = right_knee_x + t;
+    if(new_t > knee_x_max)
+        new_t = knee_x_max;
+    else if(new_t < knee_x_min)
+        new_t = knee_x_min;
+    right_knee_x = new_t;
+}
+
+void body::move_left_knee_x(double t)
+{
+    double new_t = left_knee_x + t;
+    if(new_t > knee_x_max)
+        new_t = knee_x_max;
+    else if(new_t < knee_x_min)
+        new_t = knee_x_min;
+    left_knee_x = new_t;
 }

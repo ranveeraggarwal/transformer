@@ -29,6 +29,22 @@ void control(int key, int scancode, int action, int mods) {
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
                 active = "r_elbow";
             break;
+        case GLFW_KEY_U:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                active = "l_wrist";
+            break;
+        case GLFW_KEY_J:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                active = "r_wrist";
+            break;
+        case GLFW_KEY_I:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                active = "l_hip";
+            break;
+        case GLFW_KEY_K:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                active = "r_hip";
+            break;
 
         /*Increase the active component in the X direction*/
         case GLFW_KEY_Q:
@@ -44,6 +60,10 @@ void control(int key, int scancode, int action, int mods) {
                 else if (active == "l_shoulder") b->move_left_shoulder_x(1);
                 /*Left Elbow Movement*/
                 else if (active == "l_elbow") b->move_left_elbow_x(1);
+                /*Right Hip Movement*/
+                else if (active == "r_hip") b->move_right_hip_x(1);
+                /*Left Hip Movement*/
+                else if (active == "l_hip") b->move_left_hip_x(1);
             }
             break;
 
@@ -62,6 +82,10 @@ void control(int key, int scancode, int action, int mods) {
                 else if (active == "l_shoulder") b->move_left_shoulder_x(-1);
                 /*Left Elbow Movement*/
                 else if (active == "l_elbow") b->move_left_elbow_x(-1);
+                /*Right Hip Movement*/
+                else if (active == "r_hip") b->move_right_hip_x(-1);
+                /*Left Hip Movement*/
+                else if (active == "l_hip") b->move_left_hip_x(-1);
             }
             break;
 
@@ -75,6 +99,10 @@ void control(int key, int scancode, int action, int mods) {
                 else if (active == "r_shoulder") b->move_right_shoulder_y(1);
                 /*Left Shoulder Movement*/
                 else if (active == "l_shoulder") b->move_left_shoulder_y(1);
+                /*Right Hip Movement*/
+                else if (active == "r_hip") b->move_right_hip_y(1);
+                /*Left Hip Movement*/
+                else if (active == "l_hip") b->move_left_hip_y(1);
             }
             break;
 
@@ -88,6 +116,10 @@ void control(int key, int scancode, int action, int mods) {
                 else if (active == "r_shoulder") b->move_right_shoulder_y(-1);
                 /*Left Shoulder Movement*/
                 else if (active == "l_shoulder") b->move_left_shoulder_y(-1);
+                /*Right Hip Movement*/
+                else if (active == "r_hip") b->move_right_hip_y(-1);
+                /*Left Hip Movement*/
+                else if (active == "l_hip") b->move_left_hip_y(-1);
             }
             break;
 
@@ -99,6 +131,10 @@ void control(int key, int scancode, int action, int mods) {
                 if (active == "r_shoulder") b->move_right_shoulder_z(1);
                 /*Left Shoulder Movement*/
                 else if (active == "l_shoulder") b->move_left_shoulder_z(1);
+                /*Right Hip Movement*/
+                else if (active == "r_hip") b->move_right_hip_z(1);
+                /*Left Hip Movement*/
+                else if (active == "l_hip") b->move_left_hip_z(1);
             }
             break;
 
@@ -110,6 +146,10 @@ void control(int key, int scancode, int action, int mods) {
                 if (active == "r_shoulder") b->move_right_shoulder_z(-1);
                 /*Left Shoulder Movement*/
                 else if (active == "l_shoulder") b->move_left_shoulder_z(-1);
+                /*Right Hip Movement*/
+                else if (active == "r_hip") b->move_right_hip_z(-1);
+                /*Left Hip Movement*/
+                else if (active == "l_hip") b->move_left_hip_z(-1);
             }
             break;
     }
