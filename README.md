@@ -17,6 +17,7 @@ Here are the key mappings (More to be added):
 * `L`: Left Knee
 * `P`: Right Ankle
 * `;`: Left Ankle
+* `X`: Neck
 
 To move the active component, the following key mappings work:
 * `Q`: Increase X
@@ -34,3 +35,4 @@ To move the active component, the following key mappings work:
 * Hips
 * Knees
 * Ankles
+* Neck

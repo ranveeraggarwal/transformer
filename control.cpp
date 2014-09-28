@@ -61,6 +61,10 @@ void control(int key, int scancode, int action, int mods) {
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
                 active = "r_ankle";
             break;
+        case GLFW_KEY_X:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                active = "neck";
+            break;
 
         /*Increase the active component in the X direction*/
         case GLFW_KEY_Q:
@@ -68,6 +72,8 @@ void control(int key, int scancode, int action, int mods) {
             {
                 /*Waist Movement*/
                 if (active == "waist") b->move_waist_x(1);
+                /*Neck Movement*/
+                else if (active == "neck") b->move_neck_x(1);
                 /*Right Shoulder Movement*/
                 else if (active == "r_shoulder") b->move_right_shoulder_x(1);
                 /*Right Elbow Movement*/
@@ -98,6 +104,8 @@ void control(int key, int scancode, int action, int mods) {
             {
                 /*Waist Movement*/
                 if (active == "waist") b->move_waist_x(-1);
+                /*Neck Movement*/
+                else if (active == "neck") b->move_neck_x(-1);
                 /*Right Shoulder Movement*/
                 else if (active == "r_shoulder") b->move_right_shoulder_x(-1);
                 /*Right Elbow Movement*/
@@ -127,6 +135,8 @@ void control(int key, int scancode, int action, int mods) {
             {
                 /*Camera Movement*/
                 if (active == "camera") b->rotate_y(5);
+                /*Neck Movement*/
+                else if (active == "neck") b->move_neck_y(1);
                 /*Right Shoulder Movement*/
                 else if (active == "r_shoulder") b->move_right_shoulder_y(1);
                 /*Left Shoulder Movement*/
@@ -148,6 +158,8 @@ void control(int key, int scancode, int action, int mods) {
             {
                 /*Camera Movement*/
                 if (active == "camera") b->rotate_y(-5);
+                /*Neck Movement*/
+                else if (active == "neck") b->move_neck_y(-1);
                 /*Right Shoulder Movement*/
                 else if (active == "r_shoulder") b->move_right_shoulder_y(-1);
                 /*Left Shoulder Movement*/
@@ -175,6 +187,8 @@ void control(int key, int scancode, int action, int mods) {
                 else if (active == "r_hip") b->move_right_hip_z(1);
                 /*Left Hip Movement*/
                 else if (active == "l_hip") b->move_left_hip_z(1);
+                /*Neck Movement*/
+                else if (active == "neck") b->move_neck_z(1);
             }
             break;
 
@@ -190,6 +204,8 @@ void control(int key, int scancode, int action, int mods) {
                 else if (active == "r_hip") b->move_right_hip_z(-1);
                 /*Left Hip Movement*/
                 else if (active == "l_hip") b->move_left_hip_z(-1);
+                /*Neck Movement*/
+                else if (active == "neck") b->move_neck_z(-1);
             }
             break;
     }

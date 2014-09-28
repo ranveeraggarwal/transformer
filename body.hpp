@@ -85,8 +85,8 @@ double waist_y;
 double waist_z;
 
 double neck_x;
-double nexk_y;
-double next_z;
+double neck_y;
+double neck_z;
 
 double right_ankle_x;
 double right_ankle_y;
@@ -164,8 +164,8 @@ void move_waist_y(double t);
 void move_waist_z(double t);
 
 void move_neck_x(double t);
-void move_nexk_y(double t);
-void move_next_z(double t);
+void move_neck_y(double t);
+void move_neck_z(double t);
 
 void move_right_ankle_x(double t);
 void move_right_ankle_y(double t);

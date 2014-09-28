@@ -17,12 +17,12 @@ double body::waist_y_max = 0;
 double body::waist_z_min = 0;
 double body::waist_z_max = 0;
 
-double body::neck_x_min = 0;
-double body::neck_x_max = 0;
-double body::neck_y_min = 0;
-double body::neck_y_max = 0;
-double body::neck_z_min = 0;
-double body::neck_z_max = 0;
+double body::neck_x_min = -90;
+double body::neck_x_max = 90;
+double body::neck_y_min = -90;
+double body::neck_y_max = 90;
+double body::neck_z_min = -90;
+double body::neck_z_max = 90;
 
 double body::ankle_x_min = -45;
 double body::ankle_x_max = 45;
@@ -56,6 +56,11 @@ body::body() {
 
     /*Waist*/
     waist_x = 0;
+
+    /*Neck*/
+    neck_x = 0;
+    neck_y = 0;
+    neck_z = 0;
 
     /*Right Shoulder*/
     right_shoulder_x = 0;
@@ -142,6 +147,11 @@ void body::render() {
         glPopMatrix();
 
         glPushMatrix();
+            glTranslatef(0.0, 0.425, 0.0);
+            glRotatef(neck_x, 1.0, 0.0, 0.0);
+            glRotatef(neck_y, 0.0, 1.0, 0.0);
+            glRotatef(neck_z, 0.0, 0.0, 1.0);
+            glTranslatef(0.0, -0.425, 0.0);
             glCallList(head);
         glPopMatrix();
 
@@ -634,4 +644,34 @@ void body::move_left_ankle_y(double t)
     else if(new_t < ankle_y_min)
         new_t = ankle_y_min;
     left_ankle_y = new_t;
+}
+
+void body::move_neck_x(double t)
+{
+    double new_t = neck_x + t;
+    if(new_t > neck_x_max)
+        new_t = neck_x_max;
+    else if(new_t < neck_x_min)
+        new_t = neck_x_min;
+    neck_x = new_t;
+}
+
+void body::move_neck_y(double t)
+{
+    double new_t = neck_y + t;
+    if(new_t > neck_y_max)
+        new_t = neck_y_max;
+    else if(new_t < neck_y_min)
+        new_t = neck_y_min;
+    neck_y = new_t;
+}
+
+void body::move_neck_z(double t)
+{
+    double new_t = neck_z + t;
+    if(new_t > neck_z_max)
+        new_t = neck_z_max;
+    else if(new_t < neck_z_min)
+        new_t = neck_z_min;
+    neck_z = new_t;
 }
