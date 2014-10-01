@@ -3,7 +3,7 @@
 ##Movements
 The components of the transformer's body are mapped to keys. Pressing one of these keys will activate the corresponding component.
 Here are the key mappings (More to be added):
-* `Z`: Waist
+* `Z`: Wais //Partially implemented
 * `G`: Right Shoulder
 * `T`: Left Shoulder
 * `H`: Right Elbow
@@ -27,17 +27,7 @@ To move the active component, the following key mappings work:
 * `D`: Decrease Z
 
 Camera Controls
-
 * `M`: Zoom In
 * `N`: Zoom Out
 * Arrow Keys : Rotate Camera
 
-##Stuff done till now:
-* Basic skeleton
-* Shoulders // 3 dof
-* Elbows // 3 dof
-* Waist // 1 dof implemented, 2 more to do
-* Hips
-* Knees
-* Ankles
-* Neck
