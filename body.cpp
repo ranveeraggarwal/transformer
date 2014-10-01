@@ -135,15 +135,9 @@ void body::render() {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glFrustum(-0.6, 0.6, -0.6, 0.6, camera_r-0.75, 10);
-//    glOrtho(0, 640, 480, 0, 0, 1);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-//    glScalef(1.0, 1.0, -1.0);
-gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180), camera_r*sin(camera_t*PI/180), camera_r*cos(camera_t*PI/180)*cos(camera_p*PI/180), 0, 0, 0, 0, 1, 0);
-
-    //glRotatef(rotate_x_angle, 1.0, 0.0, 0.0);
-    //glRotatef(camera_p, 0.0, 1.0, 0.0);
-    //glRotatef(rotate_z_angle, 0.0, 0.0, 1.0);
+    gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180), camera_r*sin(camera_t*PI/180), camera_r*cos(camera_t*PI/180)*cos(camera_p*PI/180), 0, 0, 0, 0, 1, 0);
 
     glPushMatrix();
         glCallList(pelvis);
@@ -171,7 +165,7 @@ gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180), camera_r*sin(camer
         /*The right arm*/
         glPushMatrix();
             /*Move pivot back*/
-            glTranslatef(-0.13, 0.425, 0.0);
+            glTranslatef(-0.13, 0.375, 0.0);
             /*Shoulder Y rotation*/
             glRotatef(right_shoulder_y, 0.0, 1.0, 0.0);
             /*Shoulder Z rotation*/
@@ -179,7 +173,7 @@ gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180), camera_r*sin(camer
             /*Shoulder X rotation*/
             glRotatef(right_shoulder_x, 1.0, 0.0, 0.0); 
             /*Get pivot to origin*/
-            glTranslatef(0.13, -0.425, 0.0);
+            glTranslatef(0.13, -0.375, 0.0);
 
             glPushMatrix();
                 glCallList(right_upper_arm);
@@ -211,7 +205,7 @@ gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180), camera_r*sin(camer
         /*The left arm*/
         glPushMatrix();
             /*Move pivot back*/
-            glTranslatef(0.13, 0.425, 0.0);
+            glTranslatef(0.13, 0.375, 0.0);
             /*Shoulder Y rotation*/
             glRotatef(left_shoulder_y, 0.0, 1.0, 0.0);
             /*Shoulder Z rotation*/
@@ -219,7 +213,7 @@ gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180), camera_r*sin(camer
             /*Shoulder X rotation*/
             glRotatef(left_shoulder_x, 1.0, 0.0, 0.0); 
             /*Get pivot to origin*/
-            glTranslatef(-0.13, -0.425, 0.0);
+            glTranslatef(-0.13, -0.375, 0.0);
 
             glPushMatrix();
                 glCallList(left_upper_arm);
@@ -368,16 +362,33 @@ void body::move_camera_p(double t) {
 
 void body::init_pelvis() {
     glNewList(pelvis, GL_COMPILE);
-        glScalef(0.2, 0.05, 0.05);
+        glScalef(0.2, 0.05, 0.07);
         drawCube();
     glEndList();
 }
 
 void body::init_torso() {
     glNewList(torso, GL_COMPILE);
-        glTranslatef(0.0, 0.225, 0.0);
-        glScalef(0.2, 0.4, 0.05);
-        drawCube(1.0, 0.0, 0.0);
+        glPushMatrix();
+            glTranslatef(0.0, 0.150, 0.0);
+            glScalef(0.19, 0.25, 0.08);
+            drawCube(1.0, 0.0, 0.0);
+        glPopMatrix();
+        glPushMatrix();
+            glTranslatef(0.0, 0.35, 0.0);
+            glScalef(0.2, 0.15, 0.1);
+            drawCube(0.95, 0.0, 0.0);
+        glPopMatrix();
+        glPushMatrix();
+            glTranslatef(-0.115, 0.375, 0.0);
+            glScalef(0.03, 0.05, 0.03);
+            drawCube(0.0, 0.0, 0.5);
+        glPopMatrix();
+        glPushMatrix();
+            glTranslatef(0.115, 0.375, 0.0);
+            glScalef(0.03, 0.05, 0.03);
+            drawCube(0.0, 0.0, 0.5);
+        glPopMatrix();
     glEndList();
 }
 
@@ -391,48 +402,50 @@ void body::init_head() {
 
 void body::init_right_upper_arm() {
     glNewList(right_upper_arm, GL_COMPILE);    
-        glTranslatef(-0.13, 0.275, 0.0);
-        glScalef(0.06, 0.3, 0.05);
-        drawCube();
+        glPushMatrix();
+            glTranslatef(-0.16, 0.275, 0.0);
+            glScalef(0.08, 0.3, 0.08);
+            drawCube();
+        glPopMatrix();
     glEndList();
 }
 
 void body::init_right_lower_arm() {
     glNewList(right_lower_arm, GL_COMPILE);
-        glTranslatef(-0.13, -0.025, 0.0);
-        glScalef(0.06, 0.3, 0.05);
+        glTranslatef(-0.16, -0.025, 0.0);
+        glScalef(0.06, 0.3, 0.06);
         drawCube(0.0, 1.0, 0.0);
     glEndList();
 }
 
 void body::init_right_hand() {
     glNewList(right_hand, GL_COMPILE);
-        glTranslatef(-0.13, -0.2, 0.0);
-        glScalef(0.06, 0.05, 0.05);
+        glTranslatef(-0.16, -0.2, 0.0);
+        glScalef(0.07, 0.05, 0.07);
         drawCube();
     glEndList();
 }
 
 void body::init_left_upper_arm() {
     glNewList(left_upper_arm, GL_COMPILE);    
-        glTranslatef(0.13, 0.275, 0.0);
-        glScalef(0.06, 0.3, 0.05);
+        glTranslatef(0.16, 0.275, 0.0);
+        glScalef(0.08, 0.3, 0.08);
         drawCube();
     glEndList();
 }
 
 void body::init_left_lower_arm() {
     glNewList(left_lower_arm, GL_COMPILE);
-        glTranslatef(0.13, -0.025, 0.0);
-        glScalef(0.06, 0.3, 0.05);
+        glTranslatef(0.16, -0.025, 0.0);
+        glScalef(0.06, 0.3, 0.06);
         drawCube(0.0, 1.0, 0.0);
     glEndList();
 }
 
 void body::init_left_hand() {
     glNewList(left_hand, GL_COMPILE);
-        glTranslatef(0.13, -0.2, 0.0);
-        glScalef(0.06, 0.05, 0.05);
+        glTranslatef(0.16, -0.2, 0.0);
+        glScalef(0.07, 0.05, 0.07);
         drawCube();
     glEndList();
 }
@@ -440,7 +453,7 @@ void body::init_left_hand() {
 void body::init_right_thigh() {
     glNewList(right_thigh, GL_COMPILE);
         glTranslatef(-0.06, -0.185, 0.0);
-        glScalef(0.08, 0.32, 0.05);
+        glScalef(0.08, 0.32, 0.08);
         drawCube(1.0, 0.0, 0.0);
     glEndList();
 }
@@ -456,7 +469,7 @@ void body::init_right_leg() {
 void body::init_right_foot() {
     glNewList(right_foot, GL_COMPILE);
         glTranslatef(-0.06, -0.595, 0.0475);
-        glScalef(0.08, 0.02, 0.12);
+        glScalef(0.08, 0.04, 0.12);
         drawCube(1.0, 0.0, 0.0);
     glEndList();
 }
@@ -464,7 +477,7 @@ void body::init_right_foot() {
 void body::init_left_thigh() {
     glNewList(left_thigh, GL_COMPILE);
         glTranslatef(0.06, -0.185, 0.0);
-        glScalef(0.08, 0.32, 0.05);
+        glScalef(0.08, 0.32, 0.08);
         drawCube(1.0, 0.0, 0.0);
     glEndList();
 }
@@ -481,7 +494,7 @@ void body::init_left_leg() {
 void body::init_left_foot() {
     glNewList(left_foot, GL_COMPILE);
         glTranslatef(0.06, -0.595, 0.0475);
-        glScalef(0.08, 0.02, 0.12);
+        glScalef(0.08, 0.04, 0.12);
         drawCube(1.0, 0.0, 0.0);
     glEndList();
 }
