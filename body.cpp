@@ -2,6 +2,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <cmath>
 
 double body::shoulder_x_min = 0;
 double body::shoulder_x_max = 135;
@@ -41,19 +42,24 @@ double body::hip_y_max = 90;
 double body::hip_z_min = -90;
 double body::hip_z_max = 0;
 
-double body::elbow_x_min = 0;
-double body::elbow_x_max = 180;
+double body::elbow_x_min = -150;
+double body::elbow_x_max = 0;
 
-double body::knee_x_max = 90;
+double body::knee_x_max = 150;
 double body::knee_x_min = 0;
 
 body::body() {
     /*Variables*/
     /*Camera*/
+
+    camera_r = 1.5;
+    camera_t = 0;
+    camera_p = 0;
+
     rotate_x_angle = 0;
     rotate_y_angle = 0;
     rotate_z_angle = 0;
-
+ 
     /*Waist*/
     waist_x = 0;
 
@@ -126,10 +132,17 @@ body::body() {
 
 void body::render() {
 
+    glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
+    glFrustum(-0.6, 0.6, -0.6, 0.6, camera_r-0.75, 10);
+//    glOrtho(0, 640, 480, 0, 0, 1);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+//    glScalef(1.0, 1.0, -1.0);
+gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180), camera_r*sin(camera_t*PI/180), camera_r*cos(camera_t*PI/180)*cos(camera_p*PI/180), 0, 0, 0, 0, 1, 0);
 
     //glRotatef(rotate_x_angle, 1.0, 0.0, 0.0);
-    glRotatef(rotate_y_angle, 0.0, 1.0, 0.0);
+    //glRotatef(camera_p, 0.0, 1.0, 0.0);
     //glRotatef(rotate_z_angle, 0.0, 0.0, 1.0);
 
     glPushMatrix();
@@ -320,6 +333,38 @@ void body::rotate_y(double t) {
     rotate_y_angle = new_t;
 
 }
+
+void body::move_camera_r(double t) {
+    double new_r = camera_r + t;
+    if(new_r < 0.8)
+        new_r = 0.8;
+    if(new_r > 7)
+        new_r = 7;
+    camera_r = new_r;
+}
+
+void body::move_camera_t(double t) {
+
+    double new_t = camera_t + t;
+    if(new_t > 360)
+        new_t -= 360;
+    else if(new_t < 0)
+        new_t += 360;
+    camera_t = new_t;
+
+}
+
+void body::move_camera_p(double t) {
+
+    double new_t = camera_p + t;
+    if(new_t > 360)
+        new_t -= 360;
+    else if(new_t < 0)
+        new_t += 360;
+    camera_p = new_t;
+
+}
+
 
 void body::init_pelvis() {
     glNewList(pelvis, GL_COMPILE);

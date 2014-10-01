@@ -4,7 +4,31 @@ std::string active = "arandomstring";
 
 void control(int key, int scancode, int action, int mods) {
     switch(key) {
-        /*Activating various parts*/
+        case GLFW_KEY_LEFT:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                b->move_camera_p(-5);
+            break;
+        case GLFW_KEY_RIGHT:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                b->move_camera_p(5);
+            break;
+        case GLFW_KEY_UP:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                b->move_camera_t(5);
+            break;
+        case GLFW_KEY_DOWN:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                b->move_camera_t(-5);
+            break;
+        case GLFW_KEY_N:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                b->move_camera_r(-0.1);
+            break;
+        case GLFW_KEY_M:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                b->move_camera_r(0.1);
+            break;
+       /*Activating various parts*/
         case GLFW_KEY_SPACE:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
                 active = "camera";

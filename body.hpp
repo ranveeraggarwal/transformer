@@ -15,6 +15,7 @@
 #define left_thigh 13
 #define left_leg 14
 #define left_foot 15
+#define PI 3.14159265359
 
 class body {
 
@@ -23,6 +24,10 @@ private:
 double rotate_x_angle; 
 double rotate_y_angle; 
 double rotate_z_angle; 
+
+double camera_r;
+double camera_t;
+double camera_p;
 
 /* Angle Limits */
 
@@ -198,6 +203,10 @@ void move_left_knee_x(double t);
 void rotate_x(double t);
 void rotate_y(double t);
 void rotate_z(double t);
+
+void move_camera_r(double t);
+void move_camera_t(double t);
+void move_camera_p(double p);
 
 };
 

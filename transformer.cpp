@@ -38,7 +38,7 @@ int main(int argc, char** argv)
       //Problem: glewInit failed, something is seriously wrong.
       std::cerr<<"GLEW Init Failed : %s"<<std::endl;
     }
-
+  glViewport(0, 0, 640, 480);
   //Print and see what context got enabled
   std::cout<<"Vendor: "<<glGetString (GL_VENDOR)<<std::endl;
   std::cout<<"Renderer: "<<glGetString (GL_RENDERER)<<std::endl;

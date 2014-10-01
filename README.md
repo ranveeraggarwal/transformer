@@ -3,20 +3,19 @@
 ##Movements
 The components of the transformer's body are mapped to keys. Pressing one of these keys will activate the corresponding component.
 Here are the key mappings (More to be added):
-* `SPACE`: Camera
 * `Z`: Waist
 * `G`: Right Shoulder
 * `T`: Left Shoulder
-* `Y`: Right Elbow
-* `H`: Left Elbow
-* `U`: Right Wrist //To be implemented
-* `J`: Left Wrist //To be implemented
-* `I`: Right Hip
-* `K`: Left Hip
-* `O`: Right Knee
-* `L`: Left Knee
-* `P`: Right Ankle
-* `;`: Left Ankle
+* `H`: Right Elbow
+* `Y`: Left Elbow
+* `J`: Right Wrist //To be implemented
+* `U`: Left Wrist //To be implemented
+* `K`: Right Hip
+* `I`: Left Hip
+* `L`: Right Knee
+* `O`: Left Knee
+* `;`: Right Ankle
+* `P`: Left Ankle
 * `X`: Neck
 
 To move the active component, the following key mappings work:
@@ -26,6 +25,12 @@ To move the active component, the following key mappings work:
 * `S`: Decrease Y
 * `E`: Increase Z
 * `D`: Decrease Z
+
+Camera Controls
+
+* `M`: Zoom In
+* `N`: Zoom Out
+* Arrow Keys : Rotate Camera
 
 ##Stuff done till now:
 * Basic skeleton
