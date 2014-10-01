@@ -272,10 +272,10 @@ void body::render() {
 
             /*Ankle*/
             glPushMatrix();
-                glTranslatef(0.02, -0.585, -0.0125);
+                glTranslatef(-0.02, -0.585, -0.0125);
                 glRotatef(right_ankle_x, 1.0, 0.0, 0.0);
                 glRotatef(right_ankle_y, 0.0, 1.0, 0.0);
-                glTranslatef(-0.02, 0.585, 0.0125);
+                glTranslatef(0.02, 0.585, 0.0125);
                 glCallList(right_foot);
             glPopMatrix();
             /*Ankle Ends*/
@@ -775,18 +775,21 @@ void body::transform()
     right_elbow_x = -180 - (-180 - right_elbow_x) * (count_transform - 1) / (double)count_transform;
 
     /*Left Knee*/
-    left_knee_x = 180 - (180 - left_knee_x) * (count_transform - 1) / (double)count_transform;
+//    left_knee_x = 180 - (180 - left_knee_x) * (count_transform - 1) / (double)count_transform;
+    left_knee_x = left_knee_x * (count_transform - 1) / (double)count_transform;
 
     /*Right Knee*/
-    right_knee_x = 180 - (180 - right_knee_x) * (count_transform - 1) / (double)count_transform;
+    //right_knee_x = 180 - (180 - right_knee_x) * (count_transform - 1) / (double)count_transform;
+
+    right_knee_x = right_knee_x * (count_transform - 1) / (double)count_transform;
 
     /*Left Ankle*/
-    left_ankle_x = 90 - (90- left_ankle_x) * (count_transform - 1) / (double)count_transform;
-    left_ankle_y = left_ankle_y * (count_transform - 1) / (double)count_transform;
+    left_ankle_x = -90 - (-90- left_ankle_x) * (count_transform - 1) / (double)count_transform;
+    left_ankle_y = -90 - (-90- left_ankle_y) * (count_transform - 1) / (double)count_transform;
 
     /*Right Ankle*/
-    right_ankle_x = 90 - (90 -right_ankle_x) * (count_transform - 1) / (double)count_transform;
-    right_ankle_y = right_ankle_y * (count_transform - 1) / (double)count_transform;
+    right_ankle_x = -90 - (-90 -right_ankle_x) * (count_transform - 1) / (double)count_transform;
+    right_ankle_y = 90 - (90- right_ankle_y) * (count_transform - 1) / (double)count_transform;
 
     count_transform--;   
     }
