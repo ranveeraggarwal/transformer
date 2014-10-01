@@ -21,6 +21,7 @@ class body {
 
 private:
 
+
 double rotate_x_angle; 
 double rotate_y_angle; 
 double rotate_z_angle; 
@@ -211,6 +212,8 @@ void move_camera_p(double p);
 bool transformed;
 void transform();
 void revert();
-
+bool transforming;
+int count_revert;
+int count_transform;
 };
 

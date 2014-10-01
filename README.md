@@ -3,7 +3,7 @@
 ##Movements
 The components of the transformer's body are mapped to keys. Pressing one of these keys will activate the corresponding component.
 Here are the key mappings (More to be added):
-* `Z`: Wais //Partially implemented
+* `Z`: Waist //Partially implemented
 * `G`: Right Shoulder
 * `T`: Left Shoulder
 * `H`: Right Elbow
@@ -31,3 +31,5 @@ Camera Controls
 * `N`: Zoom Out
 * Arrow Keys : Rotate Camera
 
+Transform/Revert
+* Space

@@ -1,7 +1,7 @@
 #include "control.hpp"
 
 std::string active = "arandomstring";
-
+bool transformed = false;
 void control(int key, int scancode, int action, int mods) {
     switch(key) {
         case GLFW_KEY_LEFT:
@@ -30,9 +30,20 @@ void control(int key, int scancode, int action, int mods) {
             break;
        /*Activating various parts*/
         case GLFW_KEY_SPACE:
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                active = "camera";
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0) {
+                transformed = !transformed;
+                if(transformed)
+                    b->count_transform = 60;
+                else
+                    b->count_revert = 60;
+                //active = "camera";
+            }
             break;
+    }
+    if(transformed) {
+        return;
+    } 
+    switch(key) {
         case GLFW_KEY_Z:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
                 active = "waist";
