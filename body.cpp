@@ -739,24 +739,23 @@ void body::move_neck_z(double t)
 }
 void body::transform()
 {
-
     if(count_transform > 0) {
      /*Waist*/
-    waist_x = 90 - (90 - waist_x) * (count_transform - 1) / (double)count_transform;
+    waist_x = waist_x * (count_transform - 1) / (double)count_transform;
 
     /*Neck*/
-    neck_x = neck_x * (count_transform - 1) / (double)count_transform;
+    neck_x = 180 - (180 - neck_x) * (count_transform - 1) / (double)count_transform;
     neck_y = neck_y * (count_transform - 1) / (double)count_transform;
     neck_z = neck_z * (count_transform - 1) / (double)count_transform;
 
     /*Right Shoulder*/
-    right_shoulder_x = 60 - (60 - right_shoulder_x) * (count_transform - 1) / (double)count_transform;
-    right_shoulder_y = right_shoulder_y * (count_transform - 1) / (double)count_transform;
+    right_shoulder_x = 90 - (90 - right_shoulder_x) * (count_transform - 1) / (double)count_transform;
+    right_shoulder_y = -90 - (-90 - right_shoulder_y) * (count_transform - 1) / (double)count_transform;
     right_shoulder_z = right_shoulder_z * (count_transform - 1) / (double)count_transform;
 
     /*Left Shoulder*/
-    left_shoulder_x = 60 - (60 - left_shoulder_x) * (count_transform - 1) / (double)count_transform;
-    left_shoulder_y = left_shoulder_y * (count_transform - 1) / (double)count_transform;
+    left_shoulder_x = 90 - (90 - left_shoulder_x) * (count_transform - 1) / (double)count_transform;
+    left_shoulder_y = 90 - (90 - left_shoulder_y) * (count_transform - 1) / (double)count_transform;
     left_shoulder_z = left_shoulder_z * (count_transform - 1) / (double)count_transform;
 
     /*Right Hip*/
@@ -770,23 +769,23 @@ void body::transform()
     left_hip_z = left_hip_z * (count_transform - 1) / (double)count_transform;
 
     /*Left Elbow*/
-    left_elbow_x = -90 - (-90 - left_elbow_x) * (count_transform - 1) / (double)count_transform;
+    left_elbow_x = -180 - (-180 - left_elbow_x) * (count_transform - 1) / (double)count_transform;
 
     /*Right Elbow*/
-    right_elbow_x = -90 - (-90 - right_elbow_x) * (count_transform - 1) / (double)count_transform;
+    right_elbow_x = -180 - (-180 - right_elbow_x) * (count_transform - 1) / (double)count_transform;
 
     /*Left Knee*/
-    left_knee_x = left_knee_x * (count_transform - 1) / (double)count_transform;
+    left_knee_x = 180 - (180 - left_knee_x) * (count_transform - 1) / (double)count_transform;
 
     /*Right Knee*/
-    right_knee_x = right_knee_x * (count_transform - 1) / (double)count_transform;
+    right_knee_x = 180 - (180 - right_knee_x) * (count_transform - 1) / (double)count_transform;
 
     /*Left Ankle*/
-    left_ankle_x = left_ankle_x * (count_transform - 1) / (double)count_transform;
+    left_ankle_x = 90 - (90- left_ankle_x) * (count_transform - 1) / (double)count_transform;
     left_ankle_y = left_ankle_y * (count_transform - 1) / (double)count_transform;
 
     /*Right Ankle*/
-    right_ankle_x = right_ankle_x * (count_transform - 1) / (double)count_transform;
+    right_ankle_x = 90 - (90 -right_ankle_x) * (count_transform - 1) / (double)count_transform;
     right_ankle_y = right_ankle_y * (count_transform - 1) / (double)count_transform;
 
     count_transform--;   
