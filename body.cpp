@@ -252,11 +252,11 @@ gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180), camera_r*sin(camer
 
     /*The right leg begins*/
     glPushMatrix();
-        glTranslatef(0.06, -0.025, 0.0);
+        glTranslatef(-0.06, -0.025, 0.0);
         glRotatef(right_hip_x, 1.0, 0.0, 0.0);
         glRotatef(right_hip_y, 0.0, 1.0, 0.0);
         glRotatef(right_hip_z, 0.0, 0.0, 1.0);
-        glTranslatef(-0.06, 0.025, 0.0);
+        glTranslatef(0.06, 0.025, 0.0);
 
         glPushMatrix();
             glCallList(right_thigh);
@@ -288,11 +288,11 @@ gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180), camera_r*sin(camer
 
     /*The left leg begins*/
     glPushMatrix();
-        glTranslatef(-0.06, -0.025, 0.0);
+        glTranslatef(0.06, -0.025, 0.0);
         glRotatef(left_hip_x, 1.0, 0.0, 0.0);
         glRotatef(left_hip_y, 0.0, 1.0, 0.0);
         glRotatef(left_hip_z, 0.0, 0.0, 1.0);
-        glTranslatef(0.06, 0.025, 0.0);
+        glTranslatef(-0.06, 0.025, 0.0);
 
         glPushMatrix();
             glCallList(left_thigh);

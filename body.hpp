@@ -208,5 +208,9 @@ void move_camera_r(double t);
 void move_camera_t(double t);
 void move_camera_p(double p);
 
+bool transformed;
+void transform();
+void revert();
+
 };
 
