@@ -31,5 +31,7 @@ Camera Controls
 * `N`: Zoom Out
 * Arrow Keys : Rotate Camera
 
-Transform/Revert
-* Space
+Transformation
+* `Space`: Transform/Revert
+* `F`: Move forward when transformed
+* `B`: Move backward when transformed

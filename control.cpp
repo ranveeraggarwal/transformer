@@ -41,6 +41,16 @@ void control(int key, int scancode, int action, int mods) {
             break;
     }
     if(transformed) {
+        switch(key) {
+            case GLFW_KEY_F:
+                if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                    b->move_z(-0.1);
+                break;
+            case GLFW_KEY_B:
+                if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                b->move_z(0.1);
+                break;
+        }
         return;
     } 
     switch(key) {

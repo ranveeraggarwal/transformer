@@ -20,6 +20,7 @@ class body {
 
 private:
 
+double pos_z;
 
 double rotate_x_angle; 
 double rotate_y_angle; 
@@ -207,6 +208,8 @@ void rotate_z(double t);
 void move_camera_r(double t);
 void move_camera_t(double t);
 void move_camera_p(double p);
+
+void move_z(double t);
 
 bool transformed;
 void transform();

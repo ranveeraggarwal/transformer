@@ -51,6 +51,9 @@ double body::knee_x_min = 0;
 
 body::body() {
     /*Variables*/
+
+    pos_z = 0;
+
     /*Camera*/
 
     count_transform = 0;
@@ -141,6 +144,7 @@ void body::render() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180), camera_r*sin(camera_t*PI/180), camera_r*cos(camera_t*PI/180)*cos(camera_p*PI/180), 0, 0, 0, 0, 1, 0);
+    glTranslatef(0, 0, pos_z);
     transform();
     revert();
     glPushMatrix();
