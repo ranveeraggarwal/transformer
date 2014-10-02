@@ -5,7 +5,7 @@ int LoadGLTextures()       // Load Bitmaps And Convert To Textures
     /* load an image file directly as a new OpenGL texture */
     texture[0] = SOIL_load_OGL_texture
         (
-        "NeHe.png",
+        "4NeHe.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y

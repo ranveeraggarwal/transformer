@@ -349,8 +349,9 @@ void body::render() {
 
 void body::init_pelvis() {
     glNewList(pelvis, GL_COMPILE);
+        //drawCube();
         glScalef(0.2, 0.05, 0.07);
-        drawCube();
+        texcube(0, 0.0, 0.0, 1.0);
     glEndList();
 }
 
@@ -358,15 +359,15 @@ void body::init_torso() {
     glNewList(torso, GL_COMPILE);
         glPushMatrix();
             glTranslatef(0.0, 0.150, 0.0);
-            //glScalef(0.19, 0.25, 0.15);
             //drawCube(1.0, 0.0, 0.0);
-            glScalef(0.19/2, 0.25/2, 0.15/2);
-            texcube();
+            glScalef(0.19, 0.25, 0.15);
+            texcube(0, 0.6, 0.0, 0.0);
         glPopMatrix();
         glPushMatrix();
             glTranslatef(0.0, 0.35, 0.0);
+            //drawCube(0.95, 0.0, 0.0);
             glScalef(0.2, 0.15, 0.18);
-            drawCube(0.95, 0.0, 0.0);
+            texcube(0, 1.0, 0.0, 0.0);
         glPopMatrix();
     glEndList();
 }
@@ -374,18 +375,18 @@ void body::init_torso() {
 void body::init_head() {
     glNewList(head, GL_COMPILE);
         glTranslatef(0.0, 0.475, 0.0);
+        //drawCube(0.0, 0.0, 1.0);
         glScalef(0.1, 0.1, 0.05);
-        drawCube(0.0, 0.0, 1.0);
+        texcube(0, 0.0, 0.0, 1.0);
     glEndList();
 }
 
 void body::init_right_upper_arm() {
     glNewList(right_upper_arm, GL_COMPILE);    
-        glPushMatrix();
-            glTranslatef(-0.16, 0.275, 0.0);
-            glScalef(0.08, 0.3, 0.08);
-            drawCube();
-        glPopMatrix();
+        glTranslatef(-0.16, 0.275, 0.0);
+        glScalef(0.08, 0.3, 0.08);
+        //drawCube();
+        texcube(0, 0.5, 0.0, 0.0);
     glEndList();
 }
 
@@ -393,7 +394,8 @@ void body::init_right_lower_arm() {
     glNewList(right_lower_arm, GL_COMPILE);
         glTranslatef(-0.16, -0.025, 0.0);
         glScalef(0.06, 0.3, 0.06);
-        drawCube(0.0, 1.0, 0.0);
+        //drawCube();
+        texcube(0, 1.0, 0.0, 0.0);
     glEndList();
 }
 
@@ -401,7 +403,8 @@ void body::init_right_hand() {
     glNewList(right_hand, GL_COMPILE);
         glTranslatef(-0.16, -0.2, 0.0);
         glScalef(0.07, 0.05, 0.07);
-        drawCube();
+        //drawCube();
+        texcube(0, 0.0, 0.0, 1.0);
     glEndList();
 }
 
@@ -409,7 +412,8 @@ void body::init_left_upper_arm() {
     glNewList(left_upper_arm, GL_COMPILE);    
         glTranslatef(0.16, 0.275, 0.0);
         glScalef(0.08, 0.3, 0.08);
-        drawCube();
+        //drawCube();
+        texcube(0, 0.5, 0.0, 0.0);
     glEndList();
 }
 
@@ -417,7 +421,8 @@ void body::init_left_lower_arm() {
     glNewList(left_lower_arm, GL_COMPILE);
         glTranslatef(0.16, -0.025, 0.0);
         glScalef(0.06, 0.3, 0.06);
-        drawCube(0.0, 1.0, 0.0);
+        //drawCube();
+        texcube(0, 1.0, 0.0, 0.0);
     glEndList();
 }
 
@@ -425,7 +430,8 @@ void body::init_left_hand() {
     glNewList(left_hand, GL_COMPILE);
         glTranslatef(0.16, -0.2, 0.0);
         glScalef(0.07, 0.05, 0.07);
-        drawCube();
+        //drawCube();
+        texcube(0, 0.0, 0.0, 1.0);
     glEndList();
 }
 
@@ -433,8 +439,9 @@ void body::init_right_thigh() {
     glNewList(right_thigh, GL_COMPILE);
         glPushMatrix();
         glTranslatef(-0.06, -0.185, 0.0);
+        //drawCube(1.0, 0.0, 0.0);
         glScalef(0.08, 0.32, 0.12);
-        drawCube(1.0, 0.0, 0.0);
+        texcube(0, 0.6, 0.6, 0.6);
         glPopMatrix();
         glTranslatef(-0.14, -0.145, -0.09);
         glRotatef(90, 0, 0, 1); 
@@ -448,7 +455,8 @@ void body::init_right_leg() {
         glPushMatrix();
         glTranslatef(-0.06, -0.465, 0.0);
         glScalef(0.08, 0.24, 0.08);
-        drawCube();
+        //drawCube();
+        texcube(0, 0.0, 0.0, 1.0);
         glPopMatrix();
         glTranslatef(-0.14, -0.465, -0.0825);
         glRotatef(90, 0, 0, 1); 
@@ -461,7 +469,8 @@ void body::init_right_foot() {
     glNewList(right_foot, GL_COMPILE);
         glTranslatef(-0.06, -0.595, 0.0475);
         glScalef(0.08, 0.04, 0.12);
-        drawCube(1.0, 0.0, 0.0);
+        //drawCube();
+        texcube(0, 0.0, 0.0, 1.0);
     glEndList();
 }
 
@@ -470,7 +479,8 @@ void body::init_left_thigh() {
         glPushMatrix();
         glTranslatef(0.06, -0.185, 0.0);
         glScalef(0.08, 0.32, 0.12);
-        drawCube(1.0, 0.0, 0.0);
+        //drawCube();
+        texcube(0, 0.6, 0.6, 0.6);
         glPopMatrix();
         glTranslatef(0.14, -0.145, -0.08);
         glRotatef(90, 0, 0, 1); 
@@ -485,7 +495,8 @@ void body::init_left_leg() {
         glPushMatrix();
         glTranslatef(0.06, -0.465, 0.0);
         glScalef(0.08, 0.24, 0.08);
-        drawCube();
+        //drawCube();
+        texcube(0, 0.0, 0.0, 1.0);
         glPopMatrix();
         glTranslatef(0.14, -0.465, -0.0825);
         glRotatef(90, 0, 0, 1); 
@@ -498,7 +509,8 @@ void body::init_left_foot() {
     glNewList(left_foot, GL_COMPILE);
         glTranslatef(0.06, -0.595, 0.0475);
         glScalef(0.08, 0.04, 0.12);
-        drawCube(1.0, 0.0, 0.0);
+        //drawCube();
+        texcube(0, 0.0, 0.0, 1.0);
     glEndList();
 }
 
@@ -506,12 +518,14 @@ void body::init_joints() {
     glNewList(rs_joint, GL_COMPILE);
         glTranslatef(-0.115, 0.375, 0.0);
         glScalef(0.03, 0.05, 0.03);
-        drawCube(0.0, 0.0, 0.5);
+        //drawCube();
+        texcube(0, 0.0, 0.0, 1.0);
     glEndList();
     glNewList(ls_joint, GL_COMPILE);
         glTranslatef(0.115, 0.375, 0.0);
         glScalef(0.03, 0.05, 0.03);
-        drawCube(0.0, 0.0, 0.5);
+        //drawCube();
+        texcube(0, 0.0, 0.0, 1.0);
     glEndList();
 }
 
