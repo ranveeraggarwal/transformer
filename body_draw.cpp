@@ -117,6 +117,10 @@ body::body() {
     right_ankle_x = 0;
     right_ankle_y = 0;
 
+    /*Shoulder Joints*/
+    rs_joint_x = 0;
+    ls_joint_x = 0;
+
     /*Number of Lists to Display*/
     glGenLists(15);
 
@@ -136,11 +140,11 @@ body::body() {
     init_left_thigh();
     init_left_leg();
     init_left_foot();
+    init_joints();
 }
 
 
 void body::render() {
-
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glFrustum(-0.6, 0.6, -0.6, 0.6, camera_r-0.75, 10);
@@ -173,8 +177,15 @@ void body::render() {
             glCallList(head);
         glPopMatrix();
 
+        
         /*The right arm*/
         glPushMatrix();
+            glTranslatef(-0.1, 0.0, 0.0);
+            glRotatef(rs_joint_x, 0.0, 1.0, 0.0);
+            glTranslatef(0.1, 0.0, 0.0);
+            glPushMatrix();
+                glCallList(rs_joint);
+            glPopMatrix();
             /*Move pivot back*/
             glTranslatef(-0.13, 0.375, 0.0);
             /*Shoulder Y rotation*/
@@ -183,7 +194,7 @@ void body::render() {
             glRotatef(right_shoulder_z, 0.0, 0.0, 1.0); 
             /*Shoulder X rotation*/
             glRotatef(right_shoulder_x, 1.0, 0.0, 0.0); 
-            /*Get pivot to origin*/
+                /*Get pivot to origin*/
             glTranslatef(0.13, -0.375, 0.0);
 
             glPushMatrix();
@@ -216,6 +227,12 @@ void body::render() {
 
         /*The left arm*/
         glPushMatrix();
+            glTranslatef(0.1, 0.0, 0.0);
+            glRotatef(ls_joint_x, 0.0, 1.0, 0.0);
+            glTranslatef(-0.1, 0.0, 0.0);
+            glPushMatrix();
+                glCallList(ls_joint);
+            glPopMatrix();
             /*Move pivot back*/
             glTranslatef(0.13, 0.375, 0.0);
             /*Shoulder Y rotation*/
@@ -281,10 +298,10 @@ void body::render() {
 
             /*Ankle*/
             glPushMatrix();
-                glTranslatef(-0.02, -0.585, -0.0125);
+                glTranslatef(-0.06, -0.585, -0.0125);
                 glRotatef(right_ankle_x, 1.0, 0.0, 0.0);
                 glRotatef(right_ankle_y, 0.0, 1.0, 0.0);
-                glTranslatef(0.02, 0.585, 0.0125);
+                glTranslatef(0.06, 0.585, 0.0125);
                 glCallList(right_foot);
             glPopMatrix();
             /*Ankle Ends*/
@@ -317,10 +334,10 @@ void body::render() {
 
             /*Ankle*/
             glPushMatrix();
-                glTranslatef(0.02, -0.585, -0.0125);
+                glTranslatef(0.06, -0.585, -0.0125);
                 glRotatef(left_ankle_x, 1.0, 0.0, 0.0);
                 glRotatef(left_ankle_y, 0.0, 1.0, 0.0);
-                glTranslatef(-0.02, 0.585, 0.0125);
+                glTranslatef(-0.06, 0.585, 0.0125);
                 glCallList(left_foot);
             glPopMatrix();
             /*Ankle Ends*/
@@ -341,23 +358,15 @@ void body::init_torso() {
     glNewList(torso, GL_COMPILE);
         glPushMatrix();
             glTranslatef(0.0, 0.150, 0.0);
-            glScalef(0.19, 0.25, 0.15);
-            drawCube(1.0, 0.0, 0.0);
+            //glScalef(0.19, 0.25, 0.15);
+            //drawCube(1.0, 0.0, 0.0);
+            glScalef(0.19/2, 0.25/2, 0.15/2);
+            texcube();
         glPopMatrix();
         glPushMatrix();
             glTranslatef(0.0, 0.35, 0.0);
             glScalef(0.2, 0.15, 0.18);
             drawCube(0.95, 0.0, 0.0);
-        glPopMatrix();
-        glPushMatrix();
-            glTranslatef(-0.115, 0.375, 0.0);
-            glScalef(0.03, 0.05, 0.03);
-            drawCube(0.0, 0.0, 0.5);
-        glPopMatrix();
-        glPushMatrix();
-            glTranslatef(0.115, 0.375, 0.0);
-            glScalef(0.03, 0.05, 0.03);
-            drawCube(0.0, 0.0, 0.5);
         glPopMatrix();
     glEndList();
 }
@@ -493,7 +502,17 @@ void body::init_left_foot() {
     glEndList();
 }
 
-
-
+void body::init_joints() {
+    glNewList(rs_joint, GL_COMPILE);
+        glTranslatef(-0.115, 0.375, 0.0);
+        glScalef(0.03, 0.05, 0.03);
+        drawCube(0.0, 0.0, 0.5);
+    glEndList();
+    glNewList(ls_joint, GL_COMPILE);
+        glTranslatef(0.115, 0.375, 0.0);
+        glScalef(0.03, 0.05, 0.03);
+        drawCube(0.0, 0.0, 0.5);
+    glEndList();
+}
 
 

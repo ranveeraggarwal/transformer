@@ -1,5 +1,6 @@
 #include "gl_framework.hpp"
 
+unsigned int texture[1];
 body* b;
 void renderGL()
 {
@@ -55,6 +56,7 @@ int main(int argc, char** argv)
 
   //Initialize GL state
   csX75::initGL();
+
   // Loop until the user closes the window
   b = new body(); 
   while (glfwWindowShouldClose(window) == 0)

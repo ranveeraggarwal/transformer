@@ -1,8 +1,15 @@
 #ifndef _GL_FRAMEWORK_HPP_
 #define _GL_FRAMEWORK_HPP_
 #include <iostream>
+#include "SOIL/SOIL.h"
 #include "control.hpp"
+
 extern body* b;
+
+extern unsigned int texture[1];
+
+int LoadGLTextures();
+
 namespace csX75
 {
   //! Initialize GL State

@@ -15,6 +15,8 @@
 #define left_thigh 13
 #define left_leg 14
 #define left_foot 15
+#define rs_joint 16
+#define ls_joint 17
 
 class body {
 
@@ -124,6 +126,9 @@ double right_knee_x;
 
 double left_knee_x;
 
+double rs_joint_x;
+double ls_joint_x;
+
 
 /* Display Lists are created here */
 
@@ -148,6 +153,8 @@ void init_left_leg();
 void init_left_thigh();
 
 void init_pelvis();
+
+void init_joints();
 
 /* Does the appropriate transformations and calls the display lists */
 

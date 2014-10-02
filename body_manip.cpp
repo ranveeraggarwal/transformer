@@ -282,12 +282,16 @@ void body::move_neck_z(double t)
 }
 void body::transform()
 {
-    if(count_transform > 0) {
+    if(count_elbows_in > 0) {
+        elbows_y_offset = 0.3 - (0.3 - elbows_y_offset) * (count_elbows_in - 1) / (double)count_elbows_in;
+        count_elbows_in--;
+    }
+    else if(count_transform > 0) {
      /*Waist*/
     waist_x = waist_x * (count_transform - 1) / (double)count_transform;
 
     /*Neck*/
-    neck_x = 180 - (180 - neck_x) * (count_transform - 1) / (double)count_transform;
+    neck_x = -180 - (-180 - neck_x) * (count_transform - 1) / (double)count_transform;
     neck_y = neck_y * (count_transform - 1) / (double)count_transform;
     neck_z = neck_z * (count_transform - 1) / (double)count_transform;
 
@@ -327,28 +331,29 @@ void body::transform()
     right_knee_x = right_knee_x * (count_transform - 1) / (double)count_transform;
 
     /*Left Ankle*/
-    left_ankle_x = -90 - (-90- left_ankle_x) * (count_transform - 1) / (double)count_transform;
-    left_ankle_y = -90 - (-90- left_ankle_y) * (count_transform - 1) / (double)count_transform;
+    //left_ankle_x = -180 - (-180 - left_ankle_x) * (count_transform - 1) / (double)count_transform;
+    left_ankle_y = 180 - (180 - left_ankle_y) * (count_transform - 1) / (double)count_transform;
+    //left_ankle_x = left_ankle_x * (count_transform - 1) / (double)count_transform;
+    //left_ankle_y = left_ankle_y * (count_transform - 1) / (double)count_transform;
 
     /*Right Ankle*/
-    right_ankle_x = -90 - (-90 -right_ankle_x) * (count_transform - 1) / (double)count_transform;
-    right_ankle_y = 90 - (90- right_ankle_y) * (count_transform - 1) / (double)count_transform;
+    right_ankle_y = -180 - (-180 -right_ankle_y) * (count_transform - 1) / (double)count_transform;
+    //right_ankle_y = 90 - (90- right_ankle_y) * (count_transform - 1) / (double)count_transform;
+
+    //right_ankle_x = right_ankle_x * (count_transform - 1) / (double)count_transform;
+    //right_ankle_y = right_ankle_y * (count_transform - 1) / (double)count_transform;
+
+    /*Shoulder Joints*/
+    rs_joint_x = 90 - (90 -rs_joint_x) * (count_transform - 1) / (double)count_transform;
+    ls_joint_x = -90 - (-90- ls_joint_x) * (count_transform - 1) / (double)count_transform;
 
     count_transform--;   
     }    
-   else if(count_elbows_in > 0) {
-        elbows_y_offset = 0.3 - (0.3 - elbows_y_offset) * (count_elbows_in - 1) / (double)count_elbows_in;
-        count_elbows_in--;
-    }
 }
 void body::revert()
 {
 
-    if(count_elbows_out > 0) {
-        elbows_y_offset = elbows_y_offset * (count_elbows_out - 1) / (double)count_elbows_out;
-        count_elbows_out--;
-    }
-    else if(count_revert > 0) {
+    if(count_revert > 0) {
      /*Waist*/
     waist_x =  waist_x * (count_revert - 1) / (double)count_revert;
 
@@ -396,8 +401,15 @@ void body::revert()
     /*Right Ankle*/
     right_ankle_x = right_ankle_x * (count_revert - 1) / (double)count_revert;
     right_ankle_y = right_ankle_y * (count_revert - 1) / (double)count_revert;
+    /*Shoulder Joints*/
+    rs_joint_x = rs_joint_x * (count_revert - 1) / (double)count_revert;
+    ls_joint_x = ls_joint_x * (count_revert - 1) / (double)count_revert;
 
     count_revert--;   
+    }
+    else if(count_elbows_out > 0) {
+        elbows_y_offset = elbows_y_offset * (count_elbows_out - 1) / (double)count_elbows_out;
+        count_elbows_out--;
     }
 }
 
