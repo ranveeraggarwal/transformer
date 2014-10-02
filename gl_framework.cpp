@@ -27,10 +27,7 @@ namespace csX75
   //! Initialize GL State
   void initGL(void)
   {
-    //Load The Texture
-    LoadGLTextures();       
-    // Enable Texture Mapping
-    glEnable(GL_TEXTURE_2D);      
+    LoadGLTextures();
     //Set framebuffer clear color
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     //Set depth buffer furthest depth

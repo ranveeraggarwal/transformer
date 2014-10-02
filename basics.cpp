@@ -1,10 +1,11 @@
 #include "basics.hpp"
 #include <cmath>
 
-void texcube(void)
+void texcube(int i)
 {
-    
-    glBindTexture(GL_TEXTURE_2D, texture[0]);   // choose the texture to use.
+    // Enable Texture Mapping
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[i]);   // choose the texture to use.
 
     glBegin(GL_QUADS);                    // begin drawing a cube
     
@@ -45,6 +46,7 @@ void texcube(void)
     glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f,  1.0f, -1.0f);  // Top Left Of The Texture and Quad
     
     glEnd();                                    // done with the polygon.
+    glDisable(GL_TEXTURE_2D);
 
 
 }
