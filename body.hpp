@@ -30,6 +30,8 @@ double camera_r;
 double camera_t;
 double camera_p;
 
+double elbows_y_offset;
+
 /* Angle Limits */
 
 static double shoulder_x_min;
@@ -217,5 +219,7 @@ void revert();
 bool transforming;
 int count_revert;
 int count_transform;
+int count_elbows_in;
+int count_elbows_out;
 };
 

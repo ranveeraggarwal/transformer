@@ -292,13 +292,13 @@ void body::transform()
     neck_z = neck_z * (count_transform - 1) / (double)count_transform;
 
     /*Right Shoulder*/
-    right_shoulder_x = -80 - (-80 - right_shoulder_x) * (count_transform - 1) / (double)count_transform;
-    right_shoulder_y = 15 - (15 - right_shoulder_y) * (count_transform - 1) / (double)count_transform;
+    right_shoulder_x = -0 - (-0 - right_shoulder_x) * (count_transform - 1) / (double)count_transform;
+    right_shoulder_y = 0 - (0 - right_shoulder_y) * (count_transform - 1) / (double)count_transform;
     right_shoulder_z = right_shoulder_z * (count_transform - 1) / (double)count_transform;
 
     /*Left Shoulder*/
-    left_shoulder_x = -80 - (-80 - left_shoulder_x) * (count_transform - 1) / (double)count_transform;
-    left_shoulder_y = -15 - (-15 - left_shoulder_y) * (count_transform - 1) / (double)count_transform;
+    left_shoulder_x = -0 - (-0 - left_shoulder_x) * (count_transform - 1) / (double)count_transform;
+    left_shoulder_y = -0 - (-0 - left_shoulder_y) * (count_transform - 1) / (double)count_transform;
     left_shoulder_z = left_shoulder_z * (count_transform - 1) / (double)count_transform;
 
     /*Right Hip*/
@@ -312,10 +312,10 @@ void body::transform()
     left_hip_z = left_hip_z * (count_transform - 1) / (double)count_transform;
 
     /*Left Elbow*/
-    left_elbow_x = 60 - (60 - left_elbow_x) * (count_transform - 1) / (double)count_transform;
+    left_elbow_x = left_elbow_x * (count_transform - 1) / (double)count_transform;
 
     /*Right Elbow*/
-    right_elbow_x = 60 - (60 - right_elbow_x) * (count_transform - 1) / (double)count_transform;
+    right_elbow_x = right_elbow_x * (count_transform - 1) / (double)count_transform;
 
     /*Left Knee*/
 //    left_knee_x = 180 - (180 - left_knee_x) * (count_transform - 1) / (double)count_transform;
@@ -335,12 +335,20 @@ void body::transform()
     right_ankle_y = 90 - (90- right_ankle_y) * (count_transform - 1) / (double)count_transform;
 
     count_transform--;   
+    }    
+   else if(count_elbows_in > 0) {
+        elbows_y_offset = 0.3 - (0.3 - elbows_y_offset) * (count_elbows_in - 1) / (double)count_elbows_in;
+        count_elbows_in--;
     }
 }
 void body::revert()
 {
 
-    if(count_revert > 0) {
+    if(count_elbows_out > 0) {
+        elbows_y_offset = elbows_y_offset * (count_elbows_out - 1) / (double)count_elbows_out;
+        count_elbows_out--;
+    }
+    else if(count_revert > 0) {
      /*Waist*/
     waist_x =  waist_x * (count_revert - 1) / (double)count_revert;
 

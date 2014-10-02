@@ -54,6 +54,9 @@ body::body() {
 
     pos_z = 0;
 
+    elbows_y_offset = 0;
+    count_elbows_in = 0;
+    count_elbows_out = 0;
     /*Camera*/
 
     count_transform = 0;
@@ -190,6 +193,7 @@ void body::render() {
             /*Forearm*/
             glPushMatrix();
                 /*Move pivot back*/
+                glTranslatef(0.0, elbows_y_offset, 0.0);
                 glTranslatef(-0.13, 0.125, 0.0);
                 /*Rotate Elbow Joint*/
                 glRotatef(right_elbow_x, 1.0, 0.0, 0.0);
@@ -230,6 +234,7 @@ void body::render() {
             /*Forearm*/
             glPushMatrix();
                 /*Move pivot back*/
+                glTranslatef(0.0, elbows_y_offset, 0.0);
                 glTranslatef(0.13, 0.125, 0.0);
                 /*Rotate Elbow Joint*/
                 glRotatef(left_elbow_x, 1.0, 0.0, 0.0);
@@ -336,12 +341,12 @@ void body::init_torso() {
     glNewList(torso, GL_COMPILE);
         glPushMatrix();
             glTranslatef(0.0, 0.150, 0.0);
-            glScalef(0.19, 0.25, 0.08);
+            glScalef(0.19, 0.25, 0.15);
             drawCube(1.0, 0.0, 0.0);
         glPopMatrix();
         glPushMatrix();
             glTranslatef(0.0, 0.35, 0.0);
-            glScalef(0.2, 0.15, 0.1);
+            glScalef(0.2, 0.15, 0.18);
             drawCube(0.95, 0.0, 0.0);
         glPopMatrix();
         glPushMatrix();
@@ -419,10 +424,10 @@ void body::init_right_thigh() {
     glNewList(right_thigh, GL_COMPILE);
         glPushMatrix();
         glTranslatef(-0.06, -0.185, 0.0);
-        glScalef(0.08, 0.32, 0.08);
+        glScalef(0.08, 0.32, 0.12);
         drawCube(1.0, 0.0, 0.0);
         glPopMatrix();
-        glTranslatef(-0.06, -0.145, -0.09);
+        glTranslatef(-0.14, -0.145, -0.09);
         glRotatef(90, 0, 0, 1); 
         glScalef(0.1, 0.08, 0.1);
         drawCylinder(0.5, 0.5, 0.5);
@@ -433,10 +438,10 @@ void body::init_right_leg() {
     glNewList(right_leg, GL_COMPILE);
         glPushMatrix();
         glTranslatef(-0.06, -0.465, 0.0);
-        glScalef(0.08, 0.24, 0.05);
+        glScalef(0.08, 0.24, 0.08);
         drawCube();
         glPopMatrix();
-        glTranslatef(-0.06, -0.465, -0.0825);
+        glTranslatef(-0.14, -0.465, -0.0825);
         glRotatef(90, 0, 0, 1); 
         glScalef(0.115, 0.08, 0.115);
         drawCylinder(0.5, 0.5, 0.5);
@@ -455,10 +460,10 @@ void body::init_left_thigh() {
     glNewList(left_thigh, GL_COMPILE);
         glPushMatrix();
         glTranslatef(0.06, -0.185, 0.0);
-        glScalef(0.08, 0.32, 0.08);
+        glScalef(0.08, 0.32, 0.12);
         drawCube(1.0, 0.0, 0.0);
         glPopMatrix();
-        glTranslatef(0.06, -0.145, -0.08);
+        glTranslatef(0.14, -0.145, -0.08);
         glRotatef(90, 0, 0, 1); 
         glScalef(0.1, 0.08, 0.1);
         drawCylinder(0.5, 0.5, 0.5);
@@ -470,10 +475,10 @@ void body::init_left_leg() {
     glNewList(left_leg, GL_COMPILE);
         glPushMatrix();
         glTranslatef(0.06, -0.465, 0.0);
-        glScalef(0.08, 0.24, 0.05);
+        glScalef(0.08, 0.24, 0.08);
         drawCube();
         glPopMatrix();
-        glTranslatef(0.06, -0.465, -0.0825);
+        glTranslatef(0.14, -0.465, -0.0825);
         glRotatef(90, 0, 0, 1); 
         glScalef(0.115, 0.08, 0.115);
         drawCylinder(0.5, 0.5, 0.5);

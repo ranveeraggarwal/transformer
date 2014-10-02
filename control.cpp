@@ -32,10 +32,14 @@ void control(int key, int scancode, int action, int mods) {
         case GLFW_KEY_SPACE:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0) {
                 transformed = !transformed;
-                if(transformed)
-                    b->count_transform = 60;
-                else
-                    b->count_revert = 60;
+                if(transformed) {
+                    b->count_transform = 300;
+                    b->count_elbows_in = 100;
+                }
+                else {
+                    b->count_revert = 300;
+                    b->count_elbows_out = 100;
+                }
                 //active = "camera";
             }
             break;
