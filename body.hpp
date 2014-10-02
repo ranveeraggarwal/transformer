@@ -15,7 +15,6 @@
 #define left_thigh 13
 #define left_leg 14
 #define left_foot 15
-#define PI 3.14159265359
 
 class body {
 
