@@ -40,11 +40,11 @@ int main(int argc, char** argv)
       std::cerr<<"GLEW Init Failed : %s"<<std::endl;
     }
   glViewport(0, 0, 640, 480);
-  //Print and see what context got enabled
-  std::cout<<"Vendor: "<<glGetString (GL_VENDOR)<<std::endl;
-  std::cout<<"Renderer: "<<glGetString (GL_RENDERER)<<std::endl;
-  std::cout<<"Version: "<<glGetString (GL_VERSION)<<std::endl;
-  std::cout<<"GLSL Version: "<<glGetString (GL_SHADING_LANGUAGE_VERSION)<<std::endl;
+  std::cout << "\n";
+  std::cout << "▀▀█▀▀ ▒█▀▀█ ░█▀▀█ ▒█▄░▒█ ▒█▀▀▀█ ▒█▀▀▀ ▒█▀▀▀█ ▒█▀▀█ ▒█▀▄▀█ ▒█▀▀▀ ▒█▀▀█\n";
+  std::cout << "░▒█░░ ▒█▄▄▀ ▒█▄▄█ ▒█▒█▒█ ░▀▀▀▄▄ ▒█▀▀▀ ▒█░░▒█ ▒█▄▄▀ ▒█▒█▒█ ▒█▀▀▀ ▒█▄▄▀\n";
+  std::cout << "░▒█░░ ▒█░▒█ ▒█░▒█ ▒█░░▀█ ▒█▄▄▄█ ▒█░░░ ▒█▄▄▄█ ▒█░▒█ ▒█░░▒█ ▒█▄▄▄ ▒█░▒█\n";
+  std::cout << "\n";
 
   //Keyboard Callback
   glfwSetKeyCallback(window, transpace::key_callback);

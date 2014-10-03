@@ -9,7 +9,7 @@ double body::shoulder_x_max = 135;
 double body::shoulder_y_min = 0;
 double body::shoulder_y_max = 135;
 double body::shoulder_z_min = -225;
-double body::shoulder_z_max = 0;
+double body::shoulder_z_max = 225;
 
 double body::waist_x_min = 0;
 double body::waist_x_max = 180;

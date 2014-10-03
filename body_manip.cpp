@@ -242,10 +242,10 @@ void body::move_left_hip_y(double t)
 void body::move_left_hip_z(double t)
 {
     double new_t = left_hip_z + t;
-    if(new_t > hip_z_max)
+    if(new_t < hip_z_max)
         new_t = hip_z_max;
-    else if(new_t < hip_z_min)
-        new_t = hip_z_min;
+    else if(new_t > -hip_z_min)
+        new_t = -hip_z_min;
     left_hip_z = new_t;
 }
 
