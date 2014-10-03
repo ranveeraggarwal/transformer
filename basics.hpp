@@ -2,7 +2,7 @@
 #include <GLFW/glfw3.h>
 #define PI 3.14159265359
 
-extern unsigned int texture[1];
+extern unsigned int texture[2];
 
 void texcube(int, float = 1.0, float = 1.0, float = 1.0);
 void drawCube(float = 1.0, float = 1.0, float = 1.0);

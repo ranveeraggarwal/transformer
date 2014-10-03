@@ -388,8 +388,8 @@ void body::init_torso() {
         glPushMatrix();
             glTranslatef(0.0, 0.325, 0.0725);
             glScalef(0.15, 0.15, 0.01);
-            drawCube();
-            //texcube(0, 1.0, 0.0, 0.0);
+            //drawCube();
+            texcube(1);
         glPopMatrix();
     glEndList();
 }

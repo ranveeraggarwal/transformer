@@ -10,14 +10,17 @@ int LoadGLTextures()       // Load Bitmaps And Convert To Textures
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
         );
- 
-    if(texture[0] == 0)
-        return false;
 
-    // Typical Texture Generation Using Data From The Bitmap
-    glBindTexture(GL_TEXTURE_2D, texture[0]);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT );
+    texture[1] = SOIL_load_OGL_texture
+        (
+        "texture1.jpg",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_INVERT_Y
+        );
+ 
+    if(texture[0] == 0 || texture[0] == 0)
+        return false;
  
     return true;                                        // Return Success
 }

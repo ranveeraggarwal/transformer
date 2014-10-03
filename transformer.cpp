@@ -1,6 +1,6 @@
 #include "gl_framework.hpp"
 
-unsigned int texture[1];
+unsigned int texture[2];
 body* b;
 void renderGL()
 {
