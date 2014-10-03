@@ -10,7 +10,7 @@ extern unsigned int texture[2];
 
 int LoadGLTextures();
 
-namespace csX75
+namespace transpace
 {
   //! Initialize GL State
   void initGL(void);

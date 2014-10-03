@@ -15,14 +15,14 @@ int main(int argc, char** argv)
   GLFWwindow* window;
 
   //! Setting up the GLFW Error callback
-  glfwSetErrorCallback(csX75::error_callback);
+  glfwSetErrorCallback(transpace::error_callback);
 
   //! Initialize GLFW
   if (!glfwInit())
     return -1;
 
   //! Create a windowed mode window and its OpenGL context
-  window = glfwCreateWindow(640, 480, "CS475/CS675 OpenGL Framework", NULL, NULL);
+  window = glfwCreateWindow(640, 480, "Transformer!", NULL, NULL);
   if (!window)
     {
       glfwTerminate();
@@ -47,15 +47,15 @@ int main(int argc, char** argv)
   std::cout<<"GLSL Version: "<<glGetString (GL_SHADING_LANGUAGE_VERSION)<<std::endl;
 
   //Keyboard Callback
-  glfwSetKeyCallback(window, csX75::key_callback);
+  glfwSetKeyCallback(window, transpace::key_callback);
   //Framebuffer resize callback
-  glfwSetFramebufferSizeCallback(window, csX75::framebuffer_size_callback);
+  glfwSetFramebufferSizeCallback(window, transpace::framebuffer_size_callback);
 
   // Ensure we can capture the escape key being pressed below
   glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
   //Initialize GL state
-  csX75::initGL();
+  transpace::initGL();
 
   // Loop until the user closes the window
   b = new body(); 

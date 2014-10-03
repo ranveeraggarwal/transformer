@@ -25,7 +25,7 @@ int LoadGLTextures()       // Load Bitmaps And Convert To Textures
     return true;                                        // Return Success
 }
 
-namespace csX75
+namespace transpace
 {
   //! Initialize GL State
   void initGL(void)
