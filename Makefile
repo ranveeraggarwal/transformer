@@ -2,13 +2,12 @@ OPENGLLIB= -lGL
 GLEWLIB= -lGLEW
 GLFWLIB = -lglfw
 GLULIB = -lGLU
-SOILLIB = -lSOIL
-LIBS=$(OPENGLLIB) $(GLEWLIB) $(GLFWLIB) $(GLULIB) $(SOILLIB)
+LIBS=$(OPENGLLIB) $(GLEWLIB) $(GLFWLIB) $(GLULIB)
 LDFLAGS=-L/usr/local/lib 
 CPPFLAGS=-I/usr/local/include
 
 BIN=transformer
-SRCS=transformer.cpp gl_framework.cpp basics.cpp body_draw.cpp body_manip.cpp control.cpp
+SRCS=transformer.cpp gl_framework.cpp basics.cpp body_draw.cpp body_manip.cpp control.cpp SOIL/*.c SOIL/SOIL.cpp
 
 all: $(BIN)
 

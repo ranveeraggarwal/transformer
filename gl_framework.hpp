@@ -1,7 +1,7 @@
 #ifndef _GL_FRAMEWORK_HPP_
 #define _GL_FRAMEWORK_HPP_
 #include <iostream>
-#include "./SOIL/SOIL.h"
+#include "SOIL/SOIL.h"
 #include "control.hpp"
 
 extern body* b;

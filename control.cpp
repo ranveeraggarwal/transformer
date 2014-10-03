@@ -33,12 +33,12 @@ void control(int key, int scancode, int action, int mods) {
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0) {
                 transformed = !transformed;
                 if(transformed) {
-                    b->count_transform = 2000;
-                    b->count_elbows_in = 1000;
+                    b->count_transform = 200;
+                    b->count_elbows_in = 100;
                 }
                 else {
-                    b->count_revert = 2000;
-                    b->count_elbows_out = 1000;
+                    b->count_revert = 200;
+                    b->count_elbows_out = 100;
                 }
                 //active = "camera";
             }
@@ -48,11 +48,11 @@ void control(int key, int scancode, int action, int mods) {
         switch(key) {
             case GLFW_KEY_F:
                 if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                    b->move_z(-0.1);
+                    b->move_z(0.1);
                 break;
             case GLFW_KEY_B:
                 if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                b->move_z(0.1);
+                b->move_z(-0.1);
                 break;
         }
         return;
