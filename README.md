@@ -1,11 +1,9 @@
 #TRANSFORMER
 
-##To do
-* Accomodate soil in makefile
-
 ##Movements
 The components of the transformer's body are mapped to keys. Pressing one of these keys will activate the corresponding component.
-Here are the key mappings (More to be added):
+
+###Here are the key mappings (More to be added):
 * `Z`: Waist
 * `G`: Right Shoulder
 * `T`: Left Shoulder
@@ -21,7 +19,7 @@ Here are the key mappings (More to be added):
 * `P`: Left Ankle
 * `X`: Neck
 
-To move the active component, the following key mappings work:
+###To move the active component, the following key mappings work:
 * `Q`: Increase X
 * `A`: Decrease X
 * `W`: Increase Y
@@ -29,12 +27,20 @@ To move the active component, the following key mappings work:
 * `E`: Increase Z
 * `D`: Decrease Z
 
-Camera Controls
+###Camera Controls
 * `M`: Zoom In
 * `N`: Zoom Out
 * Arrow Keys : Rotate Camera
 
-Transformation
+##Transformation
 * `Space`: Transform/Revert
 * `F`: Move forward when transformed
 * `B`: Move backward when transformed
+
+##External libraries used
+* SOIL (Simple OpenGL Image Library): We used this to load images into our program.
+* GLU: We didn't make much use of it, except for changing the lookat (gluLookat).
+
+##References
+* We learnt texture mapping throught this site: http://nehe.gamedev.net/tutorial/texture_mapping/12038/
+* Our transformer was inspired from this video: https://www.youtube.com/watch?v=9Q754HvR_3k

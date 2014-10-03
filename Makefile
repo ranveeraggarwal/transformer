@@ -12,7 +12,7 @@ SRCS=transformer.cpp gl_framework.cpp basics.cpp body_draw.cpp body_manip.cpp co
 all: $(BIN)
 
 $(BIN): $(SRCS) $(INCLUDES)
-	g++ $(CPPFLAGS) $(SRCS) -o $(BIN) $(LDFLAGS) $(LIBS)
+	g++ -Wno-write-strings $(CPPFLAGS) $(SRCS) -o $(BIN) $(LDFLAGS) $(LIBS)
 
 clean:
 	rm -f *~ *.o $(BIN)
