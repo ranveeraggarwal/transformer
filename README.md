@@ -1,5 +1,9 @@
 #TRANSFORMER
 
+##To do
+* Add wrist/waist movements
+* Accomodate soil in makefile
+
 ##Movements
 The components of the transformer's body are mapped to keys. Pressing one of these keys will activate the corresponding component.
 Here are the key mappings (More to be added):
