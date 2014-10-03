@@ -13,10 +13,10 @@ double body::shoulder_z_max = 0;
 
 double body::waist_x_min = 0;
 double body::waist_x_max = 180;
-double body::waist_y_min = 0;
-double body::waist_y_max = 0;
-double body::waist_z_min = 0;
-double body::waist_z_max = 0;
+double body::waist_y_min = -90;
+double body::waist_y_max = 90;
+double body::waist_z_min = -90;
+double body::waist_z_max = 90;
 
 double body::neck_x_min = -90;
 double body::neck_x_max = 90;
@@ -71,6 +71,8 @@ body::body() {
  
     /*Waist*/
     waist_x = 0;
+    waist_y = 0;
+    waist_z = 0;
 
     /*Neck*/
     neck_x = 0;
@@ -162,6 +164,8 @@ void body::render() {
   
         glTranslatef(0.0, 0.025, 0.0);
         glRotatef(waist_x, 1.0, 0.0, 0.0); 
+        glRotatef(waist_y, 0.0, 1.0, 0.0);
+        glRotatef(waist_z, 0.0, 0.0, 1.0);
         glTranslatef(0.0, -0.025, 0.0);
 
         glPushMatrix();

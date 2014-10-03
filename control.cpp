@@ -182,8 +182,10 @@ void control(int key, int scancode, int action, int mods) {
         case GLFW_KEY_W:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
             {
+                /*Waist Movement*/
+                if (active == "waist") b->move_waist_y(1);
                 /*Camera Movement*/
-                if (active == "camera") b->rotate_y(5);
+                else if (active == "camera") b->rotate_y(5);
                 /*Neck Movement*/
                 else if (active == "neck") b->move_neck_y(1);
                 /*Right Shoulder Movement*/
@@ -205,8 +207,10 @@ void control(int key, int scancode, int action, int mods) {
         case GLFW_KEY_S:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
             {
+                /*Waist Movement*/
+                if (active == "waist") b->move_waist_y(-1);
                 /*Camera Movement*/
-                if (active == "camera") b->rotate_y(-5);
+                else if (active == "camera") b->rotate_y(-5);
                 /*Neck Movement*/
                 else if (active == "neck") b->move_neck_y(-1);
                 /*Right Shoulder Movement*/
@@ -228,8 +232,10 @@ void control(int key, int scancode, int action, int mods) {
         case GLFW_KEY_E:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
             {
+                /*Waist Movement*/
+                if (active == "waist") b->move_waist_z(1);
                 /*Right Shoulder Movement*/
-                if (active == "r_shoulder") b->move_right_shoulder_z(1);
+                else if (active == "r_shoulder") b->move_right_shoulder_z(1);
                 /*Left Shoulder Movement*/
                 else if (active == "l_shoulder") b->move_left_shoulder_z(1);
                 /*Right Hip Movement*/
@@ -245,8 +251,10 @@ void control(int key, int scancode, int action, int mods) {
         case GLFW_KEY_D:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
             {
+                /*Waist Movement*/
+                if (active == "waist") b->move_waist_z(-1);
                 /*Right Shoulder Movement*/
-                if (active == "r_shoulder") b->move_right_shoulder_z(-1);
+                else if (active == "r_shoulder") b->move_right_shoulder_z(-1);
                 /*Left Shoulder Movement*/
                 else if (active == "l_shoulder") b->move_left_shoulder_z(-1);
                 /*Right Hip Movement*/

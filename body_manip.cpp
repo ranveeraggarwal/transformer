@@ -55,6 +55,24 @@ void body::move_waist_x(double t) {
     waist_x = new_t;
 }
 
+void body::move_waist_y(double t) {
+    double new_t = waist_y + t;
+    if(new_t > waist_y_max)
+        new_t = waist_y_max;
+    else if(new_t < waist_y_min)
+        new_t = waist_y_min;
+    waist_y = new_t;
+}
+
+void body::move_waist_z(double t) {
+    double new_t = waist_z + t;
+    if(new_t > waist_z_max)
+        new_t = waist_z_max;
+    else if(new_t < waist_z_min)
+        new_t = waist_z_min;
+    waist_z = new_t;
+}
+
 void body::move_right_shoulder_x(double t)
 {
     double new_t = right_shoulder_x + t;
