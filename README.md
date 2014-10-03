@@ -1,19 +1,18 @@
 #TRANSFORMER
 
 ##To do
-* Add wrist/waist movements
 * Accomodate soil in makefile
 
 ##Movements
 The components of the transformer's body are mapped to keys. Pressing one of these keys will activate the corresponding component.
 Here are the key mappings (More to be added):
-* `Z`: Waist //Partially implemented
+* `Z`: Waist
 * `G`: Right Shoulder
 * `T`: Left Shoulder
 * `H`: Right Elbow
 * `Y`: Left Elbow
-* `J`: Right Wrist //To be implemented
-* `U`: Left Wrist //To be implemented
+* `J`: Right Wrist
+* `U`: Left Wrist
 * `K`: Right Hip
 * `I`: Left Hip
 * `L`: Right Knee

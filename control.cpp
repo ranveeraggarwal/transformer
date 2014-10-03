@@ -110,14 +110,6 @@ void control(int key, int scancode, int action, int mods) {
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
                 active = "r_ankle";
             break;
-        case GLFW_KEY_LEFT_BRACKET:
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                active = "l_wrist";
-            break;
-        case GLFW_KEY_APOSTROPHE:
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                active = "r_wrist";
-            break;
         case GLFW_KEY_X:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
                 active = "neck";
