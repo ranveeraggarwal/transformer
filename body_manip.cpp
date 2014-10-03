@@ -149,6 +149,46 @@ void body::move_left_elbow_x(double t)
     left_elbow_x = new_t;
 }
 
+void body::move_right_wrist_x(double t)
+{
+    double new_t = right_wrist_x + t;
+    if(new_t > wrist_x_max)
+        new_t = wrist_x_max;
+    else if(new_t < wrist_x_min)
+        new_t = wrist_x_min;
+    right_wrist_x = new_t;
+}
+
+void body::move_right_wrist_z(double t)
+{
+    double new_t = right_wrist_z + t;
+    if(new_t > wrist_z_max)
+        new_t = wrist_z_max;
+    else if(new_t < wrist_z_min)
+        new_t = wrist_z_min;
+    right_wrist_z = new_t;
+}
+
+void body::move_left_wrist_x(double t)
+{
+    double new_t = left_wrist_x + t;
+    if(new_t > wrist_x_max)
+        new_t = wrist_x_max;
+    else if(new_t < wrist_x_min)
+        new_t = wrist_x_min;
+    left_wrist_x = new_t;
+}
+
+void body::move_left_wrist_z(double t)
+{
+    double new_t = left_wrist_z + t;
+    if(new_t > wrist_z_max)
+        new_t = wrist_z_max;
+    else if(new_t < wrist_z_min)
+        new_t = wrist_z_min;
+    left_wrist_z = new_t;
+}
+
 void body::move_right_hip_x(double t)
 {
     double new_t = right_hip_x + t;

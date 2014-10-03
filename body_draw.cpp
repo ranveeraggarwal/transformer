@@ -30,10 +30,10 @@ double body::ankle_x_max = 45;
 double body::ankle_y_min = -45;
 double body::ankle_y_max = 45;
 
-double body::wrist_x_min = 0;
-double body::wrist_x_max = 0;
-double body::wrist_z_min = 0;
-double body::wrist_z_max = 0;
+double body::wrist_x_min = -45;
+double body::wrist_x_max = 45;
+double body::wrist_z_min = -45;
+double body::wrist_z_max = 45;
 
 double body::hip_x_min = -90;
 double body::hip_x_max = 90;
@@ -88,6 +88,14 @@ body::body() {
     left_shoulder_x = 0;
     left_shoulder_y = 0;
     left_shoulder_z = 0;
+
+    /*Right Wrist*/
+    right_wrist_x = 0;
+    right_wrist_z = 0;
+
+    /*Left Wrist*/
+    left_wrist_x = 0;
+    left_wrist_z = 0;
 
     /*Right Hip*/
     right_hip_x = 0;
@@ -219,6 +227,11 @@ void body::render() {
                     glCallList(right_lower_arm);
                 glPopMatrix();
 
+                glTranslatef(-0.16, -0.175, 0.0);
+                glRotatef(right_wrist_x, 1.0, 0.0, 0.0);
+                glRotatef(right_wrist_z, 0.0, 0.0, 1.0);
+                glTranslatef(0.16, 0.175, 0.0);
+
                 /*Wrist*/
                 glPushMatrix();
                     glCallList(right_hand);
@@ -265,6 +278,11 @@ void body::render() {
                 glPushMatrix();
                     glCallList(left_lower_arm);
                 glPopMatrix();
+
+                glTranslatef(0.16, -0.175, 0.0);
+                glRotatef(left_wrist_x, 1.0, 0.0, 0.0);
+                glRotatef(left_wrist_z, 0.0, 0.0, 1.0);
+                glTranslatef(-0.16, 0.175, 0.0);
 
                 /*Wrist*/
                 glPushMatrix();

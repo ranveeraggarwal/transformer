@@ -110,6 +110,14 @@ void control(int key, int scancode, int action, int mods) {
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
                 active = "r_ankle";
             break;
+        case GLFW_KEY_LEFT_BRACKET:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                active = "l_wrist";
+            break;
+        case GLFW_KEY_APOSTROPHE:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                active = "r_wrist";
+            break;
         case GLFW_KEY_X:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
                 active = "neck";
@@ -143,6 +151,10 @@ void control(int key, int scancode, int action, int mods) {
                 else if (active == "r_ankle") b->move_right_ankle_x(1);
                 /*Left Ankle Movement*/
                 else if (active == "l_ankle") b->move_left_ankle_x(1);
+                /*Right Wrist Movement*/
+                else if (active == "r_wrist") b->move_right_wrist_x(1);
+                /*Left Wrist Movement*/
+                else if (active == "l_wrist") b->move_left_wrist_x(1);
             }
             break;
 
@@ -175,6 +187,10 @@ void control(int key, int scancode, int action, int mods) {
                 else if (active == "r_ankle") b->move_right_ankle_x(-1);
                 /*Left Ankle Movement*/
                 else if (active == "l_ankle") b->move_left_ankle_x(-1);
+                /*Right Wrist Movement*/
+                else if (active == "r_wrist") b->move_right_wrist_x(-1);
+                /*Left Wrist Movement*/
+                else if (active == "l_wrist") b->move_left_wrist_x(-1);
             }
             break;
 
@@ -244,6 +260,10 @@ void control(int key, int scancode, int action, int mods) {
                 else if (active == "l_hip") b->move_left_hip_z(1);
                 /*Neck Movement*/
                 else if (active == "neck") b->move_neck_z(1);
+                /*Right Wrist Movement*/
+                else if (active == "r_wrist") b->move_right_wrist_z(1);
+                /*Left Wrist Movement*/
+                else if (active == "l_wrist") b->move_left_wrist_z(1);
             }
             break;
 
@@ -263,6 +283,10 @@ void control(int key, int scancode, int action, int mods) {
                 else if (active == "l_hip") b->move_left_hip_z(-1);
                 /*Neck Movement*/
                 else if (active == "neck") b->move_neck_z(-1);
+                /*Right Wrist Movement*/
+                else if (active == "r_wrist") b->move_right_wrist_z(-1);
+                /*Left Wrist Movement*/
+                else if (active == "l_wrist") b->move_left_wrist_z(-1);
             }
             break;
     }
