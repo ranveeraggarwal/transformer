@@ -364,12 +364,12 @@ void body::transform()
     left_shoulder_z = left_shoulder_z * (count_transform - 1) / (double)count_transform;
 
     /*Right Hip*/
-    right_hip_x = -90 - (-90 - right_hip_x) * (count_transform - 1) / (double)count_transform;
+    right_hip_x = 90 - (90 - right_hip_x) * (count_transform - 1) / (double)count_transform;
     right_hip_y = right_hip_y * (count_transform - 1) / (double)count_transform;
     right_hip_z = right_hip_z * (count_transform - 1) / (double)count_transform;
 
     /*Left Hip*/
-    left_hip_x = -90 - (-90 - left_hip_x) * (count_transform - 1) / (double)count_transform;
+    left_hip_x = 90 - (90 - left_hip_x) * (count_transform - 1) / (double)count_transform;
     left_hip_y = left_hip_y * (count_transform - 1) / (double)count_transform;
     left_hip_z = left_hip_z * (count_transform - 1) / (double)count_transform;
 
@@ -402,8 +402,8 @@ void body::transform()
     //right_ankle_y = right_ankle_y * (count_transform - 1) / (double)count_transform;
 
     /*Shoulder Joints*/
-    rs_joint_x = 90 - (90 -rs_joint_x) * (count_transform - 1) / (double)count_transform;
-    ls_joint_x = -90 - (-90- ls_joint_x) * (count_transform - 1) / (double)count_transform;
+    rs_joint_x = -90 - (-90 -rs_joint_x) * (count_transform - 1) / (double)count_transform;
+    ls_joint_x = 90 - (90- ls_joint_x) * (count_transform - 1) / (double)count_transform;
 
     count_transform--;   
     }    

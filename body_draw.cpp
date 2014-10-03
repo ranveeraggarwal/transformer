@@ -380,16 +380,16 @@ void body::init_pelvis() {
 void body::init_torso() {
     glNewList(torso, GL_COMPILE);
         glPushMatrix();
-            glTranslatef(0.0, 0.150, 0.0);
+            glTranslatef(0.0, 0.225, 0.0);
             //drawCube(1.0, 0.0, 0.0);
-            glScalef(0.19, 0.25, 0.15);
+            glScalef(0.2, 0.4, 0.15);
             texcube(0, 0.6, 0.0, 0.0);
         glPopMatrix();
         glPushMatrix();
-            glTranslatef(0.0, 0.35, 0.0);
-            //drawCube(0.95, 0.0, 0.0);
-            glScalef(0.2, 0.15, 0.18);
-            texcube(0, 1.0, 0.0, 0.0);
+            glTranslatef(0.0, 0.325, 0.0725);
+            glScalef(0.15, 0.15, 0.01);
+            drawCube();
+            //texcube(0, 1.0, 0.0, 0.0);
         glPopMatrix();
     glEndList();
 }
@@ -465,9 +465,10 @@ void body::init_right_thigh() {
         glScalef(0.08, 0.32, 0.12);
         texcube(0, 0.6, 0.6, 0.6);
         glPopMatrix();
-        glTranslatef(-0.14, -0.145, -0.09);
-        glRotatef(90, 0, 0, 1); 
-        glScalef(0.1, 0.08, 0.1);
+        //glTranslatef(-0.14, -0.145, -0.09);
+        glTranslatef(-0.115, -0.145, 0.0);
+        glRotatef(90, 0, 0, 1);
+        glScalef(0.15, 0.03, 0.15);
         drawCylinder(0.5, 0.5, 0.5);
     glEndList();
 }
@@ -480,9 +481,10 @@ void body::init_right_leg() {
         //drawCube();
         texcube(0, 0.0, 0.0, 1.0);
         glPopMatrix();
-        glTranslatef(-0.14, -0.465, -0.0825);
+        //glTranslatef(-0.14, -0.465, -0.0825);
+        glTranslatef(-0.125, -0.465, 0.0);
         glRotatef(90, 0, 0, 1); 
-        glScalef(0.115, 0.08, 0.115);
+        glScalef(0.15, 0.05, 0.15);
         drawCylinder(0.5, 0.5, 0.5);
     glEndList();
 }
@@ -504,9 +506,10 @@ void body::init_left_thigh() {
         //drawCube();
         texcube(0, 0.6, 0.6, 0.6);
         glPopMatrix();
-        glTranslatef(0.14, -0.145, -0.08);
+        //glTranslatef(0.14, -0.145, -0.08);
+        glTranslatef(0.115, -0.145, 0.0);
         glRotatef(90, 0, 0, 1); 
-        glScalef(0.1, 0.08, 0.1);
+        glScalef(0.15, 0.03, 0.15);
         drawCylinder(0.5, 0.5, 0.5);
     glEndList();
 }
@@ -520,9 +523,10 @@ void body::init_left_leg() {
         //drawCube();
         texcube(0, 0.0, 0.0, 1.0);
         glPopMatrix();
-        glTranslatef(0.14, -0.465, -0.0825);
+        //glTranslatef(0.14, -0.465, -0.0825);
+        glTranslatef(0.125, -0.465, 0);
         glRotatef(90, 0, 0, 1); 
-        glScalef(0.115, 0.08, 0.115);
+        glScalef(0.15, 0.05, 0.15);
         drawCylinder(0.5, 0.5, 0.5);
     glEndList();
 }
