@@ -52,6 +52,8 @@ double body::knee_x_min = 0;
 body::body() {
     /*Variables*/
 
+    pos_x = 0;
+    pos_y = 0;
     pos_z = 0;
 
     elbows_y_offset = 0;
@@ -61,9 +63,12 @@ body::body() {
 
     count_transform = 0;
     count_revert = 0;
-    camera_r = 1.5;
+    camera_r = 1.0;
     camera_t = 0;
     camera_p = 0;
+    camera = 1;    
+
+    ortho_y_angle = 0;
 
     rotate_x_angle = 0;
     rotate_y_angle = 0;
@@ -157,11 +162,31 @@ body::body() {
 void body::render() {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glFrustum(-0.6, 0.6, -0.6, 0.6, camera_r-0.75, 10);
+    if(camera == 0)
+        glOrtho(-3, 3, -3, 3, 0.01, 100);
+    else
+        glFrustum(-0.06, 0.06, -0.06, 0.06, 0.01, 100);
+
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180), camera_r*sin(camera_t*PI/180), camera_r*cos(camera_t*PI/180)*cos(camera_p*PI/180), 0, 0, 0, 0, 1, 0);
-    glTranslatef(0, 0, pos_z);
+
+    switch(camera) {
+        case 0:
+            gluLookAt(20*sin(ortho_y_angle*PI/180), 0, 20*cos(ortho_y_angle*PI/180), 0, 0, 0, 0, 1, 0);
+            break;
+        case 1:
+            gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180), camera_r*sin(camera_t*PI/180), camera_r*cos(camera_t*PI/180)*cos(camera_p*PI/180), 0, 0, 0, 0, 1, 0);
+            break;
+        case 2:
+            gluLookAt(-0.5 * sin(rotate_y_angle*PI/180) + pos_x, 0.8 + pos_y, -0.5 * cos(rotate_y_angle*PI/180) + pos_z, pos_x, pos_y, pos_z, 0, 1, 0);
+            break;
+        case 3:
+            gluLookAt(pos_x, 0.5 + pos_y, pos_z, sin(rotate_y_angle*PI/180) + pos_x , 0.5 + pos_y, cos(rotate_y_angle*PI/180) + pos_y, 0, 1, 0);
+            break;
+    } 
+
+    glTranslatef(pos_x, pos_y, pos_z);
+    glRotatef(rotate_y_angle, 0, 1, 0);
     transform();
     revert();
     glPushMatrix();

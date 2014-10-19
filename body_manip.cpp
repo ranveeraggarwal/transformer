@@ -17,8 +17,8 @@ void body::rotate_y(double t) {
 
 void body::move_camera_r(double t) {
     double new_r = camera_r + t;
-    if(new_r < 0.8)
-        new_r = 0.8;
+    if(new_r < 0.2)
+        new_r = 0.2;
     if(new_r > 7)
         new_r = 7;
     camera_r = new_r;
@@ -471,7 +471,26 @@ void body::revert()
     }
 }
 
-void body::move_z(double t) {
-pos_z += t;
+void body::move(double t, double turn) {
+    rotate_y_angle += turn;
+    pos_z += t * cos(rotate_y_angle * PI / 180);
+    pos_x += t * sin(rotate_y_angle * PI / 180);
+    //std::cout << pos_x << " " << pos_z << std::endl;
 }
 
+void body::move_x(double t) {
+    pos_x += t;
+}
+
+void body::move_y(double t) {
+    pos_y += t;
+}
+
+void body::rotate_y_ortho(double t) {
+    double new_t = ortho_y_angle + t;
+    if(new_t > 360)
+        new_t -= 360;
+    if(new_t < 0)
+        new_t += 360;
+    ortho_y_angle = new_t;
+}

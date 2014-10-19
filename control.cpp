@@ -1,44 +1,66 @@
 #include "control.hpp"
+#include <iostream>
 
 std::string active = "arandomstring";
 bool transformed = false;
+int turn = 0;
 void control(int key, int scancode, int action, int mods) {
     switch(key) {
         case GLFW_KEY_LEFT:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                b->move_camera_p(-5);
+                if(b->camera == 0)
+                    b->rotate_y_ortho(-5);
+                if(b->camera == 1)
+                    b->move_camera_p(-5);
             break;
         case GLFW_KEY_RIGHT:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                b->move_camera_p(5);
+                if(b->camera == 0)
+                    b->rotate_y_ortho(5);
+                if(b->camera == 1)
+                    b->move_camera_p(5);
             break;
         case GLFW_KEY_UP:
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0 && b->camera == 1)
                 b->move_camera_t(5);
             break;
         case GLFW_KEY_DOWN:
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0 && b->camera == 1)
                 b->move_camera_t(-5);
             break;
         case GLFW_KEY_N:
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0 && b->camera == 1)
                 b->move_camera_r(-0.1);
             break;
         case GLFW_KEY_M:
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0 && b->camera == 1)
                 b->move_camera_r(0.1);
+            break;
+        case GLFW_KEY_0:
+            if((action == GLFW_PRESS) && mods == 0)
+                b->camera = 0;
+            break;
+        case GLFW_KEY_1:
+            if((action == GLFW_PRESS) && mods == 0)
+                b->camera = 1;
+            break;
+        case GLFW_KEY_2:
+            if((action == GLFW_PRESS) && mods == 0)
+                b->camera = 2;
             break;
        /*Activating various parts*/
         case GLFW_KEY_SPACE:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0) {
                 transformed = !transformed;
                 if(transformed) {
-                    b->count_transform = 2000;
-                    b->count_elbows_in = 1000;
+                    b->count_transform = 200;
+                    b->count_elbows_in = 100;
                 }
                 else {
-                    b->count_revert = 2000;
-                    b->count_elbows_out = 1000;
+                    if(b->camera == 3)
+                        b->camera = 1;
+                    b->count_revert = 200;
+                    b->count_elbows_out = 100;
                 }
                 //active = "camera";
             }
@@ -46,13 +68,31 @@ void control(int key, int scancode, int action, int mods) {
     }
     if(transformed) {
         switch(key) {
-            case GLFW_KEY_F:
-                if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                    b->move_z(0.1);
+            case GLFW_KEY_3:
+                if(action == GLFW_PRESS && mods == 0)
+                    b->camera = 3;
                 break;
-            case GLFW_KEY_B:
+            case GLFW_KEY_W:
+                //std::cout << "W " << action << " " << mods << std::endl;
                 if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                b->move_z(-0.1);
+                    b->move(0.1, turn);
+                break;
+            case GLFW_KEY_S:
+                if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                    b->move(-0.1, turn);
+                break;
+            case GLFW_KEY_A:
+                //std::cout << "A " << action << " " << mods << std::endl;
+                if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                    turn = 5;
+                else
+                    turn = 0;
+                break;
+            case GLFW_KEY_D:
+                if(( action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                    turn = -5;
+                else
+                    turn = 0;
                 break;
         }
         return;

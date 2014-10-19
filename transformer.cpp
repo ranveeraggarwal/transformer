@@ -22,7 +22,7 @@ int main(int argc, char** argv)
     return -1;
 
   //! Create a windowed mode window and its OpenGL context
-  window = glfwCreateWindow(640, 480, "Transformer!", NULL, NULL);
+  window = glfwCreateWindow(1000, 750, "Transformer!", NULL, NULL);
   if (!window)
     {
       glfwTerminate();
@@ -39,7 +39,7 @@ int main(int argc, char** argv)
       //Problem: glewInit failed, something is seriously wrong.
       std::cerr<<"GLEW Init Failed : %s"<<std::endl;
     }
-  glViewport(0, 0, 640, 480);
+  glViewport(0, 0, 1000, 750);
   std::cout << "\n";
   std::cout << "▀▀█▀▀ ▒█▀▀█ ░█▀▀█ ▒█▄░▒█ ▒█▀▀▀█ ▒█▀▀▀ ▒█▀▀▀█ ▒█▀▀█ ▒█▀▄▀█ ▒█▀▀▀ ▒█▀▀█\n";
   std::cout << "░▒█░░ ▒█▄▄▀ ▒█▄▄█ ▒█▒█▒█ ░▀▀▀▄▄ ▒█▀▀▀ ▒█░░▒█ ▒█▄▄▀ ▒█▒█▒█ ▒█▀▀▀ ▒█▄▄▀\n";

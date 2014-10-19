@@ -23,6 +23,8 @@ class body {
 private:
 
 double pos_z;
+double pos_x;
+double pos_y;
 
 double rotate_x_angle; 
 double rotate_y_angle; 
@@ -31,6 +33,8 @@ double rotate_z_angle;
 double camera_r;
 double camera_t;
 double camera_p;
+
+double ortho_y_angle;
 
 double elbows_y_offset;
 
@@ -218,7 +222,11 @@ void move_camera_r(double t);
 void move_camera_t(double t);
 void move_camera_p(double p);
 
-void move_z(double t);
+void move(double t, double turn);
+void move_x(double t);
+void move_y(double t);
+
+void rotate_y_ortho(double t);
 
 bool transformed;
 void transform();
@@ -228,5 +236,7 @@ int count_revert;
 int count_transform;
 int count_elbows_in;
 int count_elbows_out;
+int camera;
+
 };
 

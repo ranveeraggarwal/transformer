@@ -29,14 +29,28 @@ The components of the transformer's body are mapped to keys. Pressing one of the
 * `D`: Decrease Z
 
 ###Camera Controls
-* `M`: Zoom In
-* `N`: Zoom Out
-* Arrow Keys : Rotate Camera
+
+Press the number keys to select the corresponding camera
+
+* Camera 0 : Orthographic Camera
+- 'Left Arrow Key' : Rotate Camera Clockwise
+- 'Right Arrow Key' : Rotate Camera Counter Clockwise
+
+* Camera 1 : Perspective Camera (Default)
+- `M`: Zoom Out
+- `N`: Zoom In
+- Arrow Keys : Rotate Camera
+
+* Camera 2 : Perspective Camera behind and above the transformer. Follows the transformer.
+
+* Camera 3 : First Person View of the transformer when transformed in to a truck.
 
 ##Transformation
 * `Space`: Transform/Revert
-* `F`: Move forward when transformed
-* `B`: Move backward when transformed
+* `W`: Move Forward when transformed
+* `S`: Move backward when transformed
+* `A`: Turns Left when holding this and moving forward/backward
+* `D`: Turns Right when holding this and moving forward/backward
 
 ##External libraries used
 * SOIL (Simple OpenGL Image Library): We used this to load images into our program.
