@@ -2,8 +2,6 @@
 #include <iostream>
 
 std::string active = "arandomstring";
-bool transformed = false;
-int turn = 0;
 void control(int key, int scancode, int action, int mods) {
     switch(key) {
         case GLFW_KEY_LEFT:
@@ -51,8 +49,8 @@ void control(int key, int scancode, int action, int mods) {
        /*Activating various parts*/
         case GLFW_KEY_SPACE:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0) {
-                transformed = !transformed;
-                if(transformed) {
+                b->transformed = !b->transformed;
+                if(b->transformed) {
                     b->count_transform = 200;
                     b->count_elbows_in = 100;
                 }
@@ -66,7 +64,7 @@ void control(int key, int scancode, int action, int mods) {
             }
             break;
     }
-    if(transformed) {
+    if(b->transformed) {
         switch(key) {
             case GLFW_KEY_3:
                 if(action == GLFW_PRESS && mods == 0)
@@ -75,24 +73,28 @@ void control(int key, int scancode, int action, int mods) {
             case GLFW_KEY_W:
                 //std::cout << "W " << action << " " << mods << std::endl;
                 if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                    b->move(0.1, turn);
+                    b->dist = 0.1;
+                else
+                    b->dist = 0;
                 break;
             case GLFW_KEY_S:
                 if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                    b->move(-0.1, turn);
+                    b->dist = -0.1;
+                else
+                    b->dist = 0;
                 break;
             case GLFW_KEY_A:
                 //std::cout << "A " << action << " " << mods << std::endl;
                 if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                    turn = 5;
+                    b->turn = 5;
                 else
-                    turn = 0;
+                    b->turn = 0;
                 break;
             case GLFW_KEY_D:
                 if(( action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                    turn = -5;
+                    b->turn = -5;
                 else
-                    turn = 0;
+                    b->turn = 0;
                 break;
         }
         return;

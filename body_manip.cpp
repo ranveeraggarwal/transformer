@@ -472,7 +472,8 @@ void body::revert()
 }
 
 void body::move(double t, double turn) {
-    rotate_y_angle += turn;
+    if(t > 0.01 || t < -0.01)
+        rotate_y_angle += turn;
     pos_z += t * cos(rotate_y_angle * PI / 180);
     pos_x += t * sin(rotate_y_angle * PI / 180);
     //std::cout << pos_x << " " << pos_z << std::endl;

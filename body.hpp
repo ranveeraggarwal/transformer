@@ -237,6 +237,7 @@ int count_transform;
 int count_elbows_in;
 int count_elbows_out;
 int camera;
-
+double dist;
+double turn;
 };
 

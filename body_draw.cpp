@@ -59,11 +59,15 @@ body::body() {
     elbows_y_offset = 0;
     count_elbows_in = 0;
     count_elbows_out = 0;
+
+    transformed = false;
+    dist = 0;
+    turn = 0;
     /*Camera*/
 
     count_transform = 0;
     count_revert = 0;
-    camera_r = 1.0;
+    camera_r = 2.0;
     camera_t = 0;
     camera_p = 0;
     camera = 1;    
@@ -164,9 +168,12 @@ void body::render() {
     glLoadIdentity();
     if(camera == 0)
         glOrtho(-3, 3, -3, 3, 0.01, 100);
+    else if(camera == 1) {
+        double n = 1.0 - (0.18 / camera_r);
+        glFrustum(-n, n, -n, n, n, 100);
+    }
     else
         glFrustum(-0.06, 0.06, -0.06, 0.06, 0.01, 100);
-
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
@@ -181,7 +188,7 @@ void body::render() {
             gluLookAt(-0.5 * sin(rotate_y_angle*PI/180) + pos_x, 0.8 + pos_y, -0.5 * cos(rotate_y_angle*PI/180) + pos_z, pos_x, pos_y, pos_z, 0, 1, 0);
             break;
         case 3:
-            gluLookAt(pos_x, 0.5 + pos_y, pos_z, sin(rotate_y_angle*PI/180) + pos_x , 0.5 + pos_y, cos(rotate_y_angle*PI/180) + pos_y, 0, 1, 0);
+            gluLookAt(pos_x, 0.5 + pos_y, pos_z, sin(rotate_y_angle*PI/180) + pos_x , 0.5 + pos_y, cos(rotate_y_angle*PI/180) + pos_z, 0, 1, 0);
             break;
     } 
 
