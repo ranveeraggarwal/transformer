@@ -41,6 +41,14 @@ namespace transpace
     glEnable(GL_DEPTH_TEST); 
     //Enable Gourard shading
     glShadeModel(GL_SMOOTH);
+
+    GLfloat position[] =  {0.0, 0.0, 5.0, 1.0};
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_NORMALIZE);
+
+    glLightfv(GL_LIGHT0, GL_POSITION, position);
+    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 90.0);
   }
   
   //!GLFW Error Callback
