@@ -1,4 +1,5 @@
 #include "body.hpp"
+#include "environment.hpp"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -191,7 +192,7 @@ void body::render() {
             gluLookAt(pos_x, 0.5 + pos_y, pos_z, sin(rotate_y_angle*PI/180) + pos_x , 0.5 + pos_y, cos(rotate_y_angle*PI/180) + pos_z, 0, 1, 0);
             break;
     } 
-
+    renderGround();
     glTranslatef(pos_x, pos_y, pos_z);
     glRotatef(rotate_y_angle, 0, 1, 0);
     transform();

@@ -6,7 +6,7 @@
 
 extern body* b;
 
-extern unsigned int texture[2];
+extern unsigned int texture[3];
 
 int LoadGLTextures();
 
