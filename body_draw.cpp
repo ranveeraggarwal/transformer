@@ -338,6 +338,10 @@ void body::render() {
 
         glPushMatrix();
             glCallList(right_thigh);
+            glTranslatef(-0.115, -0.145, 0.0);
+            glRotatef(90-6*turn, 0, 0, 1);
+            glScalef(0.15, 0.03, 0.15);
+            drawCylinder(0.5, 0.5, 0.5);
         glPopMatrix();
 
         /*Leg below knees*/
@@ -374,6 +378,10 @@ void body::render() {
 
         glPushMatrix();
             glCallList(left_thigh);
+            glTranslatef(0.115, -0.145, 0.0);
+            glRotatef(90-6*turn, 0, 0, 1); 
+            glScalef(0.15, 0.03, 0.15);
+            drawCylinder(0.5, 0.5, 0.5);
         glPopMatrix();
 
         /*Leg below knees*/
@@ -556,10 +564,10 @@ void body::init_right_thigh() {
         texcube(0, 0.6, 0.6, 0.6);
         glPopMatrix();
         //glTranslatef(-0.14, -0.145, -0.09);
-        glTranslatef(-0.115, -0.145, 0.0);
-        glRotatef(90, 0, 0, 1);
+        /*glTranslatef(-0.115, -0.145, 0.0);
+        glRotatef(90+10*turn, 0, 0, 1);
         glScalef(0.15, 0.03, 0.15);
-        drawCylinder(0.5, 0.5, 0.5);
+        drawCylinder(0.5, 0.5, 0.5);*/
     glEndList();
 }
 
@@ -597,10 +605,10 @@ void body::init_left_thigh() {
         texcube(0, 0.6, 0.6, 0.6);
         glPopMatrix();
         //glTranslatef(0.14, -0.145, -0.08);
-        glTranslatef(0.115, -0.145, 0.0);
-        glRotatef(90, 0, 0, 1); 
+        /*glTranslatef(0.115, -0.145, 0.0);
+        glRotatef(90+10*turn, 0, 0, 1); 
         glScalef(0.15, 0.03, 0.15);
-        drawCylinder(0.5, 0.5, 0.5);
+        drawCylinder(0.5, 0.5, 0.5);*/
     glEndList();
 }
 
