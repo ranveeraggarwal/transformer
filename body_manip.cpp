@@ -405,6 +405,7 @@ void body::transform()
     rs_joint_x = -90 - (-90 -rs_joint_x) * (count_transform - 1) / (double)count_transform;
     ls_joint_x = 90 - (90- ls_joint_x) * (count_transform - 1) / (double)count_transform;
 
+    pos_y = -0.5 - (-0.5 - pos_y) * (count_transform - 1) / (double)count_transform;
     count_transform--;   
     }    
 }
@@ -462,6 +463,8 @@ void body::revert()
     /*Shoulder Joints*/
     rs_joint_x = rs_joint_x * (count_revert - 1) / (double)count_revert;
     ls_joint_x = ls_joint_x * (count_revert - 1) / (double)count_revert;
+
+    pos_y = pos_y * (count_revert - 1) / (double)count_revert;
 
     count_revert--;   
     }

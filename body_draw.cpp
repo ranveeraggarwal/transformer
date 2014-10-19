@@ -189,7 +189,7 @@ void body::render() {
             gluLookAt(-0.5 * sin(rotate_y_angle*PI/180) + pos_x, 0.8 + pos_y, -0.5 * cos(rotate_y_angle*PI/180) + pos_z, pos_x, pos_y, pos_z, 0, 1, 0);
             break;
         case 3:
-            gluLookAt(pos_x, 0.5 + pos_y, pos_z, sin(rotate_y_angle*PI/180) + pos_x , 0.5 + pos_y, cos(rotate_y_angle*PI/180) + pos_z, 0, 1, 0);
+            gluLookAt(pos_x + 0.2*sin(rotate_y_angle*PI/180), 0.5 + pos_y, pos_z + 0.2*cos(rotate_y_angle*PI/180), sin(rotate_y_angle*PI/180) + pos_x , 0.5 + pos_y, cos(rotate_y_angle*PI/180) + pos_z, 0, 1, 0);
             break;
     } 
     renderGround();
