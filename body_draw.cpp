@@ -184,10 +184,10 @@ void body::render() {
         glOrtho(-3, 3, -3, 3, 0.01, 100);
     else if(camera == 1) {
         double n = 1.0 - (0.18 / camera_r);
-        glFrustum(-n, n, -n, n, n, 100);
+        glFrustum(-n, n, -n, n, n, 400);
     }
     else
-        glFrustum(-0.06, 0.06, -0.06, 0.06, 0.01, 100);
+        glFrustum(-0.06, 0.06, -0.06, 0.06, 0.01, 400);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
