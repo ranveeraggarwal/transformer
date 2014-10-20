@@ -26,8 +26,16 @@ int LoadGLTextures()       // Load Bitmaps And Convert To Textures
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
         );
+    texture[3] = SOIL_load_OGL_texture
+        (
+        "texture_sky.jpg",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_INVERT_Y
+        );
 
-    if(texture[0] == 0 || texture[1] == 0 || texture[2] == 0)
+
+    if(texture[0] == 0 || texture[1] == 0 || texture[2] == 0 || texture[3] == 0)
         return false;
  
     return true;                                        // Return Success
@@ -50,13 +58,13 @@ namespace transpace
     //Enable Gourard shading
     glShadeModel(GL_SMOOTH);
 
-    GLfloat position[] =  {0.0, 0.0, 5.0, 1.0};
+    GLfloat position[] =  {0.0, 10.0, 0.0, 1.0};
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glEnable(GL_NORMALIZE);
 
     glLightfv(GL_LIGHT0, GL_POSITION, position);
-    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 90.0);
+    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 180.0);
   }
   
   //!GLFW Error Callback
