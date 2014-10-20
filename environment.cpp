@@ -9,6 +9,14 @@ void renderGround() {
     glPopMatrix();
 }
 
+void renderSky() {
+    glPushMatrix();
+    //glTranslatef(0, -50.615, 0);
+    glScalef(100, 100, 100);
+    texcube(3, 1, 1, 1);
+    glPopMatrix();
+}
+
 void renderTree(double x, double z, bool standing, double y_angle, double fall_angle) {
 
     glPushMatrix();

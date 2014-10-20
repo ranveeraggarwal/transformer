@@ -206,6 +206,7 @@ void body::render() {
             break;
     } 
     renderGround();
+    renderSky();
     for(int i = 0; i < 10; i++) {
         renderTree(tree_x[i], tree_z[i], tree_standing[i], tree_y_angle[i], tree_fall_angle[i]);
         if(!tree_standing[i] && tree_fall_angle[i] < 77.0) {
