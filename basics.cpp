@@ -1,7 +1,7 @@
 #include "basics.hpp"
 #include <cmath>
 
-void SetMaterial(GLfloat spec[], GLfloat amb[], GLfloat diff[], GLfloat shin[])
+void setMaterial(GLfloat spec[], GLfloat amb[], GLfloat diff[], GLfloat shin[])
 {
 
   glMaterialfv(GL_FRONT, GL_SPECULAR, spec);
@@ -10,13 +10,16 @@ void SetMaterial(GLfloat spec[], GLfloat amb[], GLfloat diff[], GLfloat shin[])
   glMaterialfv(GL_FRONT, GL_DIFFUSE, diff);
 }
 
-void texcube(int i, float r, float g, float b)
+void setMaterialColors(float r, float g, float b)
 {
-
 GLfloat mat_specularRGB[] ={r,g,b,1.0};
 GLfloat mat_ambientRGB[] ={r,g,b,1.0};
 GLfloat mat_diffuseRGB[] ={r,g,b,1.0};
 GLfloat mat_shininessRGB[] ={128.0};
+setMaterial(mat_specularRGB, mat_ambientRGB, mat_diffuseRGB, mat_shininessRGB);
+}
+void texcube(int i, float r, float g, float b)
+{
 
     // Typical Texture Generation Using Data From The Bitmap
     glBindTexture(GL_TEXTURE_2D, texture[i]);
@@ -31,8 +34,7 @@ GLfloat mat_shininessRGB[] ={128.0};
 
     glBegin(GL_QUADS);                    // begin drawing a cube
 
-    SetMaterial(mat_specularRGB, mat_ambientRGB, mat_diffuseRGB, mat_shininessRGB);
-
+    setMaterialColors(r, g, b);
     //glNormal3f( 0.0f, 0.0f, 1.0f);                              // front face points out of the screen on z.
     // Front Face (note that the texture's corners have to match the quad's corners)
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
@@ -40,7 +42,7 @@ GLfloat mat_shininessRGB[] ={128.0};
     glTexCoord2f(0.5f, 0.5f); glVertex3f( 0.5f,  0.5f,  0.5f);  // Top Right Of The Texture and Quad
     glTexCoord2f(0.0f, 0.5f); glVertex3f(-0.5f,  0.5f,  0.5f);  // Top Left Of The Texture and Quad
     
-    SetMaterial(mat_specularRGB, mat_ambientRGB, mat_diffuseRGB, mat_shininessRGB);
+    //SetMaterial(mat_specularRGB, mat_ambientRGB, mat_diffuseRGB, mat_shininessRGB);
     //glNormal3f( 0.0f, 0.0f, -1.0f);
     // Back Face
     glTexCoord2f(0.5f, 0.0f); glVertex3f(-0.5f, -0.5f, -0.5f);  // Bottom Right Of The Texture and Quad
@@ -48,7 +50,7 @@ GLfloat mat_shininessRGB[] ={128.0};
     glTexCoord2f(0.0f, 0.5f); glVertex3f( 0.5f,  0.5f, -0.5f);  // Top Left Of The Texture and Quad
     glTexCoord2f(0.0f, 0.0f); glVertex3f( 0.5f, -0.5f, -0.5f);  // Bottom Left Of The Texture and Quad
   
-    SetMaterial(mat_specularRGB, mat_ambientRGB, mat_diffuseRGB, mat_shininessRGB);
+    //SetMaterial(mat_specularRGB, mat_ambientRGB, mat_diffuseRGB, mat_shininessRGB);
     //glNormal3f( 0.0f, 1.0f, 0.0f);
     // Top Face
     glTexCoord2f(0.0f, 0.5f); glVertex3f(-0.5f,  0.5f, -0.5f);  // Top Left Of The Texture and Quad
@@ -56,7 +58,7 @@ GLfloat mat_shininessRGB[] ={128.0};
     glTexCoord2f(0.5f, 0.0f); glVertex3f( 0.5f,  0.5f,  0.5f);  // Bottom Right Of The Texture and Quad
     glTexCoord2f(0.5f, 0.5f); glVertex3f( 0.5f,  0.5f, -0.5f);  // Top Right Of The Texture and Quad
     
-    SetMaterial(mat_specularRGB, mat_ambientRGB, mat_diffuseRGB, mat_shininessRGB);
+    //SetMaterial(mat_specularRGB, mat_ambientRGB, mat_diffuseRGB, mat_shininessRGB);
     //glNormal3f( 0.0f, -1.0f, 0.0f);
     // Bottom Face       
     glTexCoord2f(0.5f, 0.5f); glVertex3f(-0.5f, -0.5f, -0.5f);  // Top Right Of The Texture and Quad
@@ -64,7 +66,7 @@ GLfloat mat_shininessRGB[] ={128.0};
     glTexCoord2f(0.0f, 0.0f); glVertex3f( 0.5f, -0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
     glTexCoord2f(0.5f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.5f);  // Bottom Right Of The Texture and Quad
     
-    SetMaterial(mat_specularRGB, mat_ambientRGB, mat_diffuseRGB, mat_shininessRGB);
+    //SetMaterial(mat_specularRGB, mat_ambientRGB, mat_diffuseRGB, mat_shininessRGB);
     //glNormal3f( 1.0f, 0.0f, 0.0f);
     // Right face
     glTexCoord2f(0.5f, 0.0f); glVertex3f( 0.5f, -0.5f, -0.5f);  // Bottom Right Of The Texture and Quad
@@ -72,7 +74,7 @@ GLfloat mat_shininessRGB[] ={128.0};
     glTexCoord2f(0.0f, 0.5f); glVertex3f( 0.5f,  0.5f,  0.5f);  // Top Left Of The Texture and Quad
     glTexCoord2f(0.0f, 0.0f); glVertex3f( 0.5f, -0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
     
-    SetMaterial(mat_specularRGB, mat_ambientRGB, mat_diffuseRGB, mat_shininessRGB);
+    //SetMaterial(mat_specularRGB, mat_ambientRGB, mat_diffuseRGB, mat_shininessRGB);
     //glNormal3f( -1.0f, 0.0f, 0.0f);
     // Left Face
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f, -0.5f);  // Bottom Left Of The Texture and Quad
@@ -163,10 +165,12 @@ void drawSphere(int lats, int longs, float r, float g, float b) {
 }
 
 void drawCylinder(float r, float g, float b) {
+    setMaterialColors(r, g, b);
     glColor4f(r, g, b, 1.0);
     /* top triangle */
     double i, resolution  = 0.1;
     double height = 1, radius = 0.5;
+    glPushMatrix();
     glTranslatef(0, -0.5, 0);
     glBegin(GL_TRIANGLE_FAN);
         glVertex3f(0, height, 0);  /* center */
@@ -194,4 +198,31 @@ void drawCylinder(float r, float g, float b) {
         glVertex3f(radius, 0, 0);
         glVertex3f(radius, height, 0);
     glEnd();
+    glPopMatrix();
+}
+
+void drawCone(float r, float g, float b) {
+    setMaterialColors(r, g, b);
+    glColor4f(r, g, b, 1.0);
+    /* top triangle */
+    double i, resolution  = 0.1;
+    double height = 1, radius = 0.5;
+    glPushMatrix();
+    glTranslatef(0, -0.5, 0);
+    glBegin(GL_TRIANGLE_FAN);
+        glVertex3f(0, height, 0);  /* center */
+        for (i = 0; i <= 2 * PI; i += resolution)
+            glVertex3f(radius * cos(i), height, radius * sin(i));
+    glEnd();
+
+    /* middle tube */
+    glBegin(GL_TRIANGLE_FAN);
+        glVertex3f(0, 0, 0);
+        for (i = 0; i <= 2 * PI; i += resolution)
+        {
+            glVertex3f(radius * cos(i), height, radius * sin(i));
+        }
+        glVertex3f(radius, height, 0);
+    glEnd();
+    glPopMatrix();
 }

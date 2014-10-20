@@ -64,6 +64,19 @@ body::body() {
     transformed = false;
     dist = 0;
     turn = 0;
+
+    /* Trees */
+    
+    for(int i = 0; i < 10; i++) {
+        tree_standing[i] = true;
+        tree_fall_angle[i] = 0;
+        tree_y_angle[i] = 0;
+        tree_x[i] = 2*i-10;
+        tree_z[i] = -3;
+    }
+
+
+
     /*Camera*/
 
     count_transform = 0;
@@ -193,6 +206,19 @@ void body::render() {
             break;
     } 
     renderGround();
+    for(int i = 0; i < 10; i++) {
+        renderTree(tree_x[i], tree_z[i], tree_standing[i], tree_y_angle[i], tree_fall_angle[i]);
+        if(!tree_standing[i] && tree_fall_angle[i] < 77.0) {
+            double new_fall_angle = 1.1 * tree_fall_angle[i] + 1;
+            if(new_fall_angle > 77.0)
+                new_fall_angle = 77.0;
+            tree_fall_angle[i] = new_fall_angle;
+        }
+        if(tree_standing[i] && std::abs(tree_x[i] - pos_x) < 0.15 && std::abs(tree_z[i] - pos_z) < 0.15) {
+            tree_standing[i] = false;
+            tree_y_angle[i] = rotate_y_angle;
+        }
+    }
     glTranslatef(pos_x, pos_y, pos_z);
     glRotatef(rotate_y_angle, 0, 1, 0);
     transform();

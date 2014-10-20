@@ -239,5 +239,11 @@ int count_elbows_out;
 int camera;
 double dist;
 double turn;
+
+double tree_x[10];
+double tree_z[10];
+bool tree_standing[10];
+double tree_fall_angle[10];
+double tree_y_angle[10];
 };
 
