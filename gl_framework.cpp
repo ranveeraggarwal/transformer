@@ -77,6 +77,7 @@ void loadLightings()
     glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);  
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
+    glEnable(GL_NORMALIZE);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 }
