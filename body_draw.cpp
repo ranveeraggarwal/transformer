@@ -64,6 +64,7 @@ body::body() {
     transformed = false;
     dist = 0;
     turn = 0;
+    headlight = false;
 
     /* Trees */
     
@@ -489,11 +490,11 @@ void body::init_torso() {
             texcube(0, 0.6, 0.6, 0.6);
             //texcube(0);
         glPopMatrix();
+        
         glPushMatrix();
             glTranslatef(-0.05, 0.075, 0.0725);
             glScalef(0.06, 0.05, 0.01);
             texcube(0, 0.6, 0.6, 0.6);
-            //texcube(0);
         glPopMatrix();
     glEndList();
 }

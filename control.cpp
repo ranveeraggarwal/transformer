@@ -2,6 +2,7 @@
 #include <iostream>
 
 std::string active = "arandomstring";
+
 void control(int key, int scancode, int action, int mods) {
     switch(key) {
         case GLFW_KEY_LEFT:
@@ -96,6 +97,11 @@ void control(int key, int scancode, int action, int mods) {
                 else
                     b->turn = 0;
                 break;
+            case GLFW_KEY_H:
+                if(( action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+                    b->headlight = true;
+                break;
+
         }
         return;
     } 

@@ -50,36 +50,32 @@ int LoadGLTextures()       // Load Bitmaps And Convert To Textures
 
 void loadLightings()
 {
-    /*GLfloat position[] =  {0.0, 10.0, 0.0, 1.0};
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-    glEnable(GL_NORMALIZE);
-
-    glLightfv(GL_LIGHT0, GL_POSITION, position);
-    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 180.0);
-    */
 
     GLfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.0f };
-
-    /* super bright, full intensity diffuse light. */
     GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-
-    /* position of light (x, y, z, (position of light)) */
-    GLfloat LightPosition[] = { -1.0, 1.0, 1.0, 1.0 };
-
-    //Another method for lighting
     GLfloat mat_specular[] = {1.0, 1.0, 1.0, 1.0};
     GLfloat mat_shininess[] = { 100.0 };
     GLfloat light_position[] = { 1.0, 1.0, 1.0, 1.0};
-
     glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
     glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
     glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);  
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
-    glEnable(GL_NORMALIZE);
+    //glEnable(GL_NORMALIZE);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
+    glDisable(GL_LIGHT0);
+
+    /*Headlights*/
+    GLfloat LightAmbient1[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+    GLfloat LightDiffuse1[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    GLfloat position1[] =  {0.05, 0.075, 0.08, 1.0}; //Add pos_x to x coordinate and pos_z to z coordinate
+    glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient1);      
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse1);
+    glLightfv(GL_LIGHT1, GL_POSITION, position1);
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 10.0);
+    glEnable(GL_LIGHT1);
+    //if (!b->headlight) glDisable(GL_LIGHT1);
 }
 
 namespace transpace

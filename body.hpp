@@ -240,6 +240,8 @@ int camera;
 double dist;
 double turn;
 
+bool headlight;
+
 double tree_x[10];
 double tree_z[10];
 bool tree_standing[10];
