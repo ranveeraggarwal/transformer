@@ -61,7 +61,7 @@ void loadLightings()
     glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);  
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
-    //glEnable(GL_NORMALIZE);
+    glEnable(GL_NORMALIZE);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glDisable(GL_LIGHT0);
@@ -70,12 +70,27 @@ void loadLightings()
     GLfloat LightAmbient1[] = { 0.5f, 0.5f, 0.5f, 1.0f };
     GLfloat LightDiffuse1[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     GLfloat position1[] =  {0.05, 0.075, 0.08, 1.0}; //Add pos_x to x coordinate and pos_z to z coordinate
+    GLfloat spotDir1[] = {0.0, 0.0, -1.0};   //Rotate wrt rotate_y
     glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient1);      
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse1);
     glLightfv(GL_LIGHT1, GL_POSITION, position1);
     glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 10.0);
+    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spotDir1);
     glEnable(GL_LIGHT1);
-    //if (!b->headlight) glDisable(GL_LIGHT1);
+    glDisable(GL_LIGHT1);
+
+    /*le Moon*/
+    GLfloat LightAmbient2[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+    GLfloat LightDiffuse2[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    GLfloat position2[] =  {0.0, 5.0, 0.0, 1.0}; //Add pos_x to x coordinate and pos_z to z coordinate
+    GLfloat spotDir2[] = {0.0, -1.0, 0.0};   //Rotate wrt rotate_y
+    glLightfv(GL_LIGHT2, GL_AMBIENT, LightAmbient2);      
+    glLightfv(GL_LIGHT2, GL_DIFFUSE, LightDiffuse2);
+    glLightfv(GL_LIGHT2, GL_POSITION, position2);
+    glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 90.0);
+    glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, spotDir2);
+    glEnable(GL_LIGHT2);
+    //glDisable(GL_LIGHT2);
 }
 
 namespace transpace
