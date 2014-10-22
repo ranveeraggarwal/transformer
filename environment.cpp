@@ -7,6 +7,7 @@ void renderGround() {
     glScalef(100, 100, 100);
     texcube(2, 0.6, 0.6, 0.3);
     glPopMatrix();
+    //Sea
     glPushMatrix();
     glTranslatef(0, -51, 0);
     glScalef(300, 100, 300);

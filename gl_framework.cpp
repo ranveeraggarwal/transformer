@@ -48,6 +48,39 @@ int LoadGLTextures()       // Load Bitmaps And Convert To Textures
     return true;                                        // Return Success
 }
 
+void loadLightings()
+{
+    /*GLfloat position[] =  {0.0, 10.0, 0.0, 1.0};
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_NORMALIZE);
+
+    glLightfv(GL_LIGHT0, GL_POSITION, position);
+    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 180.0);
+    */
+
+    GLfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+
+    /* super bright, full intensity diffuse light. */
+    GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+    /* position of light (x, y, z, (position of light)) */
+    GLfloat LightPosition[] = { -1.0, 1.0, 1.0, 1.0 };
+
+    //Another method for lighting
+    GLfloat mat_specular[] = {1.0, 1.0, 1.0, 1.0};
+    GLfloat mat_shininess[] = { 100.0 };
+    GLfloat light_position[] = { 1.0, 1.0, 1.0, 1.0};
+
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+    glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);  
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+}
+
 namespace transpace
 {
   //! Initialize GL State
@@ -65,13 +98,7 @@ namespace transpace
     //Enable Gourard shading
     glShadeModel(GL_SMOOTH);
 
-    GLfloat position[] =  {0.0, 10.0, 0.0, 1.0};
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-    glEnable(GL_NORMALIZE);
-
-    glLightfv(GL_LIGHT0, GL_POSITION, position);
-    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 180.0);
+    loadLightings();
   }
   
   //!GLFW Error Callback

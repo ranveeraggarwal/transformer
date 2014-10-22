@@ -10,6 +10,8 @@ extern unsigned int texture[7];
 
 int LoadGLTextures();
 
+void loadLightings();
+
 namespace transpace
 {
   //! Initialize GL State
