@@ -45,6 +45,10 @@ Press the number keys to select the corresponding camera
 
 * Camera 3 : First Person View of the transformer when transformed in to a truck.
 
+##Lighting
+* `R`: Toggle Day/Night
+* `H`: Toggle Headlights
+
 ##Transformation
 * `Space`: Transform/Revert
 * `W`: Move Forward when transformed
