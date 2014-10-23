@@ -67,7 +67,9 @@ body::body() {
     turn = 0;
     headlight = false;
     day = true;
-    /* Trees */
+    moon_toggle = false; 
+
+   /* Trees */
     
     for(int i = 0; i < 100; i++) {
         tree_standing[i] = true;
@@ -220,7 +222,7 @@ void body::render() {
     glDisable(GL_LIGHT2);
     if(day)
         glEnable(GL_LIGHT0);
-    else
+    else if(!(day ^ moon_toggle))
         glEnable(GL_LIGHT2);
     if(headlight)
         glEnable(GL_LIGHT1);

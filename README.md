@@ -48,6 +48,7 @@ Press the number keys to select the corresponding camera
 ##Lighting
 * `R`: Toggle Day/Night
 * `H`: Toggle Headlights
+* `C`: Toggle just the moon light. (By default, moon light is during night only).
 
 ##Transformation
 * `Space`: Transform/Revert

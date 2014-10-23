@@ -242,6 +242,7 @@ double turn;
 
 bool headlight;
 bool day;
+bool moon_toggle;
 
 double tree_x[100];
 double tree_z[100];

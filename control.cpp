@@ -51,6 +51,10 @@ void control(int key, int scancode, int action, int mods) {
             if((action == GLFW_PRESS) && mods == 0)
                 b->day = !b->day;
             break;
+        case GLFW_KEY_C:
+            if((action == GLFW_PRESS) && mods == 0)
+                b->moon_toggle = !b->moon_toggle;
+            break;
        /*Activating various parts*/
         case GLFW_KEY_SPACE:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0) {
