@@ -293,18 +293,18 @@ void texCylinder(float r, float g, float b) {
     glPushMatrix();
     glTranslatef(0, -0.5, 0);
     glBegin(GL_TRIANGLE_FAN);
-        glTexCoord2f( 0, 0 );
+        glTexCoord2f( 0.5, 0.5 );
         glVertex3f(0, height, 0);  /* center */
         for (i = 0; i <= 2 * PI; i += resolution)
         {
-            glTexCoord2f( 0.5f * cos(i) + 0.5f, 0.5f * sin(i) + 0.5f );
+            glTexCoord2f( 0.5f * cos(i) + 0.5f, 0.5f * sin(i) + 0.5f ); 
             glVertex3f(radius * cos(i), height, radius * sin(i));
         }
     glEnd();
 
     /* bottom triangle: note: for is in reverse order */
     glBegin(GL_TRIANGLE_FAN);
-        //glTexCoord2f( 0, 0 );
+        glTexCoord2f( 0.5, 0.5 );
         glVertex3f(0, 0, 0);  /* center */
         for (i = 2 * PI; i >= 0; i -= resolution)
         {
