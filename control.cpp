@@ -47,6 +47,10 @@ void control(int key, int scancode, int action, int mods) {
             if((action == GLFW_PRESS) && mods == 0)
                 b->camera = 2;
             break;
+        case GLFW_KEY_R:
+            if((action == GLFW_PRESS) && mods == 0)
+                b->day = !b->day;
+            break;
        /*Activating various parts*/
         case GLFW_KEY_SPACE:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0) {
@@ -99,7 +103,7 @@ void control(int key, int scancode, int action, int mods) {
                 break;
             case GLFW_KEY_H:
                 if(( action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                    b->headlight = true;
+                    b->headlight = !b->headlight;
                 break;
 
         }

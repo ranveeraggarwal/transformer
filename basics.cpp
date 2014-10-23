@@ -10,31 +10,33 @@ void setMaterial(GLfloat spec[], GLfloat amb[], GLfloat diff[], GLfloat shin[])
   glMaterialfv(GL_FRONT, GL_DIFFUSE, diff);
 }
 
-void setMaterialColors(float r, float g, float b)
+void setMaterialColors(float r, float g, float b, float shin)
 {
-GLfloat mat_specularRGB[] ={r,g,b,1.0};
+GLfloat mat_specularRGB[] ={r*shin/128.0,g*shin/128.0,b*shin/128.0,1.0};
 GLfloat mat_ambientRGB[] ={r,g,b,1.0};
 GLfloat mat_diffuseRGB[] ={r,g,b,1.0};
-GLfloat mat_shininessRGB[] ={128.0};
+GLfloat mat_shininessRGB[] ={shin};
 setMaterial(mat_specularRGB, mat_ambientRGB, mat_diffuseRGB, mat_shininessRGB);
 }
-void texcube(int i, float r, float g, float b)
+void texcube(int i, float r, float g, float b, bool override)
 {
 
     // Typical Texture Generation Using Data From The Bitmap
-    glBindTexture(GL_TEXTURE_2D, texture[i]);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT );
+    //glBindTexture(GL_TEXTURE_2D, texture[i]);
+    //glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+    //glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT );
     // Enable Texture Mapping
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[i]);   // choose the texture to use.
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    //glEnable(GL_BLEND);
+    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     //glColor4f(r, g, b, 1.0);
 
     glBegin(GL_QUADS);                    // begin drawing a cube
-
-    setMaterialColors(r, g, b);
+    if(!override)
+        setMaterialColors(r, g, b, 40);
+    else
+        setMaterialColors(r, g, b, 0);
     //glNormal3f( 0.0f, 0.0f, 1.0f);                              // front face points out of the screen on z.
     // Front Face (note that the texture's corners have to match the quad's corners)
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
@@ -83,7 +85,7 @@ void texcube(int i, float r, float g, float b)
     glTexCoord2f(0.0f, 0.5f); glVertex3f(-0.5f,  0.5f, -0.5f);  // Top Left Of The Texture and Quad
     
     glEnd();                                    // done with the polygon.
-    glDisable(GL_BLEND);
+    //glDisable(GL_BLEND);
     glDisable(GL_TEXTURE_2D);
 
 

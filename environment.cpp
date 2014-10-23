@@ -5,21 +5,24 @@ void renderGround() {
     glPushMatrix();
     glTranslatef(0, -50.615, 0);
     glScalef(100, 100, 100);
-    texcube(2, 0.6, 0.6, 0.3);
+    texcube(2, 0.6, 0.6, 0.3, true);
     glPopMatrix();
     //Sea
     glPushMatrix();
     glTranslatef(0, -51, 0);
     glScalef(300, 100, 300);
-    texcube(4, 1, 1, 1);
+    texcube(4, 1, 1, 1, true);
     glPopMatrix();
 }
 
-void renderSky() {
+void renderSky(bool day) {
     glPushMatrix();
     //glTranslatef(0, -50.615, 0);
     glScalef(300, 300, 300);
-    texcube(3, 1, 1, 1);
+    if(day)
+        texcube(3, 1, 1, 1, true);
+    else
+        texcube(5, 1, 1, 1, true);
     glPopMatrix();
 }
 

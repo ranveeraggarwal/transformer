@@ -241,11 +241,12 @@ double dist;
 double turn;
 
 bool headlight;
+bool day;
 
-double tree_x[10];
-double tree_z[10];
-bool tree_standing[10];
-double tree_fall_angle[10];
-double tree_y_angle[10];
+double tree_x[100];
+double tree_z[100];
+bool tree_standing[100];
+double tree_fall_angle[100];
+double tree_y_angle[100];
 };
 

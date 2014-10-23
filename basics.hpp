@@ -5,8 +5,8 @@
 #define PI 3.14159265359
 
 extern unsigned int texture[7];
-
-void texcube(int, float = 1.0, float = 1.0, float = 1.0);
+void setMaterialColors(float, float, float, float = 0);
+void texcube(int, float = 1.0, float = 1.0, float = 1.0, bool = false);
 void drawCube(float = 1.0, float = 1.0, float = 1.0);
 void drawLine(float = 1.0, float = 1.0, float = 1.0);
 void drawBox(float = 1.0, float = 1.0, float = 1.0);

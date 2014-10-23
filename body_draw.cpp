@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <cmath>
+#include <cstdlib>
 
 double body::shoulder_x_min = 0;
 double body::shoulder_x_max = 135;
@@ -65,15 +66,17 @@ body::body() {
     dist = 0;
     turn = 0;
     headlight = false;
-
+    day = true;
     /* Trees */
     
-    for(int i = 0; i < 10; i++) {
+    for(int i = 0; i < 100; i++) {
         tree_standing[i] = true;
         tree_fall_angle[i] = 0;
         tree_y_angle[i] = 0;
-        tree_x[i] = 2*i-10;
-        tree_z[i] = -3;
+        float xrand = (rand()%50);
+        float zrand = (rand()%50);
+        tree_x[i] = xrand - 25;
+        tree_z[i] = zrand - 25;
     }
 
 
@@ -179,6 +182,7 @@ body::body() {
 
 
 void body::render() {
+
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     if(camera == 0)
@@ -191,7 +195,7 @@ void body::render() {
         glFrustum(-0.06, 0.06, -0.06, 0.06, 0.01, 400);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-
+   
     switch(camera) {
         case 0:
             gluLookAt(20*sin(ortho_y_angle*PI/180), 0, 20*cos(ortho_y_angle*PI/180), 0, 0, 0, 0, 1, 0);
@@ -206,9 +210,25 @@ void body::render() {
             gluLookAt(pos_x + 0.2*sin(rotate_y_angle*PI/180), 0.5 + pos_y, pos_z + 0.2*cos(rotate_y_angle*PI/180), sin(rotate_y_angle*PI/180) + pos_x , 0.5 + pos_y, cos(rotate_y_angle*PI/180) + pos_z, 0, 1, 0);
             break;
     } 
+
+ GLfloat position1[] =  {0.05+pos_x, 0.075+pos_y, 0.08+pos_z, 1.0}; //Add pos_x to x coordinate and pos_z to z coordinate
+    GLfloat spotDir1[] = {sin(rotate_y_angle*PI/180.0), 0.0, cos(rotate_y_angle*PI/180.0)};   //Rotate wrt rotate_y
+    glLightfv(GL_LIGHT1, GL_POSITION, position1);
+    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spotDir1); 
+    glDisable(GL_LIGHT0);
+    glDisable(GL_LIGHT1);
+    glDisable(GL_LIGHT2);
+    if(day)
+        glEnable(GL_LIGHT0);
+    else
+        glEnable(GL_LIGHT2);
+    if(headlight)
+        glEnable(GL_LIGHT1);
+
+
     renderGround();
-    renderSky();
-    for(int i = 0; i < 10; i++) {
+    renderSky(day);
+    for(int i = 0; i < 100; i++) {
         renderTree(tree_x[i], tree_z[i], tree_standing[i], tree_y_angle[i], tree_fall_angle[i]);
         if(!tree_standing[i] && tree_fall_angle[i] < 77.0) {
             double new_fall_angle = 1.1 * tree_fall_angle[i] + 1;
@@ -236,9 +256,27 @@ void body::render() {
         glRotatef(waist_y, 0.0, 1.0, 0.0);
         glRotatef(waist_z, 0.0, 0.0, 1.0);
         glTranslatef(0.0, -0.025, 0.0);
-
+        
         glPushMatrix();
-            glCallList(torso);
+            glCallList(torso);            
+            if(headlight) {  
+                GLfloat emit[] = {1.0, 1.0, 1.0, 1.0};
+                glMaterialfv(GL_FRONT, GL_EMISSION, emit);
+            }
+            glPushMatrix();
+            glTranslatef(0.05, 0.075, 0.0725);
+            glScalef(0.06, 0.05, 0.01);
+            texcube(0, 0.6, 0.6, 0.6);
+            //texcube(0);
+        glPopMatrix();
+        
+        glPushMatrix();
+            glTranslatef(-0.05, 0.075, 0.0725);
+            glScalef(0.06, 0.05, 0.01);
+            texcube(0, 0.6, 0.6, 0.6);
+        glPopMatrix();
+            GLfloat emit2[] = {0.0, 0.0, 0.0, 0.0};
+            glMaterialfv(GL_FRONT, GL_EMISSION, emit2);
         glPopMatrix();
 
         glPushMatrix();
@@ -484,19 +522,7 @@ void body::init_torso() {
             //drawCube();
             texcube(0);
         glPopMatrix();
-        glPushMatrix();
-            glTranslatef(0.05, 0.075, 0.0725);
-            glScalef(0.06, 0.05, 0.01);
-            texcube(0, 0.6, 0.6, 0.6);
-            //texcube(0);
-        glPopMatrix();
-        
-        glPushMatrix();
-            glTranslatef(-0.05, 0.075, 0.0725);
-            glScalef(0.06, 0.05, 0.01);
-            texcube(0, 0.6, 0.6, 0.6);
-        glPopMatrix();
-    glEndList();
+            glEndList();
 }
 
 void body::init_head() {

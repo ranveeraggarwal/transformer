@@ -40,6 +40,14 @@ int LoadGLTextures()       // Load Bitmaps And Convert To Textures
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
         );
+    texture[5] = SOIL_load_OGL_texture
+        (
+        "texture_night.jpg",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_INVERT_Y
+        );
+
 
 
     if(texture[0] == 0 || texture[1] == 0 || texture[2] == 0 || texture[3] == 0)
@@ -51,46 +59,55 @@ int LoadGLTextures()       // Load Bitmaps And Convert To Textures
 void loadLightings()
 {
 
-    GLfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.0f };
-    GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-    GLfloat mat_specular[] = {1.0, 1.0, 1.0, 1.0};
-    GLfloat mat_shininess[] = { 100.0 };
-    GLfloat light_position[] = { 1.0, 1.0, 1.0, 1.0};
-    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+    /* Sun */
+
+    GLfloat LightAmbient[] = { 0.7f, 0.7f, 0.7f, 1.0f };
+    GLfloat LightDiffuse[] = { 0.3f, 0.3f, 0.3f, 1.0f };
+    GLfloat LightSpecular[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+    //GLfloat mat_specular[] = {1.0, 1.0, 1.0, 1.0};
+    //GLfloat mat_shininess[] = { 100.0 };
+    GLfloat light_position[] = { 50.0, 50.0, 50.0, 0.0};
+    //glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    //glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
     glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);  
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
     glEnable(GL_NORMALIZE);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
-    glDisable(GL_LIGHT0);
+    //glDisable(GL_LIGHT0);
 
     /*Headlights*/
-    GLfloat LightAmbient1[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+    GLfloat LightAmbient1[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     GLfloat LightDiffuse1[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    GLfloat LightSpecular1[] = {0.0f, 0.0f, 0.0f, 1.0f };
     GLfloat position1[] =  {0.05, 0.075, 0.08, 1.0}; //Add pos_x to x coordinate and pos_z to z coordinate
     GLfloat spotDir1[] = {0.0, 0.0, -1.0};   //Rotate wrt rotate_y
     glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient1);      
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse1);
+    glLightfv(GL_LIGHT1, GL_SPECULAR, LightSpecular1);
     glLightfv(GL_LIGHT1, GL_POSITION, position1);
-    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 10.0);
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 45.0);
+    glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.2);
     glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spotDir1);
+    glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 0);
     glEnable(GL_LIGHT1);
     glDisable(GL_LIGHT1);
 
     /*le Moon*/
-    GLfloat LightAmbient2[] = { 0.5f, 0.5f, 0.5f, 1.0f };
-    GLfloat LightDiffuse2[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-    GLfloat position2[] =  {0.0, 5.0, 0.0, 1.0}; //Add pos_x to x coordinate and pos_z to z coordinate
-    GLfloat spotDir2[] = {0.0, -1.0, 0.0};   //Rotate wrt rotate_y
+    GLfloat LightAmbient2[] = { 0.3f, 0.3f, 0.3f, 1.0f };
+    GLfloat LightDiffuse2[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+    GLfloat LightSpecular2[] = {0.0f, 0.0f, 0.0f, 1.0f};
+    GLfloat position2[] =  {50.0, 50.0, 50.0, 0.0}; //Add pos_x to x coordinate and pos_z to z coordinate
+    //GLfloat spotDir2[] = {0.0, -1.0, 0.0};   //Rotate wrt rotate_y
     glLightfv(GL_LIGHT2, GL_AMBIENT, LightAmbient2);      
     glLightfv(GL_LIGHT2, GL_DIFFUSE, LightDiffuse2);
+    glLightfv(GL_LIGHT2, GL_SPECULAR, LightSpecular2);
     glLightfv(GL_LIGHT2, GL_POSITION, position2);
-    glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 90.0);
-    glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, spotDir2);
+    //glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 90.0);
+    //glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, spotDir2);
     glEnable(GL_LIGHT2);
-    //glDisable(GL_LIGHT2);
+    glDisable(GL_LIGHT2);
 }
 
 namespace transpace
