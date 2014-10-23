@@ -54,8 +54,13 @@ int LoadGLTextures()       // Load Bitmaps And Convert To Textures
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
         );
-
-
+    texture[7] = SOIL_load_OGL_texture
+        (
+        "tyre.jpg",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_INVERT_Y
+        );
 
     if(texture[0] == 0 || texture[1] == 0 || texture[2] == 0 || texture[3] == 0)
         return false;

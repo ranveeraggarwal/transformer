@@ -278,6 +278,58 @@ void drawCylinder(float r, float g, float b) {
     glPopMatrix();
 }
 
+void texCylinder(float r, float g, float b) {
+
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[7]);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+
+    setMaterialColors(r, g, b);
+    glColor4f(r, g, b, 1.0);
+    /* top triangle */
+    double i, resolution  = 0.1;
+    double height = 1, radius = 0.5;
+    glPushMatrix();
+    glTranslatef(0, -0.5, 0);
+    glBegin(GL_TRIANGLE_FAN);
+        glTexCoord2f( 0, 0 );
+        glVertex3f(0, height, 0);  /* center */
+        for (i = 0; i <= 2 * PI; i += resolution)
+        {
+            glTexCoord2f( 0.5f * cos(i) + 0.5f, 0.5f * sin(i) + 0.5f );
+            glVertex3f(radius * cos(i), height, radius * sin(i));
+        }
+    glEnd();
+
+    /* bottom triangle: note: for is in reverse order */
+    glBegin(GL_TRIANGLE_FAN);
+        //glTexCoord2f( 0, 0 );
+        glVertex3f(0, 0, 0);  /* center */
+        for (i = 2 * PI; i >= 0; i -= resolution)
+        {
+            glTexCoord2f( 0.5f * cos(i) + 0.5f, 0.5f * sin(i) + 0.5f );
+            glVertex3f(radius * cos(i), 0, radius * sin(i));
+        }
+        /* close the loop back to 0 degrees */
+        glVertex3f(radius, height, 0);
+    glEnd();
+
+    /* middle tube */
+    glBegin(GL_QUAD_STRIP);
+        for (i = 0; i <= 2 * PI; i += resolution)
+        {
+            glVertex3f(radius * cos(i), 0, radius * sin(i));
+            glVertex3f(radius * cos(i), height, radius * sin(i));
+        }
+        /* close the loop back to zero degrees */
+        glVertex3f(radius, 0, 0);
+        glVertex3f(radius, height, 0);
+    glEnd();
+    glPopMatrix();
+}
+
+
 void drawCone(float r, float g, float b) {
     setMaterialColors(r, g, b);
     glColor4f(r, g, b, 1.0);
