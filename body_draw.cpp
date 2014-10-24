@@ -88,8 +88,8 @@ body::body() {
 
     count_transform = 0;
     count_revert = 0;
-    camera_r = 3.0;
-    camera_t = 20;
+    camera_r = 4.0;
+    camera_t = 15;
     camera_p = 0;
     camera = 1;    
 
