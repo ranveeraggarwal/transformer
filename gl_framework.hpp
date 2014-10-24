@@ -6,10 +6,13 @@
 
 extern body* b;
 
+//An array of texture maps
 extern unsigned int texture[8];
 
+//Load textures
 int LoadGLTextures();
 
+//Lod lights
 void loadLightings();
 
 namespace transpace

@@ -1,7 +1,9 @@
 #include "gl_framework.hpp"
 
 unsigned int texture[8];
+
 body* b;
+
 void renderGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
