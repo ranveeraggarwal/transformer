@@ -28,7 +28,7 @@ int LoadGLTextures()       // Load Bitmaps And Convert To Textures
         );
     texture[3] = SOIL_load_OGL_texture
         (
-        "texture_sky.jpg",
+        "texture_night.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
@@ -70,7 +70,7 @@ int LoadGLTextures()       // Load Bitmaps And Convert To Textures
         SOIL_FLAG_INVERT_Y
         );
 
-    if(texture[0] == 0 || texture[1] == 0 || texture[2] == 0 || texture[3] == 0)
+    if(texture[0] == 0 || texture[1] == 0 || texture[2] == 0 || texture[3] == 0 || texture[4] == 0 || texture[5] == 0 || texture[6] == 0 || texture[7] == 0)
         return false;
  
     return true;                                        // Return Success

@@ -238,7 +238,7 @@ void body::render() {
 
 
     renderGround();
-    renderSky(day);
+    renderSky(day, moon_toggle);
     for(int i = 0; i < 100; i++) {
         renderTree(tree_x[i], tree_z[i], tree_standing[i], tree_y_angle[i], tree_fall_angle[i]);
         if(!tree_standing[i] && tree_fall_angle[i] < 77.0) {

@@ -15,7 +15,7 @@ void renderGround() {
     glPopMatrix();
 }
 
-void renderSky(bool day) {
+void renderSky(bool day, bool moon_toggle) {
     if (day)
     {
         glPushMatrix();
@@ -30,11 +30,20 @@ void renderSky(bool day) {
     }
     else
     {
-        glPushMatrix();
-        glScalef(300, 300, 300);
-        //texcube(5, 1, 1, 1, true);
-        skybox(1, 1, 1, true, 5);
-        glPopMatrix();
+        if (!moon_toggle)
+        {
+            glPushMatrix();
+            glScalef(300, 300, 300);
+            skybox(1, 1, 1, true, 5);
+            glPopMatrix();
+        }
+        else
+        {
+            glPushMatrix();
+            glScalef(300, 300, 300);
+            texcube(3, 1, 1, 1, true);
+            glPopMatrix();
+        }
     }  
 }
 
