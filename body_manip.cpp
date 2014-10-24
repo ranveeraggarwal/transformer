@@ -483,6 +483,11 @@ void body::move(double t, double turn) {
         pos_z += del_z;
     if(std::abs(pos_x + del_x) < 49.9)
         pos_x += del_x;
+    wheel_rotate_angle -= 2400.0 * t / PI;
+    if(wheel_rotate_angle >= 360.0)
+        wheel_rotate_angle -= 360;
+    if(wheel_rotate_angle < 0)
+        wheel_rotate_angle += 360;
     //std::cout << pos_x << " " << pos_z << std::endl;
 }
 

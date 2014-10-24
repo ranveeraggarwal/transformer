@@ -65,6 +65,7 @@ body::body() {
     transformed = false;
     dist = 0;
     turn = 0;
+    wheel_rotate_angle = 0;
     headlight = false;
     day = true;
     moon_toggle = false; 
@@ -409,6 +410,7 @@ void body::render() {
             glCallList(right_thigh);
             glTranslatef(-0.115, -0.145, 0.0);
             glRotatef(90-6*turn, 0, 0, 1);
+            glRotatef(wheel_rotate_angle, 0, 1, 0);
             glScalef(0.15, 0.03, 0.15);
             texCylinder(0.5, 0.5, 0.5, 7);
         glPopMatrix();
@@ -421,6 +423,11 @@ void body::render() {
 
             glPushMatrix();
                 glCallList(right_leg);
+                glTranslatef(-0.125, -0.465, 0.0);
+                glRotatef(90, 0, 0, 1); 
+                glRotatef(wheel_rotate_angle, 0, 1, 0);
+                glScalef(0.15, 0.05, 0.15);
+                texCylinder(0.5, 0.5, 0.5, 7);
             glPopMatrix();
 
             /*Ankle*/
@@ -449,6 +456,7 @@ void body::render() {
             glCallList(left_thigh);
             glTranslatef(0.115, -0.145, 0.0);
             glRotatef(90-6*turn, 0, 0, 1); 
+            glRotatef(wheel_rotate_angle, 0, 1, 0);
             glScalef(0.15, 0.03, 0.15);
             texCylinder(0.5, 0.5, 0.5, 7);
         glPopMatrix();
@@ -461,6 +469,11 @@ void body::render() {
 
             glPushMatrix();
                 glCallList(left_leg);
+                glTranslatef(0.125, -0.465, 0);
+                glRotatef(90, 0, 0, 1); 
+                glRotatef(wheel_rotate_angle, 0, 1, 0);
+                glScalef(0.15, 0.05, 0.15);
+                texCylinder(0.5, 0.5, 0.5, 7);
             glPopMatrix();
 
             /*Ankle*/
@@ -637,11 +650,7 @@ void body::init_right_leg() {
         texcube(0, 0.0, 0.0, 1.0);
         glPopMatrix();
         //glTranslatef(-0.14, -0.465, -0.0825);
-        glTranslatef(-0.125, -0.465, 0.0);
-        glRotatef(90, 0, 0, 1); 
-        glScalef(0.15, 0.05, 0.15);
-        texCylinder(0.5, 0.5, 0.5, 7);
-    glEndList();
+        glEndList();
 }
 
 void body::init_right_foot() {
@@ -679,11 +688,7 @@ void body::init_left_leg() {
         texcube(0, 0.0, 0.0, 1.0);
         glPopMatrix();
         //glTranslatef(0.14, -0.465, -0.0825);
-        glTranslatef(0.125, -0.465, 0);
-        glRotatef(90, 0, 0, 1); 
-        glScalef(0.15, 0.05, 0.15);
-        texCylinder(0.5, 0.5, 0.5, 7);
-    glEndList();
+        glEndList();
 }
 
 void body::init_left_foot() {

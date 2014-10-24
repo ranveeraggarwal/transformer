@@ -239,6 +239,7 @@ int count_elbows_out;
 int camera;
 double dist;
 double turn;
+double wheel_rotate_angle;
 
 bool headlight;
 bool day;

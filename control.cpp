@@ -82,13 +82,13 @@ void control(int key, int scancode, int action, int mods) {
             case GLFW_KEY_W:
                 //std::cout << "W " << action << " " << mods << std::endl;
                 if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                    b->dist = 0.1;
+                    b->dist = 0.05;
                 else
                     b->dist = 0;
                 break;
             case GLFW_KEY_S:
                 if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
-                    b->dist = -0.1;
+                    b->dist = -0.025;
                 else
                     b->dist = 0;
                 break;
