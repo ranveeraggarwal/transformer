@@ -42,14 +42,22 @@ int LoadGLTextures()       // Load Bitmaps And Convert To Textures
         );
     texture[5] = SOIL_load_OGL_texture
         (
-        "texture_night.jpg",
+        "night.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
         );
-    texture[6] = SOIL_load_OGL_texture
+    /*texture[6] = SOIL_load_OGL_texture
         (
         "panorama.jpg",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_INVERT_Y
+        );
+    */
+    texture[6] = SOIL_load_OGL_texture
+        (
+        "cmap.png",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y

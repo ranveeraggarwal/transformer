@@ -19,19 +19,21 @@ void renderSky(bool day) {
     if (day)
     {
         glPushMatrix();
+        //glTranslatef(0, 100, 0);
         glScalef(300, 300, 300);
-        skybox(1, 1, 1, true);
+        skybox(1, 1, 1, true, 6);
         glPopMatrix();
-        glPushMatrix();
+        /*glPushMatrix();
         glScalef(400, 290, 400);
         texcube(3, 1, 1, 1, true);
-        glPopMatrix();
+        glPopMatrix();*/
     }
     else
     {
         glPushMatrix();
         glScalef(300, 300, 300);
-        texcube(5, 1, 1, 1, true);
+        //texcube(5, 1, 1, 1, true);
+        skybox(1, 1, 1, true, 5);
         glPopMatrix();
     }  
 }
