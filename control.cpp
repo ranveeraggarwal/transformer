@@ -1,31 +1,54 @@
 #include "control.hpp"
 #include <iostream>
+#include <cmath>
 
 std::string active = "arandomstring";
 
 void control(int key, int scancode, int action, int mods) {
     switch(key) {
         case GLFW_KEY_LEFT:
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0) {
                 if(b->camera == 0)
                     b->rotate_y_ortho(-5);
                 if(b->camera == 1)
                     b->move_camera_p(-5);
+            }
+            else if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 1)
+                if(b->camera == 1) {
+                    b->lookat_x -= cos(b->camera_p*PI/180.0);
+                    b->lookat_z += sin(b->camera_p*PI/180.0);
+                }
             break;
         case GLFW_KEY_RIGHT:
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0) {
                 if(b->camera == 0)
                     b->rotate_y_ortho(5);
                 if(b->camera == 1)
                     b->move_camera_p(5);
+            }
+            else if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 1)
+                if(b->camera == 1) {
+                    b->lookat_x += cos(b->camera_p*PI/180.0);
+                    b->lookat_z -= sin(b->camera_p*PI/180.0);
+                }
             break;
         case GLFW_KEY_UP:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0 && b->camera == 1)
                 b->move_camera_t(5);
+            else if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 1)
+                if(b->camera == 1) {
+                    b->lookat_z -= cos(b->camera_p*PI/180.0);
+                    b->lookat_x -= sin(b->camera_p*PI/180.0);
+                }
             break;
         case GLFW_KEY_DOWN:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0 && b->camera == 1)
                 b->move_camera_t(-5);
+            else if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 1)
+                if(b->camera == 1) {
+                    b->lookat_z += cos(b->camera_p*PI/180.0);
+                    b->lookat_x += sin(b->camera_p*PI/180.0);
+                }            
             break;
         case GLFW_KEY_N:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0 && b->camera == 1)
@@ -34,6 +57,10 @@ void control(int key, int scancode, int action, int mods) {
         case GLFW_KEY_M:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0 && b->camera == 1)
                 b->move_camera_r(0.1);
+            break;
+        case GLFW_KEY_V:
+            if((action == GLFW_PRESS) && mods == 0 && b->camera == 1)
+                b->camera_free = !b->camera_free;
             break;
         case GLFW_KEY_0:
             if((action == GLFW_PRESS) && mods == 0)

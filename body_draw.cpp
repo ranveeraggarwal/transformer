@@ -98,7 +98,12 @@ body::body() {
     rotate_x_angle = 0;
     rotate_y_angle = 0;
     rotate_z_angle = 0;
- 
+
+    lookat_x = 0;
+    lookat_y = 0;
+    lookat_z = 0;
+
+    camera_free = true; 
     /*Waist*/
     waist_x = 0;
     waist_y = 0;
@@ -204,7 +209,10 @@ void body::render() {
             gluLookAt(20*sin(ortho_y_angle*PI/180), 0, 20*cos(ortho_y_angle*PI/180), 0, 0, 0, 0, 1, 0);
             break;
         case 1:
-            gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180), camera_r*sin(camera_t*PI/180), camera_r*cos(camera_t*PI/180)*cos(camera_p*PI/180), 0, 0, 0, 0, 1, 0);
+            if(camera_free)
+                gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180) + lookat_x, camera_r*sin(camera_t*PI/180) + lookat_y, camera_r*cos(camera_t*PI/180)*cos(camera_p*PI/180) + lookat_z, lookat_x, lookat_y, lookat_z, 0, 1, 0);
+            else
+                gluLookAt(camera_r*cos(camera_t*PI/180)*sin(camera_p*PI/180) + pos_x, camera_r*sin(camera_t*PI/180) + pos_y, camera_r*cos(camera_t*PI/180)*cos(camera_p*PI/180) + pos_z, pos_x, pos_y, pos_z, 0, 1, 0);
             break;
         case 2:
             gluLookAt(-0.5 * sin(rotate_y_angle*PI/180) + pos_x, 0.8 + pos_y, -0.5 * cos(rotate_y_angle*PI/180) + pos_z, pos_x, pos_y, pos_z, 0, 1, 0);

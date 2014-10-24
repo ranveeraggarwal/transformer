@@ -39,7 +39,9 @@ Press the number keys to select the corresponding camera
 * Camera 1 : Perspective Camera (Default)
 - `M`: Zoom Out
 - `N`: Zoom In
-- Arrow Keys : Rotate Camera
+- Arrow Keys: Rotate Camera
+- Shift + Array Keys: Move Camera
+- 'V': Toggle camera focus on the Transformer
 
 * Camera 2 : Perspective Camera behind and above the transformer. Follows the transformer.
 

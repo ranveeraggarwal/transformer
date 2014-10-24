@@ -30,10 +30,6 @@ double rotate_x_angle;
 double rotate_y_angle; 
 double rotate_z_angle; 
 
-double camera_r;
-double camera_t;
-double camera_p;
-
 double ortho_y_angle;
 
 double elbows_y_offset;
@@ -240,7 +236,9 @@ int camera;
 double dist;
 double turn;
 double wheel_rotate_angle;
-
+double lookat_x;
+double lookat_y;
+double lookat_z;
 bool headlight;
 bool day;
 bool moon_toggle;
@@ -250,5 +248,12 @@ double tree_z[100];
 bool tree_standing[100];
 double tree_fall_angle[100];
 double tree_y_angle[100];
+
+/* Camera */
+double camera_r;
+double camera_t;
+double camera_p;
+
+bool camera_free;
 };
 
