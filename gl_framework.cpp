@@ -6,7 +6,7 @@ int LoadGLTextures()
     /* load an image file directly as a new OpenGL texture */
     texture[0] = SOIL_load_OGL_texture
         (
-        "texture0.jpg",
+        "textures/texture0.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
@@ -14,7 +14,7 @@ int LoadGLTextures()
 
     texture[1] = SOIL_load_OGL_texture
         (
-        "texture1.jpg",
+        "textures/texture1.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
@@ -22,42 +22,42 @@ int LoadGLTextures()
 
     texture[2] = SOIL_load_OGL_texture
         (
-        "texture_ground.jpg",
+        "textures/texture_ground.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
         );
     texture[3] = SOIL_load_OGL_texture
         (
-        "texture_night.jpg",
+        "textures/texture_night.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
         );
     texture[4] = SOIL_load_OGL_texture
         (
-        "texture_sea.jpg",
+        "textures/texture_sea.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
         );
     texture[5] = SOIL_load_OGL_texture
         (
-        "night.jpg",
+        "textures/night.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
         );
     texture[6] = SOIL_load_OGL_texture
         (
-        "cmap.png",
+        "textures/cmap.png",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
         );
     texture[7] = SOIL_load_OGL_texture
         (
-        "tyre.jpg",
+        "textures/tyre.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
