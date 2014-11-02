@@ -2,6 +2,7 @@
 #include <cmath>
 
 void renderGround() {
+    //Ground
     glPushMatrix();
     glTranslatef(0, -50.615, 0);
     glScalef(100, 100, 100);
@@ -19,14 +20,9 @@ void renderSky(bool day, bool moon_toggle) {
     if (day)
     {
         glPushMatrix();
-        //glTranslatef(0, 100, 0);
         glScalef(300, 300, 300);
         skybox(1, 1, 1, true, 6);
         glPopMatrix();
-        /*glPushMatrix();
-        glScalef(400, 290, 400);
-        texcube(3, 1, 1, 1, true);
-        glPopMatrix();*/
     }
     else
     {
@@ -47,29 +43,6 @@ void renderSky(bool day, bool moon_toggle) {
     }  
 }
 
-/*
-void renderSky(bool day) {
-    if(day)
-    {
-        glPushMatrix();
-        glTranslatef(0, 10, 0);
-        glScalef(300, 300, 300);
-        skybox(1, 1, 1, true);
-        glPopMatrix();
-        glPushMatrix();
-        glTranslatef(0, 9, 0);
-        glScalef(400, 300, 400);
-        texcube(3, 1, 1, 1, true);
-        glPopMatrix();
-    }
-    else
-        glPushMatrix();
-        glTranslatef(0, 10, 0);
-        glScalef(300, 300, 300);
-        texcube(5, 1, 1, 1, true);
-        glPopMatrix();
-}
-*/
 void renderTree(double x, double z, bool standing, double y_angle, double fall_angle) {
 
     glPushMatrix();

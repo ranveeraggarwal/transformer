@@ -6,6 +6,7 @@
 #include <cmath>
 #include <cstdlib>
 
+//Constraint definitions
 double body::shoulder_x_min = 0;
 double body::shoulder_x_max = 135;
 double body::shoulder_y_min = 0;
@@ -73,8 +74,7 @@ body::body() {
     frames = 0;
     keyfile.open("keyframes.txt", std::fstream::out);
 
-   /* Trees */
-    
+   /* Trees */    
     for(int i = 0; i < 100; i++) {
         tree_standing[i] = true;
         tree_fall_angle[i] = 0;
@@ -85,10 +85,7 @@ body::body() {
         tree_z[i] = zrand - 25;
     }
 
-
-
     /*Camera*/
-
     count_transform = 0;
     count_revert = 0;
     camera_r = 4.0;
@@ -107,6 +104,8 @@ body::body() {
     lookat_z = 0;
 
     camera_free = true; 
+
+    //Body Parts
     /*Waist*/
     waist_x = 0;
     waist_y = 0;
@@ -192,21 +191,28 @@ body::body() {
 }
 
 
-void body::render() {
-
+void body::render() 
+{
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     if(camera == 0)
+    {
         glOrtho(-3, 3, -3, 3, 0.01, 100);
-    else if(camera == 1) {
+    }
+    else if(camera == 1) 
+    {
         double n = 1.0 - (0.18 / camera_r);
         glFrustum(-n, n, -n, n, n, 400);
     }
     else
+    {
         glFrustum(-0.06, 0.06, -0.06, 0.06, 0.01, 400);
+    }
+
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-   
+    
+    //The different cameras
     switch(camera) {
         case 0:
             gluLookAt(20*sin(ortho_y_angle*PI/180), 0, 20*cos(ortho_y_angle*PI/180), 0, 0, 0, 0, 1, 0);
@@ -225,13 +231,18 @@ void body::render() {
             break;
     } 
 
- GLfloat position1[] =  {0.05+pos_x, 0.075+pos_y, 0.08+pos_z, 1.0}; //Add pos_x to x coordinate and pos_z to z coordinate
-    GLfloat spotDir1[] = {sin(rotate_y_angle*PI/180.0), 0.0, cos(rotate_y_angle*PI/180.0)};   //Rotate wrt rotate_y
+    //The headlights definition
+    GLfloat position1[] =  {0.05+pos_x, 0.075+pos_y, 0.08+pos_z, 1.0};
+    GLfloat spotDir1[] = {sin(rotate_y_angle*PI/180.0), 0.0, cos(rotate_y_angle*PI/180.0)};
     glLightfv(GL_LIGHT1, GL_POSITION, position1);
     glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spotDir1); 
+
+    //Switch off all the lights initially
     glDisable(GL_LIGHT0);
     glDisable(GL_LIGHT1);
     glDisable(GL_LIGHT2);
+
+    //Switch lights on according to requiements
     if(day)
         glEnable(GL_LIGHT0);
     else if(!(day ^ moon_toggle))
@@ -239,60 +250,75 @@ void body::render() {
     if(headlight)
         glEnable(GL_LIGHT1);
 
-
+    //Render Environment
     renderGround();
     renderSky(day, moon_toggle);
+
+    //Place trees
     for(int i = 0; i < 100; i++) {
         renderTree(tree_x[i], tree_z[i], tree_standing[i], tree_y_angle[i], tree_fall_angle[i]);
-        if(!tree_standing[i] && tree_fall_angle[i] < 77.0) {
+        if(!tree_standing[i] && tree_fall_angle[i] < 77.0) 
+        {
             double new_fall_angle = 1.1 * tree_fall_angle[i] + 1;
             if(new_fall_angle > 77.0)
+            {
                 new_fall_angle = 77.0;
+            }
             tree_fall_angle[i] = new_fall_angle;
         }
-        if(tree_standing[i] && std::abs(tree_x[i] - pos_x) < 0.15 && std::abs(tree_z[i] - pos_z) < 0.15) {
+        if(tree_standing[i] && std::abs(tree_x[i] - pos_x) < 0.15 && std::abs(tree_z[i] - pos_z) < 0.15) 
+        {
             tree_standing[i] = false;
             tree_y_angle[i] = rotate_y_angle;
         }
     }
+
+    //Translate/turn according to key movments
     glTranslatef(pos_x, pos_y, pos_z);
     glRotatef(rotate_y_angle, 0, 1, 0);
+
+    //To transform the bot into car
     transform();
+    //Get back to bot state
     revert();
+
+
+    //Bot rendering begins
+    //The pelvis
     glPushMatrix();
         glCallList(pelvis);
     glPopMatrix();
 
     glPushMatrix();
-  
         glTranslatef(0.0, 0.025, 0.0);
         glRotatef(waist_x, 1.0, 0.0, 0.0); 
         glRotatef(waist_y, 0.0, 1.0, 0.0);
         glRotatef(waist_z, 0.0, 0.0, 1.0);
         glTranslatef(0.0, -0.025, 0.0);
         
+        //Torso portion
         glPushMatrix();
             glCallList(torso);            
-            if(headlight) {  
+            if(headlight) 
+            {  
                 GLfloat emit[] = {1.0, 1.0, 1.0, 1.0};
                 glMaterialfv(GL_FRONT, GL_EMISSION, emit);
             }
             glPushMatrix();
-            glTranslatef(0.05, 0.075, 0.0725);
-            glScalef(0.06, 0.05, 0.01);
-            texcube(0, 0.6, 0.6, 0.6);
-            //texcube(0);
-        glPopMatrix();
-        
-        glPushMatrix();
-            glTranslatef(-0.05, 0.075, 0.0725);
-            glScalef(0.06, 0.05, 0.01);
-            texcube(0, 0.6, 0.6, 0.6);
-        glPopMatrix();
+                glTranslatef(0.05, 0.075, 0.0725);
+                glScalef(0.06, 0.05, 0.01);
+                texcube(0, 0.6, 0.6, 0.6);
+            glPopMatrix();
+            glPushMatrix();
+                glTranslatef(-0.05, 0.075, 0.0725);
+                glScalef(0.06, 0.05, 0.01);
+                texcube(0, 0.6, 0.6, 0.6);
+            glPopMatrix();
             GLfloat emit2[] = {0.0, 0.0, 0.0, 0.0};
             glMaterialfv(GL_FRONT, GL_EMISSION, emit2);
         glPopMatrix();
 
+        //Head
         glPushMatrix();
             glTranslatef(0.0, 0.425, 0.0);
             glRotatef(neck_x, 1.0, 0.0, 0.0);
@@ -501,61 +527,58 @@ void body::render() {
     glPopMatrix();
     /*The left leg ends*/
 }
+//Body Rendering ends
 
-void body::init_pelvis() {
+//Define call lists from here
+void body::init_pelvis() 
+{
     glNewList(pelvis, GL_COMPILE);
-        //drawCube();
         glScalef(0.2, 0.05, 0.07);
         texcube(0, 0.0, 0.0, 1.0);
     glEndList();
 }
 
-void body::init_torso() {
+void body::init_torso() 
+{
     glNewList(torso, GL_COMPILE);
         glPushMatrix();
             glTranslatef(0.0, 0.225, 0.0);
-            //drawCube(1.0, 0.0, 0.0);
             glScalef(0.2, 0.4, 0.15);
             texcube(0, 0.6, 0.0, 0.0);
         glPopMatrix();
         glPushMatrix();
             glTranslatef(0.0, 0.225, -0.0725);
             glScalef(0.14, 0.34, 0.01);
-            //drawCube();
             texcube(0, 0.6, 0.6, 0.6);
         glPopMatrix();
         glPushMatrix();
             glTranslatef(0.0, 0.325, 0.0725);
             glScalef(0.18, 0.15, 0.01);
-            //drawCube();
             texcube(1);
         glPopMatrix();
         glPushMatrix();
             glTranslatef(0.0, 0.200, 0.0725);
             glScalef(0.15, 0.04, 0.01);
-            //drawCube();
             texcube(0);
         glPopMatrix();
         glPushMatrix();
             glTranslatef(0.0, 0.160, 0.0725);
             glScalef(0.15, 0.01, 0.01);
-            //drawCube();
             texcube(0);
         glPopMatrix();
         glPushMatrix();
             glTranslatef(0.0, 0.140, 0.0725);
             glScalef(0.15, 0.01, 0.01);
-            //drawCube();
             texcube(0);
         glPopMatrix();
             glEndList();
 }
 
-void body::init_head() {
+void body::init_head() 
+{
     glNewList(head, GL_COMPILE);
         glPushMatrix();
             glTranslatef(0.0, 0.475, 0.0);
-            //drawCube(0.0, 0.0, 1.0);
             glScalef(0.1, 0.1, 0.05);
             texcube(0, 0.0, 0.0, 1.0);
         glPopMatrix();
@@ -582,149 +605,138 @@ void body::init_head() {
     glEndList();
 }
 
-void body::init_right_upper_arm() {
+void body::init_right_upper_arm() 
+{
     glNewList(right_upper_arm, GL_COMPILE);    
         glTranslatef(-0.16, 0.275, 0.0);
         glScalef(0.08, 0.3, 0.08);
-        //drawCube();
         texcube(0, 0.5, 0.0, 0.0);
     glEndList();
 }
 
-void body::init_right_lower_arm() {
+void body::init_right_lower_arm() 
+{
     glNewList(right_lower_arm, GL_COMPILE);
         glTranslatef(-0.16, -0.025, 0.0);
         glScalef(0.06, 0.3, 0.06);
-        //drawCube();
         texcube(0, 1.0, 0.0, 0.0);
     glEndList();
 }
 
-void body::init_right_hand() {
+void body::init_right_hand() 
+{
     glNewList(right_hand, GL_COMPILE);
         glTranslatef(-0.16, -0.2, 0.0);
         glScalef(0.07, 0.05, 0.07);
-        //drawCube();
         texcube(0, 0.0, 0.0, 1.0);
     glEndList();
 }
 
-void body::init_left_upper_arm() {
+void body::init_left_upper_arm() 
+{
     glNewList(left_upper_arm, GL_COMPILE);    
         glTranslatef(0.16, 0.275, 0.0);
         glScalef(0.08, 0.3, 0.08);
-        //drawCube();
         texcube(0, 0.5, 0.0, 0.0);
     glEndList();
 }
 
-void body::init_left_lower_arm() {
+void body::init_left_lower_arm() 
+{
     glNewList(left_lower_arm, GL_COMPILE);
         glTranslatef(0.16, -0.025, 0.0);
         glScalef(0.06, 0.3, 0.06);
-        //drawCube();
         texcube(0, 1.0, 0.0, 0.0);
     glEndList();
 }
 
-void body::init_left_hand() {
+void body::init_left_hand() 
+{
     glNewList(left_hand, GL_COMPILE);
         glTranslatef(0.16, -0.2, 0.0);
         glScalef(0.07, 0.05, 0.07);
-        //drawCube();
         texcube(0, 0.0, 0.0, 1.0);
     glEndList();
 }
 
-void body::init_right_thigh() {
+void body::init_right_thigh() 
+{
     glNewList(right_thigh, GL_COMPILE);
         glPushMatrix();
         glTranslatef(-0.06, -0.185, 0.0);
-        //drawCube(1.0, 0.0, 0.0);
         glScalef(0.08, 0.32, 0.12);
         texcube(0, 0.6, 0.6, 0.6);
         glPopMatrix();
-        //glTranslatef(-0.14, -0.145, -0.09);
-        /*glTranslatef(-0.115, -0.145, 0.0);
-        glRotatef(90+10*turn, 0, 0, 1);
-        glScalef(0.15, 0.03, 0.15);
-        drawCylinder(0.5, 0.5, 0.5);*/
     glEndList();
 }
 
-void body::init_right_leg() {
+void body::init_right_leg() 
+{
     glNewList(right_leg, GL_COMPILE);
         glPushMatrix();
         glTranslatef(-0.06, -0.465, 0.0);
         glScalef(0.08, 0.24, 0.08);
-        //drawCube();
         texcube(0, 0.0, 0.0, 1.0);
         glPopMatrix();
-        //glTranslatef(-0.14, -0.465, -0.0825);
         glEndList();
 }
 
-void body::init_right_foot() {
+void body::init_right_foot() 
+{
     glNewList(right_foot, GL_COMPILE);
         glTranslatef(-0.06, -0.595, 0.0475);
         glScalef(0.08, 0.04, 0.12);
-        //drawCube();
         texcube(0, 0.0, 0.0, 1.0);
     glEndList();
 }
 
-void body::init_left_thigh() {
+void body::init_left_thigh() 
+{
     glNewList(left_thigh, GL_COMPILE);
         glPushMatrix();
         glTranslatef(0.06, -0.185, 0.0);
         glScalef(0.08, 0.32, 0.12);
-        //drawCube();
         texcube(0, 0.6, 0.6, 0.6);
         glPopMatrix();
-        //glTranslatef(0.14, -0.145, -0.08);
-        /*glTranslatef(0.115, -0.145, 0.0);
-        glRotatef(90+10*turn, 0, 0, 1); 
-        glScalef(0.15, 0.03, 0.15);
-        drawCylinder(0.5, 0.5, 0.5);*/
     glEndList();
 }
 
-void body::init_left_leg() {
+void body::init_left_leg() 
+{
 
     glNewList(left_leg, GL_COMPILE);
         glPushMatrix();
         glTranslatef(0.06, -0.465, 0.0);
         glScalef(0.08, 0.24, 0.08);
-        //drawCube();
         texcube(0, 0.0, 0.0, 1.0);
         glPopMatrix();
-        //glTranslatef(0.14, -0.465, -0.0825);
         glEndList();
 }
 
-void body::init_left_foot() {
+void body::init_left_foot() 
+{
     glNewList(left_foot, GL_COMPILE);
         glTranslatef(0.06, -0.595, 0.0475);
         glScalef(0.08, 0.04, 0.12);
-        //drawCube();
         texcube(0, 0.0, 0.0, 1.0);
     glEndList();
 }
 
-void body::init_joints() {
+void body::init_joints() 
+{
     glNewList(rs_joint, GL_COMPILE);
         glTranslatef(-0.115, 0.375, 0.0);
         glScalef(0.03, 0.05, 0.03);
-        //drawCube();
         texcube(0, 0.0, 0.0, 1.0);
     glEndList();
     glNewList(ls_joint, GL_COMPILE);
         glTranslatef(0.115, 0.375, 0.0);
         glScalef(0.03, 0.05, 0.03);
-        //drawCube();
         texcube(0, 0.0, 0.0, 1.0);
     glEndList();
 }
+
+//End Call List Definitions
 
 void body::keyframe() {
     keyfile << frames << '\n';
@@ -839,3 +851,4 @@ void body::keyframe() {
     keyfile.flush();
     std::cout << "Keyframe saved\n";
 }
+

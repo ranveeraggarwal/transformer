@@ -46,6 +46,7 @@ void control(int key, int scancode, int action, int mods) {
                     b->lookat_z += sin(b->camera_p*PI/180.0);
                 }
             break;
+
         case GLFW_KEY_RIGHT:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0) {
                 if(b->camera == 0)
@@ -59,6 +60,7 @@ void control(int key, int scancode, int action, int mods) {
                     b->lookat_z -= sin(b->camera_p*PI/180.0);
                 }
             break;
+
         case GLFW_KEY_UP:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0 && b->camera == 1)
                 b->move_camera_t(5);
@@ -68,6 +70,7 @@ void control(int key, int scancode, int action, int mods) {
                     b->lookat_x -= sin(b->camera_p*PI/180.0);
                 }
             break;
+
         case GLFW_KEY_DOWN:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0 && b->camera == 1)
                 b->move_camera_t(-5);
@@ -77,38 +80,48 @@ void control(int key, int scancode, int action, int mods) {
                     b->lookat_x += sin(b->camera_p*PI/180.0);
                 }            
             break;
+
         case GLFW_KEY_N:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0 && b->camera == 1)
                 b->move_camera_r(-0.1);
             break;
+
         case GLFW_KEY_M:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0 && b->camera == 1)
                 b->move_camera_r(0.1);
             break;
+
         case GLFW_KEY_V:
             if((action == GLFW_PRESS) && mods == 0 && b->camera == 1)
                 b->camera_free = !b->camera_free;
             break;
+
+
         case GLFW_KEY_0:
             if((action == GLFW_PRESS) && mods == 0)
                 b->camera = 0;
             break;
+
         case GLFW_KEY_1:
             if((action == GLFW_PRESS) && mods == 0)
                 b->camera = 1;
             break;
+
         case GLFW_KEY_2:
             if((action == GLFW_PRESS) && mods == 0)
                 b->camera = 2;
             break;
+
         case GLFW_KEY_R:
             if((action == GLFW_PRESS) && mods == 0)
                 b->day = !b->day;
             break;
+
         case GLFW_KEY_C:
             if((action == GLFW_PRESS) && mods == 0)
                 b->moon_toggle = !b->moon_toggle;
             break;
+
        /*Activating various parts*/
         case GLFW_KEY_SPACE:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0) {
@@ -123,10 +136,10 @@ void control(int key, int scancode, int action, int mods) {
                     b->count_revert = 200;
                     b->count_elbows_out = 100;
                 }
-                //active = "camera";
             }
             break;
     }
+
     if(b->transformed) {
         switch(key) {
             case GLFW_KEY_3:
@@ -134,7 +147,6 @@ void control(int key, int scancode, int action, int mods) {
                     b->camera = 3;
                 break;
             case GLFW_KEY_W:
-                //std::cout << "W " << action << " " << mods << std::endl;
                 if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
                     b->dist = 0.1;
                 else
@@ -147,7 +159,6 @@ void control(int key, int scancode, int action, int mods) {
                     b->dist = 0;
                 break;
             case GLFW_KEY_A:
-                //std::cout << "A " << action << " " << mods << std::endl;
                 if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
                     b->turn = 5;
                 else
@@ -167,6 +178,7 @@ void control(int key, int scancode, int action, int mods) {
         }
         return;
     } 
+    
     switch(key) {
         case GLFW_KEY_Z:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
