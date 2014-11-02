@@ -3,9 +3,36 @@
 #include <cmath>
 
 std::string active = "arandomstring";
-
+int multiplier = 1;
 void control(int key, int scancode, int action, int mods) {
     switch(key) {
+        case GLFW_KEY_B:
+            if(action == GLFW_PRESS && mods == 0)
+                b->keyframe();
+            break;
+        case GLFW_KEY_F:
+            if(action == GLFW_PRESS || action == GLFW_REPEAT) {
+                if(mods == 0)
+                    b->frames += multiplier;
+                else if(mods == 1)
+                    b->frames -= multiplier;
+                if(b->frames < 0)
+                    b->frames = 0;
+                std::cout << "Frames: " << b->frames << std::endl;
+            }
+            break;
+        case GLFW_KEY_PERIOD:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 1) {
+                multiplier++;
+                std::cout << "Multiplier: " << multiplier << std::endl;
+            }
+            break;
+        case GLFW_KEY_COMMA:
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 1 && multiplier > 1) {
+                multiplier--;
+                std::cout << "Multiplier: " << multiplier << std::endl;
+            }
+            break;
         case GLFW_KEY_LEFT:
             if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0) {
                 if(b->camera == 0)

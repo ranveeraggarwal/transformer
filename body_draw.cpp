@@ -52,6 +52,7 @@ double body::knee_x_min = 0;
 
 
 body::body() {
+
     /*Variables*/
 
     pos_x = 0;
@@ -69,6 +70,8 @@ body::body() {
     headlight = false;
     day = true;
     moon_toggle = false; 
+    frames = 0;
+    keyfile.open("keyframes.txt", std::fstream::out);
 
    /* Trees */
     
@@ -723,4 +726,116 @@ void body::init_joints() {
     glEndList();
 }
 
-
+void body::keyframe() {
+    keyfile << frames << '\n';
+    frames = 0;
+    keyfile << pos_x;
+    keyfile << ' ';
+    keyfile << pos_y;
+    keyfile << ' ';
+    keyfile << pos_z;
+    keyfile << ' ';
+    keyfile << rotate_x_angle;
+    keyfile << ' ';
+    keyfile << rotate_y_angle;
+    keyfile << ' ';
+    keyfile << rotate_z_angle;
+    keyfile << ' ';
+    keyfile << ortho_y_angle;
+    keyfile << ' ';
+	keyfile << elbows_y_offset;
+    keyfile << ' ';
+    keyfile << right_shoulder_x;
+    keyfile << ' ';
+    keyfile << right_shoulder_y;
+    keyfile << ' ';
+    keyfile << right_shoulder_z;
+    keyfile << ' ';
+    keyfile << left_shoulder_x;
+    keyfile << ' ';
+    keyfile << left_shoulder_y;
+    keyfile << ' ';
+    keyfile << left_shoulder_z;
+    keyfile << ' ';
+    keyfile << waist_x;
+    keyfile << ' ';
+    keyfile << waist_y;
+    keyfile << ' ';
+    keyfile << waist_z;
+    keyfile << ' ';
+    keyfile << neck_x;
+    keyfile << ' ';
+    keyfile << neck_y;
+    keyfile << ' ';
+    keyfile << neck_z;
+    keyfile << ' ';
+    keyfile << right_ankle_x;
+    keyfile << ' ';
+    keyfile << right_ankle_y;
+    keyfile << ' ';
+    keyfile << right_wrist_x;
+    keyfile << ' ';
+    keyfile << right_wrist_z;
+    keyfile << ' ';
+    keyfile << left_ankle_x;
+    keyfile << ' ';
+    keyfile << left_ankle_y;
+    keyfile << ' ';
+    keyfile << left_wrist_x;
+    keyfile << ' ';
+    keyfile << left_wrist_z;
+    keyfile << ' ';
+    keyfile << right_hip_x;
+    keyfile << ' ';
+    keyfile << right_hip_y;
+    keyfile << ' ';
+    keyfile << right_hip_z;
+    keyfile << ' ';
+    keyfile << left_hip_x;
+    keyfile << ' ';
+    keyfile << left_hip_y;
+    keyfile << ' ';
+    keyfile << left_hip_z;
+    keyfile << ' ';
+    keyfile << right_elbow_x;
+    keyfile << ' ';
+    keyfile << left_elbow_x;
+    keyfile << ' ';
+    keyfile << right_knee_x;
+    keyfile << ' ';
+    keyfile << left_knee_x;
+    keyfile << ' ';
+    keyfile << rs_joint_x;
+    keyfile << ' ';
+    keyfile << ls_joint_x;
+    keyfile << ' ';
+    keyfile << camera;
+    keyfile << ' ';
+    keyfile << wheel_rotate_angle;
+    keyfile << ' ';
+    keyfile << lookat_x;
+    keyfile << ' ';
+    keyfile << lookat_y;
+    keyfile << ' ';
+    keyfile << lookat_z;
+    keyfile << ' ';
+    keyfile << headlight;
+    keyfile << ' ';
+    keyfile << day;
+    keyfile << ' ';
+    keyfile << moon_toggle;
+    keyfile << ' ';
+    int i;
+    for(i = 0; i < 100; i++)
+    	keyfile << tree_standing[i] << ' ';
+    keyfile << camera_r;
+    keyfile << ' ';
+    keyfile << camera_t;
+    keyfile << ' ';
+    keyfile << camera_p;
+    keyfile << ' ';
+    keyfile << camera_free;
+    keyfile << ' ';    
+    keyfile.flush();
+    std::cout << "Keyframe saved\n";
+}

@@ -1,5 +1,7 @@
 #include "basics.hpp"
 
+#include <fstream>
+
 #define pelvis 1
 #define torso 2
 #define head 3
@@ -22,9 +24,9 @@ class body {
 
 private:
 
-double pos_z;
 double pos_x;
 double pos_y;
+double pos_z;
 
 double rotate_x_angle; 
 double rotate_y_angle; 
@@ -255,5 +257,10 @@ double camera_t;
 double camera_p;
 
 bool camera_free;
+
+int frames;
+void keyframe();
+std::fstream keyfile;
+
 };
 
