@@ -1,4 +1,5 @@
 #include "gl_framework.hpp"
+#include <stdlib.h>
 //#include <cv.h>
 //#include <highgui.h>
 //#include <cvaux.h>
@@ -6,7 +7,7 @@ unsigned int texture[8];
 
 body* b;
 bool recording = false;
-
+int fps = 60;
 void renderGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -18,6 +19,10 @@ void renderGL()
 
 int main(int argc, char** argv)
 {
+
+  if(argc == 2)
+    fps = std::strtol(argv[1], 0, 10);
+  double step = 1.0 / (double) fps;
   //! The pointer to the GLFW window
   GLFWwindow* window;
   int height = 750;
@@ -71,10 +76,11 @@ int main(int argc, char** argv)
 
   //writer = cvCreateVideoWriter("out.avi", CV_FOURCC('j', 'p', 'e', 'g'), fps, cvSize(width, height), isColor);
   // Loop until the user closes the window
-  b = new body(); 
+  b = new body();
+  double time; 
   while (glfwWindowShouldClose(window) == 0)
     {
-       
+      time = glfwGetTime() + step;
       // Render here
       renderGL();
       /*
@@ -93,6 +99,9 @@ int main(int argc, char** argv)
       
       // Poll for and process events
       glfwPollEvents();
+      if(b->terminate)
+        glfwSetWindowShouldClose(window, GL_TRUE);
+      while(glfwGetTime() < time);
     }
   //cvReleaseVideoWriter(&writer);
   glfwTerminate();

@@ -59,6 +59,19 @@ Press the number keys to select the corresponding camera
 * `A`: Turns Left when holding this and moving forward/backward
 * `D`: Turns Right when holding this and moving forward/backward
 
+##Recording & Playback
+* `B`: Save a keyframe
+* `F`: Increase number of interpolating frames by the multiplier
+* `Shift+F`: Decrease number of interpolating frames by the multiplier
+* `Shift+.(>)`: Increase the multiplier by 1
+* `Shift+,(<)`: Decrease the multiplier by 1
+* `Shift+B`: Start playback
+
+* The first command line argument specifies the fps (of course, the maximum fps is limited by the hardware).
+* All boolean values change only when the keyframe is reached.
+* All other interpolations are linear. Angles are interpolated in the direction of minimum distance.
+* The number of interpolating frames is reset to 0 when a keyframe is saved.
+
 ##External libraries used
 * SOIL (Simple OpenGL Image Library): We used this to load images into our program.
 * GLU: We didn't make much use of it, except for changing the lookat (gluLookat).

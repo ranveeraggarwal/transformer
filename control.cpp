@@ -9,6 +9,8 @@ void control(int key, int scancode, int action, int mods) {
         case GLFW_KEY_B:
             if(action == GLFW_PRESS && mods == 0)
                 b->keyframe();
+            if(action == GLFW_PRESS && mods == 1)
+                b->playback_init();
             break;
         case GLFW_KEY_F:
             if(action == GLFW_PRESS || action == GLFW_REPEAT) {

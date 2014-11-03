@@ -73,7 +73,8 @@ body::body() {
     moon_toggle = false; 
     frames = 0;
     keyfile.open("keyframes.txt", std::fstream::out);
-
+    playback = false;
+    terminate = false;
    /* Trees */    
     for(int i = 0; i < 100; i++) {
         tree_standing[i] = true;
@@ -193,6 +194,8 @@ body::body() {
 
 void body::render() 
 {
+    if(playback)
+        interpolate();
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     if(camera == 0)
@@ -823,6 +826,8 @@ void body::keyframe() {
     keyfile << ' ';
     keyfile << camera;
     keyfile << ' ';
+    keyfile << turn;
+    keyfile << ' ';
     keyfile << wheel_rotate_angle;
     keyfile << ' ';
     keyfile << lookat_x;
@@ -851,4 +856,222 @@ void body::keyframe() {
     keyfile.flush();
     std::cout << "Keyframe saved\n";
 }
+
+void body::playback_init() {
+    playback = true;
+    keyfile << "-1\n";
+    keyfile.close();
+    keyfile.open("keyframes.txt", std::fstream::in);
+    int i;
+    keyfile >> i;
+    std::cout << "Playing Back..." << std::endl;
+    readframe();
+    frames = 0;        
+    for(i = 0; i < 100; i++) {
+        tree_fall_angle[i] = 0;
+        tree_y_angle[i] = 0;
+    }
+}
+
+void body::readframe() {
+    keyfile >> ip_pos_x;
+    keyfile >> ip_pos_y;
+    keyfile >> ip_pos_z;
+    keyfile >> ip_rotate_x_angle;
+    keyfile >> ip_rotate_y_angle;
+    keyfile >> ip_rotate_z_angle;
+    keyfile >> ip_ortho_y_angle;
+	keyfile >> ip_elbows_y_offset;
+    keyfile >> ip_right_shoulder_x;
+    keyfile >> ip_right_shoulder_y;
+    keyfile >> ip_right_shoulder_z;
+    keyfile >> ip_left_shoulder_x;
+    keyfile >> ip_left_shoulder_y;
+    keyfile >> ip_left_shoulder_z;
+    keyfile >> ip_waist_x;
+    keyfile >> ip_waist_y;
+    keyfile >> ip_waist_z;
+    keyfile >> ip_neck_x;
+    keyfile >> ip_neck_y;
+    keyfile >> ip_neck_z;
+    keyfile >> ip_right_ankle_x;
+    keyfile >> ip_right_ankle_y;
+    keyfile >> ip_right_wrist_x;
+    keyfile >> ip_right_wrist_z;
+    keyfile >> ip_left_ankle_x;
+    keyfile >> ip_left_ankle_y;
+    keyfile >> ip_left_wrist_x;
+    keyfile >> ip_left_wrist_z;
+    keyfile >> ip_right_hip_x;
+    keyfile >> ip_right_hip_y;
+    keyfile >> ip_right_hip_z;
+    keyfile >> ip_left_hip_x;
+    keyfile >> ip_left_hip_y;
+    keyfile >> ip_left_hip_z;
+    keyfile >> ip_right_elbow_x;
+    keyfile >> ip_left_elbow_x;
+    keyfile >> ip_right_knee_x;
+    keyfile >> ip_left_knee_x;
+    keyfile >> ip_rs_joint_x;
+    keyfile >> ip_ls_joint_x;
+    keyfile >> ip_camera;
+    keyfile >> ip_turn;
+    keyfile >> ip_wheel_rotate_angle;
+    keyfile >> ip_lookat_x;
+    keyfile >> ip_lookat_y;
+    keyfile >> ip_lookat_z;
+    keyfile >> ip_headlight;
+    keyfile >> ip_day;
+    keyfile >> ip_moon_toggle;
+    int i;
+    for(i = 0; i < 100; i++) {
+    	keyfile >> ip_tree_standing[i];
+    }
+    keyfile >> ip_camera_r;
+    keyfile >> ip_camera_t;
+    keyfile >> ip_camera_p;
+    keyfile >> ip_camera_free;
+    keyfile >> ip_frames; 
+}
+
+void body::interpolate() {
+if(frames == 0) {
+    pos_x = ip_pos_x;
+    pos_y = ip_pos_y;
+    pos_z = ip_pos_z;
+    rotate_x_angle = ip_rotate_x_angle;
+    rotate_y_angle = ip_rotate_y_angle;
+    rotate_z_angle = ip_rotate_z_angle;
+    ortho_y_angle = ip_ortho_y_angle;
+	elbows_y_offset = ip_elbows_y_offset;
+    right_shoulder_x = ip_right_shoulder_x;
+    right_shoulder_y = ip_right_shoulder_y;
+    right_shoulder_z = ip_right_shoulder_z;
+    left_shoulder_x = ip_left_shoulder_x;
+    left_shoulder_y = ip_left_shoulder_y;
+    left_shoulder_z = ip_left_shoulder_z;
+    waist_x = ip_waist_x;
+    waist_y = ip_waist_y;
+    waist_z = ip_waist_z;
+    neck_x = ip_neck_x;
+    neck_y = ip_neck_y;
+    neck_z = ip_neck_z;
+    right_ankle_x = ip_right_ankle_x;
+    right_ankle_y = ip_right_ankle_y;
+    right_wrist_x = ip_right_wrist_x;
+    right_wrist_z = ip_right_wrist_z;
+    left_ankle_x = ip_left_ankle_x;
+    left_ankle_y = ip_left_ankle_y;
+    left_wrist_x = ip_left_wrist_x;
+    left_wrist_z = ip_left_wrist_z;
+    right_hip_x = ip_right_hip_x;
+    right_hip_y = ip_right_hip_y;
+    right_hip_z = ip_right_hip_z;
+    left_hip_x = ip_left_hip_x;
+    left_hip_y = ip_left_hip_y;
+    left_hip_z = ip_left_hip_z;
+    right_elbow_x = ip_right_elbow_x;
+    left_elbow_x = ip_left_elbow_x;
+    right_knee_x = ip_right_knee_x;
+    left_knee_x = ip_left_knee_x;
+    rs_joint_x = ip_rs_joint_x;
+    ls_joint_x = ip_ls_joint_x;
+    camera = ip_camera;
+    turn = ip_turn;
+    wheel_rotate_angle = ip_wheel_rotate_angle;
+    lookat_x = ip_lookat_x;
+    lookat_y = ip_lookat_y;
+    lookat_z = ip_lookat_z;
+    headlight = ip_headlight;
+    day = ip_day;
+    moon_toggle = ip_moon_toggle;
+    int i;
+    for(i = 0; i < 100; i++)
+    	tree_standing[i] = ip_tree_standing[i];
+    camera_r = ip_camera_r;
+    camera_t = ip_camera_t;
+    camera_p = ip_camera_p;
+    camera_free = ip_camera_free;
+    frames = ip_frames;
+    if(frames < 0) {
+        terminate = true;
+        return;
+    }    
+    readframe();
+}
+else {
+    linear_interpolate(pos_x, ip_pos_x);
+    linear_interpolate(pos_y, ip_pos_y);
+    linear_interpolate(pos_z, ip_pos_z);
+    angular_interpolate(rotate_x_angle, ip_rotate_x_angle);
+    angular_interpolate(rotate_y_angle, ip_rotate_y_angle);
+    angular_interpolate(rotate_z_angle, ip_rotate_z_angle);
+    angular_interpolate(ortho_y_angle, ip_ortho_y_angle);
+	linear_interpolate(elbows_y_offset, ip_elbows_y_offset);
+    linear_interpolate(right_shoulder_x, ip_right_shoulder_x);
+    linear_interpolate(right_shoulder_y, ip_right_shoulder_y);
+    linear_interpolate(right_shoulder_z, ip_right_shoulder_z);
+    linear_interpolate(left_shoulder_x, ip_left_shoulder_x);
+    linear_interpolate(left_shoulder_y, ip_left_shoulder_y);
+    linear_interpolate(left_shoulder_z, ip_left_shoulder_z);
+    linear_interpolate(waist_x, ip_waist_x);
+    linear_interpolate(waist_y, ip_waist_y);
+    linear_interpolate(waist_z, ip_waist_z);
+    linear_interpolate(neck_x, ip_neck_x);
+    linear_interpolate(neck_y, ip_neck_y);
+    linear_interpolate(neck_z, ip_neck_z);
+    linear_interpolate(right_ankle_x, ip_right_ankle_x);
+    linear_interpolate(right_ankle_y, ip_right_ankle_y);
+    linear_interpolate(right_wrist_x, ip_right_wrist_x);
+    linear_interpolate(right_wrist_z, ip_right_wrist_z);
+    linear_interpolate(left_ankle_x, ip_left_ankle_x);
+    linear_interpolate(left_ankle_y, ip_left_ankle_y);
+    linear_interpolate(left_wrist_x, ip_left_wrist_x);
+    linear_interpolate(left_wrist_z, ip_left_wrist_z);
+    linear_interpolate(right_hip_x, ip_right_hip_x);
+    linear_interpolate(right_hip_y, ip_right_hip_y);
+    linear_interpolate(right_hip_z, ip_right_hip_z);
+    linear_interpolate(left_hip_x, ip_left_hip_x);
+    linear_interpolate(left_hip_y, ip_left_hip_y);
+    linear_interpolate(left_hip_z, ip_left_hip_z);
+    linear_interpolate(right_elbow_x, ip_right_elbow_x);
+    linear_interpolate(left_elbow_x, ip_left_elbow_x);
+    linear_interpolate(right_knee_x, ip_right_knee_x);
+    linear_interpolate(left_knee_x, ip_left_knee_x);
+    linear_interpolate(rs_joint_x, ip_rs_joint_x);
+    linear_interpolate(ls_joint_x, ip_ls_joint_x);
+    linear_interpolate(turn, ip_turn);
+    angular_interpolate(wheel_rotate_angle, ip_wheel_rotate_angle);
+    linear_interpolate(lookat_x, ip_lookat_x);
+    linear_interpolate(lookat_y, ip_lookat_y);
+    linear_interpolate(lookat_z, ip_lookat_z);
+    linear_interpolate(camera_r, ip_camera_r);
+    angular_interpolate(camera_t, ip_camera_t);
+    angular_interpolate(camera_p, ip_camera_p);
+    frames--;
+}    
+}
+
+void body::linear_interpolate(double &var, double &ip_var) {
+    var = (frames * var + ip_var) / (frames + 1);   
+}
+
+void body::angular_interpolate(double &var, double &ip_var) {
+    if(std::abs(ip_var - var) < 180.0)
+        linear_interpolate(var, ip_var);
+    else {
+        double delta = (360.0 - std::abs(ip_var - var)) / (frames + 1);
+        if(ip_var > var) {
+            var -= delta;
+            if(var < 0)
+                var += 360.0;
+        }
+        else {
+            var += delta;
+            if(var >= 360.0)
+                var -= 360.0;
+        }
+    }
+}
+
 

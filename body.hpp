@@ -36,6 +36,18 @@ double ortho_y_angle;
 
 double elbows_y_offset;
 
+double ip_pos_x;
+double ip_pos_y;
+double ip_pos_z;
+
+double ip_rotate_x_angle; 
+double ip_rotate_y_angle; 
+double ip_rotate_z_angle; 
+
+double ip_ortho_y_angle;
+
+double ip_elbows_y_offset;
+
 /* Angle Limits */
 
 static double shoulder_x_min;
@@ -130,6 +142,53 @@ double left_knee_x;
 
 double rs_joint_x;
 double ls_joint_x;
+
+double ip_right_shoulder_x;
+double ip_right_shoulder_y;
+double ip_right_shoulder_z;
+
+double ip_left_shoulder_x;
+double ip_left_shoulder_y;
+double ip_left_shoulder_z;
+
+double ip_waist_x;
+double ip_waist_y;
+double ip_waist_z;
+
+double ip_neck_x;
+double ip_neck_y;
+double ip_neck_z;
+
+double ip_right_ankle_x;
+double ip_right_ankle_y;
+
+double ip_right_wrist_x;
+double ip_right_wrist_z;
+
+double ip_left_ankle_x;
+double ip_left_ankle_y;
+
+double ip_left_wrist_x;
+double ip_left_wrist_z;
+
+double ip_right_hip_x;
+double ip_right_hip_y;
+double ip_right_hip_z;
+
+double ip_left_hip_x;
+double ip_left_hip_y;
+double ip_left_hip_z;
+
+double ip_right_elbow_x;
+
+double ip_left_elbow_x;
+
+double ip_right_knee_x;
+
+double ip_left_knee_x;
+
+double ip_rs_joint_x;
+double ip_ls_joint_x;
 
 
 /* Display Lists are created here */
@@ -235,6 +294,7 @@ int count_transform;
 int count_elbows_in;
 int count_elbows_out;
 int camera;
+int ip_camera;
 double dist;
 double turn;
 double wheel_rotate_angle;
@@ -244,10 +304,20 @@ double lookat_z;
 bool headlight;
 bool day;
 bool moon_toggle;
+double ip_turn;
+double ip_wheel_rotate_angle;
+double ip_lookat_x;
+double ip_lookat_y;
+double ip_lookat_z;
+bool ip_headlight;
+bool ip_day;
+bool ip_moon_toggle;
+
 
 double tree_x[100];
 double tree_z[100];
 bool tree_standing[100];
+bool ip_tree_standing[100];
 double tree_fall_angle[100];
 double tree_y_angle[100];
 
@@ -255,12 +325,23 @@ double tree_y_angle[100];
 double camera_r;
 double camera_t;
 double camera_p;
+double ip_camera_r;
+double ip_camera_t;
+double ip_camera_p;
 
 bool camera_free;
+bool ip_camera_free;
 
 int frames;
+int ip_frames;
 void keyframe();
 std::fstream keyfile;
-
+bool playback;
+bool terminate;
+void playback_init();
+void readframe();
+void interpolate();
+void linear_interpolate(double &, double &);
+void angular_interpolate(double &, double &);
 };
 

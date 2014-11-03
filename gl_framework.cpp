@@ -158,7 +158,7 @@ namespace transpace
     //!Close the window if the ESC key was pressed
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
       glfwSetWindowShouldClose(window, GL_TRUE);
-    else
+    else if(!b->playback)
         control(key, scancode, action, mods);
     }
 };  
