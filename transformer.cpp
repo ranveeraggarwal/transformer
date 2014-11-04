@@ -1,7 +1,7 @@
 #include "gl_framework.hpp"
 #include <stdlib.h>
-#include <cv.h>
-#include <highgui.h>
+//#include <cv.h>
+//#include <highgui.h>
 //#include <cvaux.h>
 unsigned int texture[8];
 
@@ -69,21 +69,22 @@ int main(int argc, char** argv)
 
   //Initialize GL state
   transpace::initGL();
-  unsigned char *raw_image = (unsigned char*) calloc(width * height * 3, sizeof(char));
-  CvVideoWriter *writer = 0;
-  int isColor = 1;
+  //unsigned char *raw_image = (unsigned char*) calloc(width * height * 3, sizeof(char));
+  //CvVideoWriter *writer = 0;
+  //int isColor = 1;
+  //int fps = 30;
 
-  writer = cvCreateVideoWriter("out.avi", CV_FOURCC('j', 'p', 'e', 'g'), fps, cvSize(width, height), isColor);
+  //writer = cvCreateVideoWriter("out.avi", CV_FOURCC('j', 'p', 'e', 'g'), fps, cvSize(width, height), isColor);
   // Loop until the user closes the window
   b = new body();
   double time; 
   while (glfwWindowShouldClose(window) == 0)
     {
-      time = glfwGetTime() + step;
+      time = glfwGetTime();
       // Render here
       renderGL();
-      
-      if(b->playback) {
+      /*
+      if(recording) {
         glReadPixels(0, 0, width, height, GL_BGR, GL_UNSIGNED_BYTE, raw_image);
         IplImage* img = cvCreateImage(cvSize(width, height), IPL_DEPTH_8U, 3);
         img->imageData = (char *)raw_image;
@@ -92,7 +93,7 @@ int main(int argc, char** argv)
         cvWriteFrame(writer, img); // add the frame to the file
         cvReleaseImage(&img);
       }
-      
+      */
       // Swap front and back buffers
       glfwSwapBuffers(window);
       
@@ -100,9 +101,11 @@ int main(int argc, char** argv)
       glfwPollEvents();
       if(b->terminate)
         glfwSetWindowShouldClose(window, GL_TRUE);
-      while(glfwGetTime() < time);
+      while(glfwGetTime() < time + step);
+      std::cout << "FPS: " << 1.0 / (glfwGetTime() - time) << '\r';
+      std::cout.flush();
     }
-  cvReleaseVideoWriter(&writer);
+  //cvReleaseVideoWriter(&writer);
   glfwTerminate();
   return 0;
 }

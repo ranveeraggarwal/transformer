@@ -20,7 +20,7 @@ void control(int key, int scancode, int action, int mods) {
                     b->frames -= multiplier;
                 if(b->frames < 0)
                     b->frames = 0;
-                std::cout << "Frames: " << b->frames << std::endl;
+                std::cout << "Frames: " << b->frames << "                  " << std::endl;
             }
             break;
         case GLFW_KEY_PERIOD:
