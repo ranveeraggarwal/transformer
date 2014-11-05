@@ -142,7 +142,7 @@ void control(int key, int scancode, int action, int mods) {
             break;
     }
 
-    if(b->transformed) {
+    if(true) {
         switch(key) {
             case GLFW_KEY_3:
                 if(action == GLFW_PRESS && mods == 0)
@@ -178,7 +178,7 @@ void control(int key, int scancode, int action, int mods) {
                 break;
 
         }
-        return;
+        //return;
     } 
     
     switch(key) {
@@ -241,7 +241,7 @@ void control(int key, int scancode, int action, int mods) {
 
         /*Increase the active component in the X direction*/
         case GLFW_KEY_Q:
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 1)
             {
                 /*Waist Movement*/
                 if (active == "waist") b->move_waist_x(1);
@@ -277,7 +277,7 @@ void control(int key, int scancode, int action, int mods) {
         /*Decrease the active component in the X direction*/
         case GLFW_KEY_A:
             
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 1)
             {
                 /*Waist Movement*/
                 if (active == "waist") b->move_waist_x(-1);
@@ -312,7 +312,7 @@ void control(int key, int scancode, int action, int mods) {
 
         /*Increase the active component in the Y direction*/
         case GLFW_KEY_W:
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 1)
             {
                 /*Waist Movement*/
                 if (active == "waist") b->move_waist_y(1);
@@ -337,7 +337,7 @@ void control(int key, int scancode, int action, int mods) {
 
         /*Decrease the active component in the Y direction*/
         case GLFW_KEY_S:
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 1)
             {
                 /*Waist Movement*/
                 if (active == "waist") b->move_waist_y(-1);
@@ -362,7 +362,7 @@ void control(int key, int scancode, int action, int mods) {
 
         /*Increase the active component in the Z direction*/
         case GLFW_KEY_E:
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 1)
             {
                 /*Waist Movement*/
                 if (active == "waist") b->move_waist_z(1);
@@ -385,7 +385,7 @@ void control(int key, int scancode, int action, int mods) {
 
         /*Decrease the active component in the Z direction*/
         case GLFW_KEY_D:
-            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 0)
+            if((action == GLFW_PRESS || action == GLFW_REPEAT) && mods == 1)
             {
                 /*Waist Movement*/
                 if (active == "waist") b->move_waist_z(-1);

@@ -21,8 +21,8 @@ void body::move_camera_r(double t)
     double new_r = camera_r + t;
     if(new_r < 0.2)
         new_r = 0.2;
-    if(new_r > 7)
-        new_r = 7;
+    if(new_r > 50)
+        new_r = 50;
     camera_r = new_r;
 }
 

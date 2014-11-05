@@ -5,8 +5,16 @@ void renderGround() {
     //Ground
     glPushMatrix();
     glTranslatef(0, -50.615, 0);
-    glScalef(100, 100, 100);
-    texcube(2, 0.6, 0.6, 0.3, true);
+    int i, j;
+    for(i = 0; i < 100; i++) {
+        for(j = 0; j < 100; j++) {
+            glPushMatrix();
+            glTranslatef((i/1.0)-49.5, 0, (j/1.0)-49.5);
+            glScalef(0.1, 100, 0.1);
+            texcube(2, 0.6, 0.6, 0.3, true);
+            glPopMatrix();
+        }
+    }
     glPopMatrix();
     //Sea
     glPushMatrix();
