@@ -84,6 +84,7 @@ body::body() {
         float zrand = (rand()%50);
         tree_x[i] = xrand - 25;
         tree_z[i] = zrand - 25;
+        //std::cout << i << " " << tree_x[i] << " " << tree_z[i] << std::endl;
     }
 
     /*Camera*/
@@ -254,7 +255,7 @@ void body::render()
         glEnable(GL_LIGHT1);
 
     //Render Environment
-    renderGround();
+    renderGround((!day) && headlight);
     renderSky(day, moon_toggle);
 
     //Place trees

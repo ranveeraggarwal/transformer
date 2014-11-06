@@ -1,19 +1,31 @@
 #include "environment.hpp"
 #include <cmath>
 
-void renderGround() {
+void renderGround(bool tesselate) {
     //Ground
     glPushMatrix();
     glTranslatef(0, -50.615, 0);
     int i, j;
-    for(i = 0; i < 100; i++) {
-        for(j = 0; j < 100; j++) {
+    if(tesselate) {
+    for(i = 0; i < 50; i++) {
+        for(j = 0; j < 50; j++) {
             glPushMatrix();
-            glTranslatef((i/1.0)-49.5, 0, (j/1.0)-49.5);
-            glScalef(0.1, 100, 0.1);
+            glTranslatef((2*i)-49, 0, (2*j)-49);
+            glScalef(2, 100, 2);
             texcube(2, 0.6, 0.6, 0.3, true);
             glPopMatrix();
         }
+    }
+    }
+    else {
+    for(i = 0; i < 1; i++) {
+        for(j = 0; j < 1; j++) {
+            glPushMatrix();
+            glScalef(100, 100, 100);
+            texcube(2, 0.6, 0.6, 0.3, true);
+            glPopMatrix();
+        }
+    }
     }
     glPopMatrix();
     //Sea
