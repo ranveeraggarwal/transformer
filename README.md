@@ -1,5 +1,6 @@
 #TRANSFORMER
-The report for this bot can be found at http://www.cse.iitb.ac.in/~ranveer/graphics_2_2/
+The report for this bot can be found at http://www.cse.iitb.ac.in/~ranveer/graphics/
+The video can be found at https://www.youtube.com/watch?v=-1trKrV04yE
 
 ##Movements
 The components of the transformer's body are mapped to keys. Pressing one of these keys will activate the corresponding component.
@@ -21,12 +22,12 @@ The components of the transformer's body are mapped to keys. Pressing one of the
 * `X`: Neck
 
 ###To move the active component, the following key mappings work:
-* `Q`: Increase X
-* `A`: Decrease X
-* `W`: Increase Y
-* `S`: Decrease Y
-* `E`: Increase Z
-* `D`: Decrease Z
+* `Shift + Q`: Increase X
+* `Shift + A`: Decrease X
+* `Shift + W`: Increase Y
+* `Shift + S`: Decrease Y
+* `Shift + E`: Increase Z
+* `Shift + D`: Decrease Z
 
 ###Camera Controls
 
@@ -52,10 +53,10 @@ Press the number keys to select the corresponding camera
 * `H`: Toggle Headlights
 * `C`: Toggle just the moon light. (By default, moon light is during night only).
 
-##Transformation
+##Transformation and Movement
 * `Space`: Transform/Revert
-* `W`: Move Forward when transformed
-* `S`: Move backward when transformed
+* `W`: Move Forward
+* `S`: Move backward
 * `A`: Turns Left when holding this and moving forward/backward
 * `D`: Turns Right when holding this and moving forward/backward
 
