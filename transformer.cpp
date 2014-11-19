@@ -86,7 +86,7 @@ int main(int argc, char** argv)
       if(b->terminate)
         glfwSetWindowShouldClose(window, GL_TRUE);
       while(glfwGetTime() < time + step);
-      std::cout << "FPS: " << 1.0 / (glfwGetTime() - time) << '     \r';
+      std::cout << "FPS: " << 1.0 / (glfwGetTime() - time) << "     \r";
       std::cout.flush();
     }
   glfwTerminate();
